@@ -1,0 +1,140 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: prisma_access_mobile_users_setup_v90
+# label used for menu selection
+label: Prisma Access Mobile Users Setup v90
+description: Prisma Access Mobile Users initial configuration prior to onboarding
+
+# type of device configuration
+# common types are panorama, panos, and template
+# https://github.com/PaloAltoNetworks/panhandler/blob/develop/docs/metadata_configuration.rst
+type: panorama-gpcs
+# preload static or default-based templates
+extends:
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - Prisma Access
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+# variables used in the configuration templates
+# type_hint defines the form field used by panhandler
+# type_hints can be text, ip_address, or dropdown
+variables:
+# NO VARIABLES FOR THIS SKILLET
+# ---------------------------------------------------------------------
+# end of variables section
+
+# snippets section
+# ---------------------------------------------------------------------
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+# NOTE: The following snippets are auto-generated and ordered automatically.
+# Changing the content of the snippet may be necessary, but do NOT change the order
+
+# There is a variable called snippets that we can use to auto-generate this section for us
+snippets:
+
+  - name: mobile_users_plugin_configuration
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services[@version="1.5.0"]
+    element: |-
+      <mobile-users>
+        <template-stack>Mobile_User_Template_Stack</template-stack>
+        <device-group>Mobile_User_Device_Group</device-group>
+        <trusted-zones>
+          <member>MU-trust</member>
+        </trusted-zones>
+      </mobile-users>
+
+  - name: mobile_users_template
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template
+    element: |-
+      <entry name="Mobile_User_Template">
+        <settings>
+          <default-vsys>vsys1</default-vsys>
+        </settings>
+        <description> Template (Use the Cloud Services plugin to edit)</description>
+        <config>
+          <devices>
+            <entry name="localhost.localdomain">
+              <vsys>
+                <entry name="vsys1">
+                  <zone>
+                    <entry name="MU-trust">
+                      <network>
+                        <tap/>
+                      </network>
+                    </entry>
+                    <entry name="MU-untrust">
+                      <network>
+                        <tap/>
+                      </network>
+                    </entry>
+                  </zone>
+                </entry>
+              </vsys>
+            </entry>
+          </devices>
+          <shared>
+            <log-settings>
+              <system>
+                <match-list>
+                  <entry name="system-gpcs-default">
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </system>
+              <userid>
+                <match-list>
+                  <entry name="userid-gpcs-default">
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </userid>
+              <hipmatch>
+                <match-list>
+                  <entry name="hipmatch-gpcs-default">
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </hipmatch>
+            </log-settings>
+          </shared>
+        </config>
+      </entry>
+
+  - name: mobile_users_template_stack
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template-stack
+    element: |-
+      <entry name="Mobile_User_Template_Stack">
+        <templates>
+          <member>Mobile_User_Template</member>
+        </templates>
+        <description> Template Stack (Use the Cloud Services plugin to edit)</description>
+        <settings>
+          <default-vsys>vsys1</default-vsys>
+        </settings>
+      </entry>
+
+  - name: mobile_users_device_group
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group
+    element: |-
+      <entry name="Mobile_User_Device_Group">
+        <description> Device Group (Use the Cloud Services plugin to edit)</description>
+        <devices/>
+        <reference-templates>
+          <member>Mobile_User_Template</member>
+        </reference-templates>
+      </entry>
+
+# ---------------------------------------------------------------------
+# end of snippets section
