@@ -219,9 +219,7 @@ snippets:
             <region>
               <entry name="{{ deployment_region }}">
                 <locations>
-                  {%- for location in locations %}
                   <member>{{ deployment_location }}</member>
-                  {% endfor %}
                 </locations>
               </entry>
             </region>
