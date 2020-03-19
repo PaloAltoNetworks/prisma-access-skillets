@@ -37,22 +37,47 @@ variables:
     default: americas
     type_hint: dropdown
     dd_list:
-      - key: Americas
+      - key: North America & South America
         value: americas
-    # TODO: add in more dropdown options and link to locations
-    help_text: skillet allows for selecting a single starter region. additional regions added in Panorama
-    # TODO: figure out how to only show subset of locations AND map to snippets below based on region
+      - key: Asia, Australia & Japan
+        value: apac
+      - key: Africa, Europe & Middle East
+        value: europe
+    help_text: skillet allows for selecting a single starter region. additional regions or worldwide added in Panorama GUI
   - name: ip_pool_cidr
     description: mobile user IP address pool
     default: 192.168.2.0/23
     type_hint: cidr
     help_text: use a CIDR (/23) address block for pool entry. Only a single pool option with this skillet
-  - name: deployment_location
-    description: deployment location options for the Americas region
+  - name: deployment_locations_americas
+    description: deployment locations for North America & South America
     default: us-east-1
-    type_hint: text
-    # TODO: create list of locations per region with xml coded naming
-    help_text: select Americas locations for mobile user access
+    toggle_hint:
+      source: deployment_region
+      value: americas
+    type_hint: checkbox
+    cbx_list:
+      - key: US East
+        value: us-east-1
+      - key: US Central
+        value: us-east-2
+      - key: US Northeast
+        value: us-northeast
+  - name: deployment_locations_europe
+    description: deployment locations for Africa, Europe & Middle East
+    default: eu-west-1
+    toggle_hint:
+      source: deployment_region
+      value: europe
+    type_hint: checkbox
+    cbx_list:
+      - key: Germany Central
+        value: eu-central-1
+      - key: Ireland
+        value: eu-west-1
+      - key: UK
+        value: eu-west-1
+
 
 # ---------------------------------------------------------------------
 # end of variables section
@@ -126,7 +151,7 @@ snippets:
           <entry name="GlobalProtect_Portal">
             <portal-config>
               <local-address>
-                <interface/>
+                <interface/>-</interface>
                 <ip/>
               </local-address>
               <client-auth>
@@ -211,7 +236,16 @@ snippets:
             <region>
               <entry name="{{ deployment_region }}">
                 <locations>
-                  <member>{{ deployment_location }}</member>
+                  {%- if deployment_region == 'americas' %}
+                    {%- set deployment_locations == deployment_locations_americas %}
+                  {% elif deployment_region == 'europe' %}
+                    {%- set deployment_locations == deployment_locations_europe %}
+                  {% elif deployment_region == 'apac' %}
+                    {%- set deployment_locations == deployment_locations_apac %}
+                  {% end if %}
+                  {%- for deployment_location in deployment_locations %}
+                    <member>{{ deployment_location }}</member>
+                  {% endfor %}
                 </locations>
               </entry>
             </region>
