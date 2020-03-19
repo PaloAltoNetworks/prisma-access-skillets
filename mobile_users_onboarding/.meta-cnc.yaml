@@ -177,7 +177,6 @@ snippets:
             </client-config>
             <clientless-vpn>
               <hostname>{{ portal_hostname }}.gpcloudservice.com</hostname>
-              <dns-proxy>CloudDefault</dns-proxy>
             </clientless-vpn>
           </entry>
         </global-protect-portal>
