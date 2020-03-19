@@ -41,17 +41,6 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
-  - name: mobile_users_plugin_configuration
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services[@version="1.5.0"]
-    element: |-
-      <mobile-users>
-        <template-stack>Mobile_User_Template_Stack</template-stack>
-        <device-group>Mobile_User_Device_Group</device-group>
-        <trusted-zones>
-          <member>MU-trust</member>
-        </trusted-zones>
-      </mobile-users>
-
   - name: mobile_users_template
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template
     element: |-
@@ -135,6 +124,17 @@ snippets:
           <member>Mobile_User_Template</member>
         </reference-templates>
       </entry>
+
+  - name: mobile_users_plugin_configuration
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services
+    element: |-
+      <mobile-users>
+        <template-stack>Mobile_User_Template_Stack</template-stack>
+        <device-group>Mobile_User_Device_Group</device-group>
+        <trusted-zones>
+          <member>MU-trust</member>
+        </trusted-zones>
+      </mobile-users>
 
 # ---------------------------------------------------------------------
 # end of snippets section
