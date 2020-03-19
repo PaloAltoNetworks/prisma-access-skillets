@@ -3,8 +3,8 @@
 # unique snippet name
 name: prisma_access_mobile_user_onboarding_v90
 # label used for menu selection
-label: Prisma Access Mobile User Setup v90
-description: Prisma Access initial mobile user configuration prior to onboarding
+label: Prisma Access Mobile User Onboarding v90
+description: Prisma Access mobile user onboarding
 
 # type of device configuration
 # common types are panorama, panos, and template
