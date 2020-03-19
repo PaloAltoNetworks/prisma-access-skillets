@@ -252,11 +252,11 @@ snippets:
               <entry name="{{ deployment_region }}">
                 <locations>
                   {%- if deployment_region == 'americas' %}
-                    {%- set deployment_locations == deployment_locations_americas %}
+                    {%- set deployment_locations = deployment_locations_americas %}
                   {% elif deployment_region == 'europe' %}
-                    {%- set deployment_locations == deployment_locations_europe %}
+                    {%- set deployment_locations = deployment_locations_europe %}
                   {% elif deployment_region == 'apac' %}
-                    {%- set deployment_locations == deployment_locations_apac %}
+                    {%- set deployment_locations = deployment_locations_apac %}
                   {% endif %}
                   {%- for deployment_location in deployment_locations %}
                     <member>{{ deployment_location }}</member>
@@ -269,7 +269,16 @@ snippets:
             <region>
               <entry name="{{ deployment_region }}">
                 <locations>
-                  <member>{{ deployment_location }}</member>
+                  {%- if deployment_region == 'americas' %}
+                    {%- set deployment_locations = deployment_locations_americas %}
+                  {% elif deployment_region == 'europe' %}
+                    {%- set deployment_locations = deployment_locations_europe %}
+                  {% elif deployment_region == 'apac' %}
+                    {%- set deployment_locations = deployment_locations_apac %}
+                  {% endif %}
+                  {%- for deployment_location in deployment_locations %}
+                    <member>{{ deployment_location }}</member>
+                  {% endfor %}
                 </locations>
               </entry>
             </region>
