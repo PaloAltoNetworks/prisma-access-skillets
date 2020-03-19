@@ -47,7 +47,7 @@ variables:
     default: 192.168.2.0/23
     type_hint: cidr
     help_text: use a CIDR (/23) address block for pool entry. Only a single pool option with this skillet
-  - name: deployment_locations_americas
+  - name: deployment_location
     description: deployment location options for the Americas region
     default: us-east-1
     type_hint: list
