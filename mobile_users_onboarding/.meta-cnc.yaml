@@ -166,7 +166,7 @@ snippets:
           <entry name="GlobalProtect_Portal">
             <portal-config>
               <local-address>
-                <interface/>-</interface>
+                <interface/></interface>
                 <ip/>
               </local-address>
               <client-auth>
