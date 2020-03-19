@@ -1,0 +1,2 @@
+<service-subnet>{{ GPCS_IP }}</service-subnet>
+

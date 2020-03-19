@@ -1,0 +1,46 @@
+name: gpcs_baseline
+label: GPCS New Cloud Instance Configuration
+description: GPCS onboarding of new cloud instance
+type: panorama-gpcs
+extends:
+
+labels:
+  service_type: gpcs
+  collection:
+    - mssp
+    - gpcs
+
+variables:
+  - name: GPCS_IP
+    description: Subnet infrastructure IP
+    default: 192.168.250.0/24
+    type_hint: text
+  - name: ZONE_TRUST
+    description: Trust zones for GPCS
+    default: trust
+    type_hint: text
+  - name: ZONE_UNTRUST
+    description: Untrust zones for GPCS
+    default: untrust
+    type_hint: text
+
+
+snippets:
+  - name: service_connection
+    xpath: /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection
+    file: service_connection.xml
+  - name: gpcs_templates
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template
+    file: gpcs_templates.xml
+  - name: gpcs_template_stacks
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack
+    file: gpcs_template_stacks.xml
+  - name: remote_network_devicegroup
+    xpath: /config/devices/entry[@name='localhost.localdomain']/device-group
+    file: gpcs_devicegroup.xml
+  - name: zone
+    xpath: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Remote_Network_Template_Stack']/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
+    file: zone.xml
+  - name: trusted_zone
+    xpath: /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/remote-networks/trusted-zones
+    file: trusted_zone.xml

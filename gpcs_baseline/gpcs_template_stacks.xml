@@ -1,0 +1,18 @@
+<entry name="Remote_Network_Template_Stack">
+  <templates>
+    <member>Remote_Network_Template</member>
+    <member>iron-skillet</member>
+  </templates>
+  <description> Template Stack (Managed by the GlobalProtect cloud service plugin)</description>
+</entry>
+<entry name="Service_Conn_Template_Stack">
+  <templates>
+    <member>Service_Conn_Template</member>
+    <member>iron-skillet</member>
+  </templates>
+  <description>Service Connection Template Stack (Managed by the GlobalProtect cloud service plugin)</description>
+</entry>
+
+
+
+

@@ -1,0 +1,4 @@
+    <entry name="Remote_Network_Device_Group">
+      <description> Device Group (Managed by the GlobalProtect cloud service plugin)</description>
+      <devices/>
+    </entry>
