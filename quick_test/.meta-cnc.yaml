@@ -56,18 +56,22 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
-  - name: service_connection_template_stack
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/template-stack
+  - name: mobile_user_auth_profile
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
     element: |-
-      <entry name="Service_Conn_Template_Stack">
-        <templates>
-          <member>Service_Conn_Template</member>
-        </templates>
-        <description>Service Connection Template Stack (Use the Cloud Services plugin to edit)</description>
-        <settings>
-          <default-vsys>vsys1</default-vsys>
-        </settings>
-      </entry>
+      <authentication-profile>
+        <entry name="Local-DB">
+          <multi-factor-auth>
+            <mfa-enable>no</mfa-enable>
+          </multi-factor-auth>
+          <method>
+            <local-database/>
+          </method>
+          <allow-list>
+            <member>all</member>
+          </allow-list>
+        </entry>
+      </authentication-profile>
 
 
 # ---------------------------------------------------------------------
