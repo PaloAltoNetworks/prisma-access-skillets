@@ -111,7 +111,6 @@ snippets:
           <global-protect-gateway>
             <entry name="GlobalProtect_External_Gateway-N">
               <local-address>
-                <interface>-</interface>
                 <ip/>
               </local-address>
             </entry>
