@@ -183,7 +183,7 @@ snippets:
       </profiles>
 
   - name: mobile_user_dg_pre_security_rules
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Mobile_User_Device_Group"]/pre-rulebasek/security/rules
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Mobile_User_Device_Group"]/pre-rulebase/security/rules
     element: |-
       <entry name="MU-trust-to-MU-untrust">
         <profile-setting>
