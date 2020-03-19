@@ -56,41 +56,67 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
-  - name: mobile_user_gateway
+  - name: mobile_user_portal
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
     element: |-
       <global-protect>
-        <global-protect-gateway>
-          <entry name="GlobalProtect_External_Gateway">
-            <client-auth>
-              <entry name="DEFAULT">
-                <authentication-profile>Local-DB</authentication-profile>
-                <os>Any</os>
-              </entry>
-            </client-auth>
-            <remote-user-tunnel-configs>
-              <entry name="DEFAULT">
-                <authentication-override>
-                  <accept-cookie>
-                    <cookie-lifetime>
-                      <lifetime-in-hours>24</lifetime-in-hours>
-                    </cookie-lifetime>
-                  </accept-cookie>
-                  <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
-                  <generate-cookie>yes</generate-cookie>
-                </authentication-override>
-                <source-user>
-                  <member>any</member>
-                </source-user>
-                <os>
-                  <member>any</member>
-                </os>
-              </entry>
-            </remote-user-tunnel-configs>
-            <tunnel-mode>yes</tunnel-mode>
+        <global-protect-portal>
+          <entry name="GlobalProtect_Portal">
+            <portal-config>
+              <client-auth>
+                <entry name="DEFAULT">
+                  <os>Any</os>
+                  <authentication-profile>Local-DB</authentication-profile>
+                  <authentication-message>Enter login credentials</authentication-message>
+                </entry>
+              </client-auth>
+              <custom-login-page>factory-default</custom-login-page>
+              <custom-home-page>factory-default</custom-home-page>
+            </portal-config>
+            <client-config>
+              <configs>
+                <entry name="DEFAULT">
+                  <gateways>
+                    <external>
+                      <list>
+                        <entry name="GP cloud service">
+                          <fqdn>gpcloudservice.com</fqdn>
+                          <priority-rule>
+                            <entry name="Any">
+                              <priority>1</priority>
+                            </entry>
+                          </priority-rule>
+                          <manual>yes</manual>
+                        </entry>
+                      </list>
+                      <cutoff-time>5</cutoff-time>
+                    </external>
+                  </gateways>
+                  <authentication-override>
+                    <accept-cookie>
+                      <cookie-lifetime>
+                        <lifetime-in-hours>24</lifetime-in-hours>
+                      </cookie-lifetime>
+                    </accept-cookie>
+                    <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
+                    <generate-cookie>yes</generate-cookie>
+                  </authentication-override>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <os>
+                    <member>any</member>
+                  </os>
+                </entry>
+              </configs>
+            </client-config>
+            <clientless-vpn>
+              <hostname>{{ portal_hostname }}.gpcloudservice.com</hostname>
+            </clientless-vpn>
           </entry>
-        </global-protect-gateway>
+        </global-protect-portal>
       </global-protect>
+
 
 
 # ---------------------------------------------------------------------
