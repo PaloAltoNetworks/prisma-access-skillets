@@ -44,11 +44,6 @@ variables:
       - key: Africa, Europe & Middle East
         value: europe
     help_text: skillet allows for selecting a single starter region. additional regions or worldwide added in Panorama GUI
-  - name: ip_pool_cidr
-    description: mobile user IP address pool
-    default: 192.168.2.0/23
-    type_hint: cidr
-    help_text: use a CIDR (/23) address block for pool entry. Only a single pool option with this skillet
   - name: deployment_locations_americas
     description: deployment locations for North America & South America
     default: us-east-1
