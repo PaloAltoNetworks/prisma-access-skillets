@@ -103,18 +103,6 @@ snippets:
         </global-protect-gateway>
       </global-protect>
 
-  - name: mobile_user_gateway_tunnel
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]
-    element: |-
-      <network>
-        <tunnel>
-          <global-protect-gateway>
-            <entry name="GlobalProtect_External_Gateway-N">
-            </entry>
-          </global-protect-gateway>
-        </tunnel>
-      </network>
-
   - name: mobile_user_portal
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
     element: |-
