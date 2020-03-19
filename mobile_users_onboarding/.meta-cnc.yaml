@@ -67,55 +67,6 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
-  - name: mobile_users_plugin_configuration
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/mobile-users
-    element: |-
-      <onboarding>
-        <entry name="{{ portal_hostname }}.gpcloudservice.com">
-          <portal-hostname>
-            <default-domain>
-              <hostname>{{ portal_hostname }}</hostname>
-            </default-domain>
-          </portal-hostname>
-          <ip-pools>
-            <entry name="{{ deployment_region }}">
-              <ip-pool>
-                <member>{{ ip_pool_cidr }}</member>
-              </ip-pool>
-            </entry>
-          </ip-pools>
-          <dns-servers>
-            <entry name="{{ deployment_region }}"/>
-          </dns-servers>
-          <authentication-profile>Local-DB</authentication-profile>
-          <authentication-override-certificate>Authentication Cookie Cert</authentication-override-certificate>
-          <global-protect-portal>GlobalProtect_Portal</global-protect-portal>
-          <global-protect-gateway>GlobalProtect_External_Gateway</global-protect-gateway>
-          <deployment>
-            <region>
-              <entry name="{{ deployment_region }}">
-                <locations>
-                  {%- for location in locations %}
-                  <member>{{ deployment_location }}</member>
-                  {% endfor %}
-                </locations>
-              </entry>
-            </region>
-          </deployment>
-          <manual-gateway>
-            <region>
-              <entry name="{{ deployment_region }}">
-                <locations>
-                  {%- for location in locations %}
-                  <member>{{ deployment_location }}</member>
-                  {% endfor %}
-                </locations>
-              </entry>
-            </region>
-          </manual-gateway>
-        </entry>
-      </onboarding>
-
   - name: mobile_user_portal
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
     element: |-
@@ -231,6 +182,55 @@ snippets:
           </global-protect-gateway>
         </tunnel>
       </network>
+
+  - name: mobile_users_plugin_configuration
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/mobile-users
+    element: |-
+      <onboarding>
+        <entry name="{{ portal_hostname }}.gpcloudservice.com">
+          <portal-hostname>
+            <default-domain>
+              <hostname>{{ portal_hostname }}</hostname>
+            </default-domain>
+          </portal-hostname>
+          <ip-pools>
+            <entry name="{{ deployment_region }}">
+              <ip-pool>
+                <member>{{ ip_pool_cidr }}</member>
+              </ip-pool>
+            </entry>
+          </ip-pools>
+          <dns-servers>
+            <entry name="{{ deployment_region }}"/>
+          </dns-servers>
+          <authentication-profile>Local-DB</authentication-profile>
+          <authentication-override-certificate>Authentication Cookie Cert</authentication-override-certificate>
+          <global-protect-portal>GlobalProtect_Portal</global-protect-portal>
+          <global-protect-gateway>GlobalProtect_External_Gateway</global-protect-gateway>
+          <deployment>
+            <region>
+              <entry name="{{ deployment_region }}">
+                <locations>
+                  {%- for location in locations %}
+                  <member>{{ deployment_location }}</member>
+                  {% endfor %}
+                </locations>
+              </entry>
+            </region>
+          </deployment>
+          <manual-gateway>
+            <region>
+              <entry name="{{ deployment_region }}">
+                <locations>
+                  {%- for location in locations %}
+                  <member>{{ deployment_location }}</member>
+                  {% endfor %}
+                </locations>
+              </entry>
+            </region>
+          </manual-gateway>
+        </entry>
+      </onboarding>
 
 # ---------------------------------------------------------------------
 # end of snippets section
