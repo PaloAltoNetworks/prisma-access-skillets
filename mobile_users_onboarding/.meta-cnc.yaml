@@ -32,29 +32,27 @@ variables:
     default: my-subdomain
     type_hint: text
     help_text: subdomain prefix for cloudservice.com
-  - name: ip_pool_geo
-    description: geo location for mobile users (TBD)
-    default: worldwide
-    type_hint: dropdown
-    help_text: basic skillet setup uses a single geo selection with advanced configuration done in the Panorama UI
-  - name: ip_pool_cidr
-    description: mobile user IP address pool
-    default: 192.168.2.0/24
-    type_hint: cidr
-    help_text: use a CIDR (/24) notation for pool entry. Only a single pool option with this skillet
   - name: deployment_region
     description: regional to use for mobile user configuration
     default: americas
-    type_hint: text
+    type_hint: dropdown
+    dd_list:
+      - key: Americas
+        value: americas
     # TODO: add in more dropdown options and link to locations
     help_text: skillet allows for selecting a single starter region. additional regions added in Panorama
     # TODO: figure out how to only show subset of locations AND map to snippets below based on region
+  - name: ip_pool_cidr
+    description: mobile user IP address pool
+    default: 192.168.2.0/23
+    type_hint: cidr
+    help_text: use a CIDR (/23) address block for pool entry. Only a single pool option with this skillet
   - name: deployment_locations_americas
     description: deployment location options for the Americas region
-    default: US Southeast
+    default: us-east-1
     type_hint: list
     # TODO: create list of locations per region with xml coded naming
-    help_text: use a CIDR (/24) notation for pool entry. Only a single pool option with this skillet
+    help_text: select Americas locations for mobile user access
 
 # ---------------------------------------------------------------------
 # end of variables section
@@ -80,14 +78,14 @@ snippets:
             </default-domain>
           </portal-hostname>
           <ip-pools>
-            <entry name="{{ ip_pool_geo }}">
+            <entry name="{{ deployment_region }}">
               <ip-pool>
                 <member>{{ ip_pool_cidr }}</member>
               </ip-pool>
             </entry>
           </ip-pools>
           <dns-servers>
-            <entry name="{{ ip_pool_geo }}"/>
+            <entry name="{{ deployment_region }}"/>
           </dns-servers>
           <authentication-profile>Local-DB</authentication-profile>
           <authentication-override-certificate>Authentication Cookie Cert</authentication-override-certificate>
@@ -178,7 +176,7 @@ snippets:
               </configs>
             </client-config>
             <clientless-vpn>
-              <hostname>dell-prisma.gpcloudservice.com</hostname>
+              <hostname>{{ portal_hostname }}.gpcloudservice.com</hostname>
               <dns-proxy>CloudDefault</dns-proxy>
             </clientless-vpn>
           </entry>
