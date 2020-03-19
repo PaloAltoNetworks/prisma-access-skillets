@@ -98,9 +98,7 @@ snippets:
                 </os>
               </entry>
             </remote-user-tunnel-configs>
-            <ssl-tls-service-profile>-</ssl-tls-service-profile>
             <tunnel-mode>yes</tunnel-mode>
-            <remote-user-tunnel>-</remote-user-tunnel>
           </entry>
         </global-protect-gateway>
       </global-protect>
@@ -113,7 +111,6 @@ snippets:
           <global-protect-gateway>
             <entry name="GlobalProtect_External_Gateway-N">
               <local-address>
-                <interface>-</interface>
                 <ip/>
               </local-address>
               <tunnel-interface>-</tunnel-interface>
@@ -130,10 +127,8 @@ snippets:
           <entry name="GlobalProtect_Portal">
             <portal-config>
               <local-address>
-                <interface>-</interface>
                 <ip/>
               </local-address>
-              <ssl-tls-service-profile>-</ssl-tls-service-profile>
               <client-auth>
                 <entry name="DEFAULT">
                   <os>Any</os>
