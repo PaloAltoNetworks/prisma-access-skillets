@@ -56,22 +56,43 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
-  - name: mobile_user_auth_profile
+  - name: mobile_user_gateway
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
     element: |-
-      <authentication-profile>
-        <entry name="Local-DB">
-          <multi-factor-auth>
-            <mfa-enable>no</mfa-enable>
-          </multi-factor-auth>
-          <method>
-            <local-database/>
-          </method>
-          <allow-list>
-            <member>all</member>
-          </allow-list>
-        </entry>
-      </authentication-profile>
+      <global-protect>
+        <global-protect-gateway>
+          <entry name="GlobalProtect_External_Gateway">
+            <client-auth>
+              <entry name="DEFAULT">
+                <authentication-profile>Local-DB</authentication-profile>
+                <os>Any</os>
+              </entry>
+            </client-auth>
+            <remote-user-tunnel-configs>
+              <entry name="DEFAULT">
+                <authentication-override>
+                  <accept-cookie>
+                    <cookie-lifetime>
+                      <lifetime-in-hours>24</lifetime-in-hours>
+                    </cookie-lifetime>
+                  </accept-cookie>
+                  <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
+                  <generate-cookie>yes</generate-cookie>
+                </authentication-override>
+                <source-user>
+                  <member>any</member>
+                </source-user>
+                <os>
+                  <member>any</member>
+                </os>
+              </entry>
+            </remote-user-tunnel-configs>
+            <ssl-tls-service-profile>-</ssl-tls-service-profile>
+            <tunnel-mode>yes</tunnel-mode>
+            <remote-user-tunnel>-</remote-user-tunnel>
+          </entry>
+        </global-protect-gateway>
+      </global-protect>
 
 
 # ---------------------------------------------------------------------
