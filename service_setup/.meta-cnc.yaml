@@ -4,9 +4,9 @@
 name: prisma_access_service_setup_v90
 # label used for menu selection
 label: Prisma Access Service Setup v90
-description: |
+description: |-
     Prisma Access initial Panorama configuration for service setup including
-    service subnet, infrastructure BGP AS, template, template-stack, and device-group
+    instrastructure subnet, infrastructure BGP AS, template, template-stack, and device-group
 
 # type of device configuration
 # common types are panorama, panos, and template
@@ -29,16 +29,20 @@ labels:
 # type_hint defines the form field used by panhandler
 # type_hints can be text, ip_address, or dropdown
 variables:
-  - name: service_subnet
-    description: Service Subnet
+  - name: infra_subnet
+    description: Infrastructure Subnet
     default: 192.168.254.0/24
     type_hint: cidr
-    help_text: Use a CIDR (/23) notation to define an unused routing subnet for the cloud infrastructure
+    help_text: |-
+      Specify a RFC-1918 compliant IP address pool (at least a /24 subnet) that does not overlap with other
+      IP addresses in your network. These IP addresses will be used by the cloud service.
   - name: infra_bgp_as
     description: Infrastructure BGP AS
     default: 65534
     type_hint: number
-    help_text: Use a unique BGP AS value
+    help_text: |-
+      Specify a RFC-6996 compliant Private AS number. Accepted formats are 4-Byte AS Plain [64512-65534],
+      [4200000000-4294967294] or AS Dot [0.64512-0.65534], [64086.59904-65535.65534] notation.
 # ---------------------------------------------------------------------
 # end of variables section
 
@@ -56,7 +60,7 @@ snippets:
     xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services[@version="1.5.0"]
     element: |-
       <service-connection>
-        <service-subnet>{{ service_subnet }}</service-subnet>
+        <service-subnet>{{ infra_subnet }}</service-subnet>
         <infra-bgp-as>{{ infra_bgp_as }}</infra-bgp-as>
         <internal-dns-list/>
         <template-stack>Service_Conn_Template_Stack</template-stack>
