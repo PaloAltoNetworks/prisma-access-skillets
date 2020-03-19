@@ -3,7 +3,7 @@
 # unique snippet name
 name: prisma_access_service_setup_v90
 # label used for menu selection
-label: Prisma Access Service Setup v90
+label: Step 1 - Prisma Access Service Setup v90
 description: |-
     Prisma Access initial Panorama configuration for service setup including
     instrastructure subnet, infrastructure BGP AS, template, template-stack, and device-group

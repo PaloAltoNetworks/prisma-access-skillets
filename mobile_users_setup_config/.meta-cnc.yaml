@@ -3,7 +3,7 @@
 # unique snippet name
 name: prisma_access_mobile_users_setup_v90
 # label used for menu selection
-label: Prisma Access Mobile Users Setup v90
+label: Step 2 - Prisma Access Mobile Users Setup v90
 description: Prisma Access Mobile Users initial configuration prior to onboarding
 
 # type of device configuration
