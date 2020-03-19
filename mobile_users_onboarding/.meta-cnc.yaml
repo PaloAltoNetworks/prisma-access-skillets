@@ -126,6 +126,7 @@ snippets:
           <entry name="GlobalProtect_Portal">
             <portal-config>
               <local-address>
+                <interface/>
                 <ip/>
               </local-address>
               <client-auth>
