@@ -1,0 +1,578 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: prisma_access_mobile_full_setup_v90
+# label used for menu selection
+label: Prisma Access Mobile Users Setup and Onboarding v90
+description: Prisma Access Mobile Users setup and onboarding configuration
+
+# type of device configuration
+# common types are panorama, panos, and template
+# https://github.com/PaloAltoNetworks/panhandler/blob/develop/docs/metadata_configuration.rst
+type: panorama-gpcs
+# preload static or default-based templates
+extends:
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - Prisma Access
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+# variables used in the configuration templates
+# type_hint defines the form field used by panhandler
+# type_hints can be text, ip_address, or dropdown
+variables:
+  - name: portal_hostname
+    description: portal subdomain
+    default: my-subdomain
+    type_hint: text
+    help_text: subdomain prefix for cloudservice.com
+  - name: deployment_region
+    description: regional to use for mobile user configuration
+    default: americas
+    type_hint: dropdown
+    dd_list:
+      - key: North America & South America
+        value: americas
+      - key: Africa, Europe & Middle East
+        value: europe
+      - key: Asia, Australia & Japan
+        value: apac
+    help_text: skillet allows for selecting a single starter region. additional regions or worldwide added in Panorama GUI
+  - name: deployment_locations_americas
+    description: deployment locations for North America & South America
+    default: us-east-1
+    toggle_hint:
+      source: deployment_region
+      value: americas
+    type_hint: checkbox
+    cbx_list:
+      - key: US East
+        value: us-east-1
+      - key: US Central
+        value: us-east-2
+      - key: US Northeast
+        value: us-northeast
+  - name: deployment_locations_europe
+    description: deployment locations for Africa, Europe & Middle East
+    default: eu-west-1
+    toggle_hint:
+      source: deployment_region
+      value: europe
+    type_hint: checkbox
+    cbx_list:
+      - key: Germany Central
+        value: eu-central-1
+      - key: Ireland
+        value: eu-west-1
+      - key: UK
+        value: eu-west-1
+  - name: deployment_locations_apac
+    description: deployment locations for Asia, Australia & Japan
+    default: australia-east
+    toggle_hint:
+      source: deployment_region
+      value: apac
+    type_hint: checkbox
+    cbx_list:
+      - key: Australia East
+        value: australia-east
+      - key: Australia South
+        value: australia-south
+      - key: Japan Central
+        value: ap-northeast-1
+      - key: South Korea
+        value: ap-northeast-2
+  - name: ip_pool_cidr
+    description: mobile user IP address pool
+    default: 192.168.2.0/23
+    type_hint: cidr
+    help_text: use a CIDR (/23) address block for pool entry. Only a single pool option with this skillet
+
+# ---------------------------------------------------------------------
+# end of variables section
+
+# snippets section
+# ---------------------------------------------------------------------
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+# NOTE: The following snippets are auto-generated and ordered automatically.
+# Changing the content of the snippet may be necessary, but do NOT change the order
+
+# There is a variable called snippets that we can use to auto-generate this section for us
+snippets:
+
+  - name: mobile_users_template
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template
+    element: |-
+      <entry name="Mobile_User_Template">
+        <settings>
+          <default-vsys>vsys1</default-vsys>
+        </settings>
+        <description> Template (Use the Cloud Services plugin to edit)</description>
+        <config>
+          <devices>
+            <entry name="localhost.localdomain">
+              <vsys>
+                <entry name="vsys1">
+                  <zone>
+                    <entry name="MU-trust">
+                      <network>
+                        <tap/>
+                      </network>
+                    </entry>
+                    <entry name="MU-untrust">
+                      <network>
+                        <tap/>
+                      </network>
+                    </entry>
+                  </zone>
+                </entry>
+              </vsys>
+            </entry>
+          </devices>
+          <shared>
+            <log-settings>
+              <system>
+                <match-list>
+                  <entry name="system-gpcs-default">
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </system>
+              <userid>
+                <match-list>
+                  <entry name="userid-gpcs-default">
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </userid>
+              <hipmatch>
+                <match-list>
+                  <entry name="hipmatch-gpcs-default">
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </hipmatch>
+            </log-settings>
+          </shared>
+        </config>
+      </entry>
+
+  - name: mobile_users_template_stack
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template-stack
+    element: |-
+      <entry name="Mobile_User_Template_Stack">
+        <templates>
+          <member>Mobile_User_Template</member>
+        </templates>
+        <description> Template Stack (Use the Cloud Services plugin to edit)</description>
+        <settings>
+          <default-vsys>vsys1</default-vsys>
+        </settings>
+      </entry>
+
+  - name: mobile_users_device_group
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group
+    element: |-
+      <entry name="Mobile_User_Device_Group">
+        <description> Device Group (Use the Cloud Services plugin to edit)</description>
+        <devices/>
+        <reference-templates>
+          <member>Mobile_User_Template</member>
+        </reference-templates>
+      </entry>
+
+  - name: mobile_users_plugin_configuration
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services
+    element: |-
+      <mobile-users>
+        <template-stack>Mobile_User_Template_Stack</template-stack>
+        <device-group>Mobile_User_Device_Group</device-group>
+        <trusted-zones>
+          <member>MU-trust</member>
+        </trusted-zones>
+      </mobile-users>
+
+  - name: mobile_user_dg_log_settings
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Mobile_User_Device_Group"]/log-settings
+    element: |-
+      <profiles>
+        <entry name="Mobile_Users_Log_Profile">
+          <match-list>
+            <entry name="traffic-enhanced-app-logging">
+              <log-type>traffic</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>yes</send-to-panorama>
+            </entry>
+            <entry name="threat-enhanced-app-logging">
+              <log-type>threat</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>yes</send-to-panorama>
+            </entry>
+            <entry name="wildfire-enhanced-app-logging">
+              <log-type>wildfire</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>yes</send-to-panorama>
+            </entry>
+            <entry name="url-enhanced-app-logging">
+              <log-type>url</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>yes</send-to-panorama>
+            </entry>
+            <entry name="data-enhanced-app-logging">
+              <log-type>data</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>yes</send-to-panorama>
+            </entry>
+            <entry name="tunnel-enhanced-app-logging">
+              <log-type>tunnel</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>yes</send-to-panorama>
+            </entry>
+            <entry name="auth-enhanced-app-logging">
+              <log-type>auth</log-type>
+              <filter>All Logs</filter>
+              <send-to-panorama>yes</send-to-panorama>
+            </entry>
+          </match-list>
+          <enhanced-application-logging>yes</enhanced-application-logging>
+        </entry>
+      </profiles>
+
+  - name: mobile_user_dg_pre_security_rules
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Mobile_User_Device_Group"]/pre-rulebase/security/rules
+    element: |-
+      <entry name="MU-trust-to-MU-untrust">
+        <profile-setting>
+          <profiles>
+            <url-filtering>
+              <member>default</member>
+            </url-filtering>
+            <file-blocking>
+              <member>basic file blocking</member>
+            </file-blocking>
+            <virus>
+              <member>default</member>
+            </virus>
+            <spyware>
+              <member>default</member>
+            </spyware>
+            <vulnerability>
+              <member>default</member>
+            </vulnerability>
+            <wildfire-analysis>
+              <member>default</member>
+            </wildfire-analysis>
+          </profiles>
+        </profile-setting>
+        <target>
+          <negate>no</negate>
+        </target>
+        <to>
+          <member>MU-untrust</member>
+        </to>
+        <from>
+          <member>MU-trust</member>
+        </from>
+        <source>
+          <member>any</member>
+        </source>
+        <destination>
+          <member>any</member>
+        </destination>
+        <source-user>
+          <member>any</member>
+        </source-user>
+        <category>
+          <member>any</member>
+        </category>
+        <application>
+          <member>any</member>
+        </application>
+        <service>
+          <member>application-default</member>
+        </service>
+        <hip-profiles>
+          <member>any</member>
+        </hip-profiles>
+        <action>allow</action>
+        <log-setting>Mobile_Users_Log_Profile</log-setting>
+      </entry>
+      <entry name="MU-trust-to-trust">
+        <profile-setting>
+          <profiles>
+            <url-filtering>
+              <member>default</member>
+            </url-filtering>
+            <file-blocking>
+              <member>basic file blocking</member>
+            </file-blocking>
+            <virus>
+              <member>default</member>
+            </virus>
+            <spyware>
+              <member>default</member>
+            </spyware>
+            <vulnerability>
+              <member>default</member>
+            </vulnerability>
+            <wildfire-analysis>
+              <member>default</member>
+            </wildfire-analysis>
+          </profiles>
+        </profile-setting>
+        <target>
+          <negate>no</negate>
+        </target>
+        <to>
+          <member>MU-trust</member>
+        </to>
+        <from>
+          <member>MU-trust</member>
+        </from>
+        <source>
+          <member>any</member>
+        </source>
+        <destination>
+          <member>any</member>
+        </destination>
+        <source-user>
+          <member>any</member>
+        </source-user>
+        <category>
+          <member>any</member>
+        </category>
+        <application>
+          <member>any</member>
+        </application>
+        <service>
+          <member>application-default</member>
+        </service>
+        <hip-profiles>
+          <member>any</member>
+        </hip-profiles>
+        <action>allow</action>
+        <log-setting>Mobile_Users_Log_Profile</log-setting>
+      </entry>
+
+  - name: mobile_user_auth_profile
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+      <authentication-profile>
+        <entry name="Local-DB">
+          <multi-factor-auth>
+            <mfa-enable>no</mfa-enable>
+          </multi-factor-auth>
+          <method>
+            <local-database/>
+          </method>
+          <allow-list>
+            <member>all</member>
+          </allow-list>
+        </entry>
+      </authentication-profile>
+
+  - name: mobile_user_local_db
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/shared
+    element: |-
+      <local-user-database>
+        <user>
+          <entry name="User1">
+            <phash>$1$vfanykcm$eETpQZAV27Dg122JHUuDt0</phash>
+          </entry>
+          <entry name="User2">
+            <phash>$1$jwlcyrhv$Q6.LOkN1ULASmYeqdmCy91</phash>
+          </entry>
+        </user>
+      </local-user-database>
+
+  - name: mobile_user_gateway
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+      <global-protect>
+        <global-protect-gateway>
+          <entry name="GlobalProtect_External_Gateway">
+            <client-auth>
+              <entry name="DEFAULT">
+                <authentication-profile>Local-DB</authentication-profile>
+                <os>Any</os>
+              </entry>
+            </client-auth>
+            <remote-user-tunnel-configs>
+              <entry name="DEFAULT">
+                <authentication-override>
+                  <accept-cookie>
+                    <cookie-lifetime>
+                      <lifetime-in-hours>24</lifetime-in-hours>
+                    </cookie-lifetime>
+                  </accept-cookie>
+                  <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
+                  <generate-cookie>yes</generate-cookie>
+                </authentication-override>
+                <source-user>
+                  <member>any</member>
+                </source-user>
+                <os>
+                  <member>any</member>
+                </os>
+              </entry>
+            </remote-user-tunnel-configs>
+            <tunnel-mode>yes</tunnel-mode>
+          </entry>
+        </global-protect-gateway>
+      </global-protect>
+
+  - name: mobile_user_gateway_tunnel
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]
+    element: |-
+      <network>
+        <tunnel>
+          <global-protect-gateway>
+            <entry name="GlobalProtect_External_Gateway-N">
+              <local-address>
+                <ip/>
+              </local-address>
+            </entry>
+          </global-protect-gateway>
+        </tunnel>
+      </network>
+
+  - name: mobile_user_portal
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+      <global-protect>
+        <global-protect-portal>
+          <entry name="GlobalProtect_Portal">
+            <portal-config>
+              <local-address>
+                <ip/>
+              </local-address>
+              <client-auth>
+                <entry name="DEFAULT">
+                  <os>Any</os>
+                  <authentication-profile>Local-DB</authentication-profile>
+                  <authentication-message>Enter login credentials</authentication-message>
+                </entry>
+              </client-auth>
+              <custom-login-page>factory-default</custom-login-page>
+              <custom-home-page>factory-default</custom-home-page>
+            </portal-config>
+            <client-config>
+              <configs>
+                <entry name="DEFAULT">
+                  <gateways>
+                    <external>
+                      <list>
+                        <entry name="GP cloud service">
+                          <fqdn>gpcloudservice.com</fqdn>
+                          <priority-rule>
+                            <entry name="Any">
+                              <priority>1</priority>
+                            </entry>
+                          </priority-rule>
+                          <manual>yes</manual>
+                        </entry>
+                      </list>
+                      <cutoff-time>5</cutoff-time>
+                    </external>
+                  </gateways>
+                  <authentication-override>
+                    <accept-cookie>
+                      <cookie-lifetime>
+                        <lifetime-in-hours>24</lifetime-in-hours>
+                      </cookie-lifetime>
+                    </accept-cookie>
+                    <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
+                    <generate-cookie>yes</generate-cookie>
+                  </authentication-override>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <os>
+                    <member>any</member>
+                  </os>
+                </entry>
+              </configs>
+            </client-config>
+            <clientless-vpn>
+              <hostname>{{ portal_hostname }}.gpcloudservice.com</hostname>
+            </clientless-vpn>
+          </entry>
+        </global-protect-portal>
+      </global-protect>
+
+  - name: mobile_users_plugin_configuration
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/mobile-users
+    element: |-
+      <onboarding>
+        <entry name="{{ portal_hostname }}.gpcloudservice.com">
+          <portal-hostname>
+            <default-domain>
+              <hostname>{{ portal_hostname }}</hostname>
+            </default-domain>
+          </portal-hostname>
+          <ip-pools>
+            <entry name="{{ deployment_region }}">
+              <ip-pool>
+                <member>{{ ip_pool_cidr }}</member>
+              </ip-pool>
+            </entry>
+          </ip-pools>
+          <dns-servers>
+            <entry name="{{ deployment_region }}"/>
+          </dns-servers>
+          <authentication-profile>Local-DB</authentication-profile>
+          <authentication-override-certificate>Authentication Cookie Cert</authentication-override-certificate>
+          <global-protect-portal>GlobalProtect_Portal</global-protect-portal>
+          <global-protect-gateway>GlobalProtect_External_Gateway</global-protect-gateway>
+          <deployment>
+            <region>
+              <entry name="{{ deployment_region }}">
+                <locations>
+                  {%- if deployment_region == 'americas' %}
+                    {%- set deployment_locations = deployment_locations_americas %}
+                  {% elif deployment_region == 'europe' %}
+                    {%- set deployment_locations = deployment_locations_europe %}
+                  {% elif deployment_region == 'apac' %}
+                    {%- set deployment_locations = deployment_locations_apac %}
+                  {% endif %}
+                  {%- for deployment_location in deployment_locations %}
+                    <member>{{ deployment_location }}</member>
+                  {% endfor %}
+                </locations>
+              </entry>
+            </region>
+          </deployment>
+          <manual-gateway>
+            <region>
+              <entry name="{{ deployment_region }}">
+                <locations>
+                  {%- if deployment_region == 'americas' %}
+                    {%- set deployment_locations = deployment_locations_americas %}
+                  {% elif deployment_region == 'europe' %}
+                    {%- set deployment_locations = deployment_locations_europe %}
+                  {% elif deployment_region == 'apac' %}
+                    {%- set deployment_locations = deployment_locations_apac %}
+                  {% endif %}
+                  {%- for deployment_location in deployment_locations %}
+                    <member>{{ deployment_location }}</member>
+                  {% endfor %}
+                </locations>
+              </entry>
+            </region>
+          </manual-gateway>
+        </entry>
+      </onboarding>
+
+
+# ---------------------------------------------------------------------
+# end of snippets section
