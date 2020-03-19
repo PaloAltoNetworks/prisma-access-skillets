@@ -67,6 +67,61 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
+  - name: mobile_user_gateway
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+      <global-protect>
+        <global-protect-gateway>
+          <entry name="GlobalProtect_External_Gateway">
+            <client-auth>
+              <entry name="DEFAULT">
+                <authentication-profile>Local-DB</authentication-profile>
+                <os>Any</os>
+              </entry>
+            </client-auth>
+            <remote-user-tunnel-configs>
+              <entry name="DEFAULT">
+                <authentication-override>
+                  <accept-cookie>
+                    <cookie-lifetime>
+                      <lifetime-in-hours>24</lifetime-in-hours>
+                    </cookie-lifetime>
+                  </accept-cookie>
+                  <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
+                  <generate-cookie>yes</generate-cookie>
+                </authentication-override>
+                <source-user>
+                  <member>any</member>
+                </source-user>
+                <os>
+                  <member>any</member>
+                </os>
+              </entry>
+            </remote-user-tunnel-configs>
+            <ssl-tls-service-profile>-</ssl-tls-service-profile>
+            <tunnel-mode>yes</tunnel-mode>
+            <remote-user-tunnel>-</remote-user-tunnel>
+          </entry>
+        </global-protect-gateway>
+      </global-protect>
+
+  - name: mobile_user_gateway_tunnel
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]
+    element: |-
+      <network>
+        <tunnel>
+          <global-protect-gateway>
+            <entry name="GlobalProtect_External_Gateway-N">
+              <local-address>
+                <interface>-</interface>
+                <ip/>
+              </local-address>
+              <tunnel-interface>-</tunnel-interface>
+            </entry>
+          </global-protect-gateway>
+        </tunnel>
+      </network>
+
   - name: mobile_user_portal
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
     element: |-
@@ -132,56 +187,7 @@ snippets:
             </clientless-vpn>
           </entry>
         </global-protect-portal>
-        <global-protect-gateway>
-          <entry name="GlobalProtect_External_Gateway">
-            <client-auth>
-              <entry name="DEFAULT">
-                <authentication-profile>Local-DB</authentication-profile>
-                <os>Any</os>
-              </entry>
-            </client-auth>
-            <remote-user-tunnel-configs>
-              <entry name="DEFAULT">
-                <authentication-override>
-                  <accept-cookie>
-                    <cookie-lifetime>
-                      <lifetime-in-hours>24</lifetime-in-hours>
-                    </cookie-lifetime>
-                  </accept-cookie>
-                  <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
-                  <generate-cookie>yes</generate-cookie>
-                </authentication-override>
-                <source-user>
-                  <member>any</member>
-                </source-user>
-                <os>
-                  <member>any</member>
-                </os>
-              </entry>
-            </remote-user-tunnel-configs>
-            <ssl-tls-service-profile>-</ssl-tls-service-profile>
-            <tunnel-mode>yes</tunnel-mode>
-            <remote-user-tunnel>-</remote-user-tunnel>
-          </entry>
-        </global-protect-gateway>
       </global-protect>
-
-  - name: mobile_user_gateway
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"]/config/devices/entry[@name="localhost.localdomain"]
-    element: |-
-      <network>
-        <tunnel>
-          <global-protect-gateway>
-            <entry name="GlobalProtect_External_Gateway-N">
-              <local-address>
-                <interface>-</interface>
-                <ip/>
-              </local-address>
-              <tunnel-interface>-</tunnel-interface>
-            </entry>
-          </global-protect-gateway>
-        </tunnel>
-      </network>
 
   - name: mobile_users_plugin_configuration
     xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/mobile-users
