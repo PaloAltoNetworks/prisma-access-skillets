@@ -56,23 +56,6 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
-  - name: prisma_access_plugin_setup
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services
-    element: |-
-      <service-connection>
-        <service-subnet>{{ infra_subnet }}</service-subnet>
-        <infra-bgp-as>{{ infra_bgp_as }}</infra-bgp-as>
-        <internal-dns-list/>
-        <template-stack>Service_Conn_Template_Stack</template-stack>
-        <device-group>Service_Conn_Device_Group</device-group>
-      </service-connection>
-      <routing-preference>
-        <default/>
-      </routing-preference>
-      <pbf>
-        <rules/>
-      </pbf>
-
   - name: service_connection_template
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template
     element: |-
@@ -742,5 +725,23 @@ snippets:
           <member>Service_Conn_Template</member>
         </reference-templates>
       </entry>
+
+  - name: prisma_access_plugin_setup
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services
+    element: |-
+      <service-connection>
+        <service-subnet>{{ infra_subnet }}</service-subnet>
+        <infra-bgp-as>{{ infra_bgp_as }}</infra-bgp-as>
+        <internal-dns-list/>
+        <template-stack>Service_Conn_Template_Stack</template-stack>
+        <device-group>Service_Conn_Device_Group</device-group>
+      </service-connection>
+      <routing-preference>
+        <default/>
+      </routing-preference>
+      <pbf>
+        <rules/>
+      </pbf>
+
 # ---------------------------------------------------------------------
 # end of snippets section
