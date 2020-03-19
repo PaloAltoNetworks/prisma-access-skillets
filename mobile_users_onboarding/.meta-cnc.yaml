@@ -77,7 +77,22 @@ variables:
         value: eu-west-1
       - key: UK
         value: eu-west-1
-
+  - name: deployment_locations_apac
+    description: deployment locations for Asia, Australia & Japan
+    default: eu-west-1
+    toggle_hint:
+      source: deployment_region
+      value: europe
+    type_hint: checkbox
+    cbx_list:
+      - key: Australia East
+        value: australia-east
+      - key: Australia South
+        value: australia-south
+      - key: Japan Central
+        value: ap-northeast-1
+      - key: South Korea
+        value: ap-northeast-2
 
 # ---------------------------------------------------------------------
 # end of variables section
