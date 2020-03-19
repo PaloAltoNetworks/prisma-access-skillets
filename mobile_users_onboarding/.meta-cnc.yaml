@@ -39,10 +39,10 @@ variables:
     dd_list:
       - key: North America & South America
         value: americas
-      - key: Asia, Australia & Japan
-        value: apac
       - key: Africa, Europe & Middle East
         value: europe
+      - key: Asia, Australia & Japan
+        value: apac
     help_text: skillet allows for selecting a single starter region. additional regions or worldwide added in Panorama GUI
   - name: deployment_locations_americas
     description: deployment locations for North America & South America
@@ -257,7 +257,7 @@ snippets:
                     {%- set deployment_locations == deployment_locations_europe %}
                   {% elif deployment_region == 'apac' %}
                     {%- set deployment_locations == deployment_locations_apac %}
-                  {% end if %}
+                  {% endif %}
                   {%- for deployment_location in deployment_locations %}
                     <member>{{ deployment_location }}</member>
                   {% endfor %}
