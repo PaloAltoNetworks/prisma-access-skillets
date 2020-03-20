@@ -19,6 +19,7 @@ load config partial from-xpath /config/devices/entry[@name='localhost.localdomai
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack'] to-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack'] mode merge from prisma_access_full_config.xml
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group'] to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group'] mode merge from prisma_access_full_config.xml
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection to-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection mode merge from prisma_access_full_config.xml
+
 ```
 
 ### Mobile User Setup and Onboarding
@@ -45,5 +46,6 @@ run request certificate generate ca yes certificate-name "Authentication Cookie 
 run request certificate generate signed-by "Authentication Cookie CA" certificate-name "Authentication Cookie Cert" name "Authentication Cookie Cert" algorithm RSA rsa-nbits 2048
 run set system setting target none
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users to-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users mode merge from prisma_access_full_config.xml
+
 ```
 
