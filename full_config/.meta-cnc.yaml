@@ -108,6 +108,16 @@ variables:
     default: 192.168.2.0/23
     type_hint: cidr
     help_text: use a CIDR (/23) address block for pool entry. Only a single pool option with this skillet
+  - name: user1_password
+    description: local DB user1 test account password
+    default: Paloalto1
+    type_hint: password
+    help_text: creates a config file phash entry to customize the user1 password
+  - name: user2_password
+    description: local DB user1 test account password
+    default: Paloalto2
+    type_hint: password
+    help_text: creates a config file phash entry to customize the user2 password
 
 snippets:
 

@@ -1,0 +1,26 @@
+# variables list to set values used in tools for local configs
+variables:
+  - name: infra_subnet
+    description: Infrastructure Subnet
+    value: 192.168.254.0/24
+  - name: infra_bgp_as
+    description: Infrastructure BGP AS
+    value: 65534
+  - name: portal_hostname
+    description: portal subdomain
+    value: my-subdomain
+  - name: deployment_region
+    description: regional to use for mobile user configuration
+    value: americas
+  - name: deployment_locations_americas
+    description: deployment locations for North America & South America
+    value: ['us-east-1']
+  - name: ip_pool_cidr
+    description: mobile user IP address pool
+    value: 192.168.2.0/23
+  - name: user1_password
+    description: user 1 password in local DB
+    value: Paloalto1
+  - name: user2_password
+    description: user 1 password in local DB
+    value: Paloalto2

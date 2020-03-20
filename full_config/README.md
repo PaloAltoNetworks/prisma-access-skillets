@@ -13,10 +13,10 @@ Includes:
 * infrastructure subnet and BGP AS initial configuration
 
 ```bash
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Service_Conn_Template"] to-xpath /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Service_Conn_Template"] mode merge from prisma_access_full_config.xml
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/template-stack/entry[@name="Service_Conn_Template_Stack"] to-xpath /config/devices/entry[@name="localhost.localdomain"]/template-stack/entry[@name="Service_Conn_Template_Stack"] mode merge from prisma_access_full_config.xml
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Service_Conn_Device_Group"] to-xpath /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Service_Conn_Device_Group"] mode merge from prisma_access_full_config.xml
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/service-connection to-xpath /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Service_Conn_Template'] to-xpath /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Service_Conn_Template'] mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack'] to-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack'] mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group'] to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group'] mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection to-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection mode merge from prisma_access_full_config.xml
 ```
 
 ### Mobile User Setup and Onboarding
@@ -32,9 +32,9 @@ Includes:
 * plug-in onboarding configuration
 
 ```bash
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"] to-xpath /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Mobile_User_Template"] mode merge from prisma_access_full_config.xml
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/template-stack/entry[@name="Mobile_User_Template_Stack"] to-xpath /config/devices/entry[@name="localhost.localdomain"]/template-stack/entry[@name="Mobile_User_Template_Stack"] mode merge from prisma_access_full_config.xml
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Mobile_User_Device_Group"] to-xpath /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Mobile_User_Device_Group"] mode merge from prisma_access_full_config.xml
-load config partial from-xpath /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/mobile-users to-xpath /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/mobile-users mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Mobile_User_Template'] to-xpath /config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Mobile_User_Template'] mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Mobile_User_Template_Stack'] to-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Mobile_User_Template_Stack'] mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Mobile_User_Device_Group'] to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Mobile_User_Device_Group'] mode merge from prisma_access_full_config.xml
+load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users to-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users mode merge from prisma_access_full_config.xml
 ```
 
