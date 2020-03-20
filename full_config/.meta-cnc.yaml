@@ -111,8 +111,8 @@ variables:
 
 snippets:
 
-  - name: prisma_access_full_config
-    file: prisma_access_full_config.conf
+  - name: prisma_access_full_config_vars
+    file: prisma_access_full_config_vars.xml
 
 # ---------------------------------------------------------------------
 # end of snippets section

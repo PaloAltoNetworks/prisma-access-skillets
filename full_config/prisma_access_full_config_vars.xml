@@ -1169,8 +1169,8 @@ cWr9NgroRCplQA8S5bNqy0t17EkJz6fBBax7mOttPBtvRW4me610mZTHNbFcPe9T
       <plugins>
         <cloud_services version="1.5.0">
           <service-connection>
-            <service-subnet>192.168.254.0/24</service-subnet>
-            <infra-bgp-as>65499</infra-bgp-as>
+            <service-subnet>{{ infra_subnet }}</service-subnet>
+            <infra-bgp-as>{{ infra_bgp_as }}</infra-bgp-as>
             <internal-dns-list/>
             <template-stack>Service_Conn_Template_Stack</template-stack>
             <device-group>Service_Conn_Device_Group</device-group>
@@ -1188,47 +1188,63 @@ cWr9NgroRCplQA8S5bNqy0t17EkJz6fBBax7mOttPBtvRW4me610mZTHNbFcPe9T
               <member>MU-trust</member>
             </trusted-zones>
             <onboarding>
-              <entry name="macallan.lab.gpcloudservice.com">
-                <portal-hostname>
-                  <default-domain>
-                    <hostname>macallan</hostname>
-                  </default-domain>
-                </portal-hostname>
-                <ip-pools>
-                  <entry name="americas">
-                    <ip-pool>
-                      <member>192.168.4.0/23</member>
-                    </ip-pool>
+             <entry name="{{ portal_hostname }}.gpcloudservice.com">
+              <portal-hostname>
+                <default-domain>
+                  <hostname>{{ portal_hostname }}</hostname>
+                </default-domain>
+              </portal-hostname>
+              <ip-pools>
+                <entry name="{{ deployment_region }}">
+                  <ip-pool>
+                    <member>{{ ip_pool_cidr }}</member>
+                  </ip-pool>
+                </entry>
+              </ip-pools>
+              <dns-servers>
+                <entry name="{{ deployment_region }}"/>
+              </dns-servers>
+              <authentication-profile>Local-DB</authentication-profile>
+              <authentication-override-certificate>Authentication Cookie Cert</authentication-override-certificate>
+              <global-protect-portal>GlobalProtect_Portal</global-protect-portal>
+              <global-protect-gateway>GlobalProtect_External_Gateway</global-protect-gateway>
+              <deployment>
+                <region>
+                  <entry name="{{ deployment_region }}">
+                    <locations>
+                      {%- if deployment_region == 'americas' %}
+                        {%- set deployment_locations = deployment_locations_americas %}
+                      {% elif deployment_region == 'europe' %}
+                        {%- set deployment_locations = deployment_locations_europe %}
+                      {% elif deployment_region == 'apac' %}
+                        {%- set deployment_locations = deployment_locations_apac %}
+                      {% endif %}
+                      {%- for deployment_location in deployment_locations %}
+                        <member>{{ deployment_location }}</member>
+                      {% endfor %}
+                    </locations>
                   </entry>
-                </ip-pools>
-                <dns-servers>
-                  <entry name="americas"/>
-                </dns-servers>
-                <authentication-profile>Local-DB</authentication-profile>
-                <authentication-override-certificate>Authentication Cookie Cert</authentication-override-certificate>
-                <global-protect-portal>GlobalProtect_Portal</global-protect-portal>
-                <global-protect-gateway>GlobalProtect_External_Gateway</global-protect-gateway>
-                <deployment>
-                  <region>
-                    <entry name="americas">
-                      <locations>
-                        <member>us-west-1</member>
-                        <member>us-west-201</member>
-                      </locations>
-                    </entry>
-                  </region>
-                </deployment>
-                <manual-gateway>
-                  <region>
-                    <entry name="americas">
-                      <locations>
-                        <member>us-west-201</member>
-                        <member>us-west-1</member>
-                      </locations>
-                    </entry>
-                  </region>
-                </manual-gateway>
-              </entry>
+                </region>
+              </deployment>
+              <manual-gateway>
+                <region>
+                  <entry name="{{ deployment_region }}">
+                    <locations>
+                      {%- if deployment_region == 'americas' %}
+                        {%- set deployment_locations = deployment_locations_americas %}
+                      {% elif deployment_region == 'europe' %}
+                        {%- set deployment_locations = deployment_locations_europe %}
+                      {% elif deployment_region == 'apac' %}
+                        {%- set deployment_locations = deployment_locations_apac %}
+                      {% endif %}
+                      {%- for deployment_location in deployment_locations %}
+                        <member>{{ deployment_location }}</member>
+                      {% endfor %}
+                    </locations>
+                  </entry>
+                </region>
+              </manual-gateway>
+            </entry>
             </onboarding>
           </mobile-users>
         </cloud_services>
