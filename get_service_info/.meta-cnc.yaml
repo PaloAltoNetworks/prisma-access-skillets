@@ -65,9 +65,8 @@ variables:
 snippets:
 
   - name: serviceTypeInfo
-    path: https://api.gpcloudservice.com/getPrismaAccessIP/v2
-    operation: POST
-    payload: option.txt
+    path: https://api.gpcloudservice.com/getAddrList/latest?fwType=gpcs_remote_network&addrType=public_ip
+    operation: GET
     headers:
       header-api-key: '{{ api_key }}'
 
