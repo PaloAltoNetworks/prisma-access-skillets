@@ -69,7 +69,7 @@ snippets:
     operation: post
     payload: option.txt
     headers:
-      header-api-key: {{ api_key }}
+      header-api-key: "{{ api_key }}"
 
 
 # ---------------------------------------------------------------------
