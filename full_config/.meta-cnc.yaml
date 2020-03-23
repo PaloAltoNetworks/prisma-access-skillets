@@ -304,7 +304,7 @@ variables:
     type_hint: password
     help_text: creates a config file phash entry to customize the user1 password
   - name: user2_password
-    description: local DB user1 test account password
+    description: local DB user2 test account password
     default: Paloalto2
     type_hint: password
     help_text: creates a config file phash entry to customize the user2 password
