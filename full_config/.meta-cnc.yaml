@@ -1,7 +1,7 @@
 # skillet preamble information used by panhandler
 # ---------------------------------------------------------------------
 # unique snippet name
-name: prisma_access_mobile_full_config_render_v90
+value: prisma_access_mobile_full_config_render_v90
 # label used for menu selection
 label: Prisma Access Mobile Users Full Config File for Import v90
 description: |
@@ -129,109 +129,109 @@ variables:
     type_hint: checkbox
     cbx_list:
       - key: Kenya
-        name: kenya
+        value: kenya
       - key: Nigeria
-        name: nigeria
+        value: nigeria
       - key: South Africa Central
-        name: south-africa-central
+        value: south-africa-central
       - key: South Africa West
-        name: south-africa-west
+        value: south-africa-west
       - key: Andorra
-        name: andorra
+        value: andorra
       - key: Austria
-        name: austria
+        value: austria
       - key: Belarus
-        name: belarus
+        value: belarus
       - key: Belgium
-        name: belgium
+        value: belgium
       - key: Bulgaria
-        name: bulgaria
+        value: bulgaria
       - key: Croatia
-        name: croatia
+        value: croatia
       - key: Czech Republic
-        name: czech-republic
+        value: czech-republic
       - key: Denmark
-        name: denmark
+        value: denmark
       - key: Finland
-        name: finland
+        value: finland
       - key: France North
-        name: eu-west-3
+        value: eu-west-3
       - key: France South
-        name: france-south
+        value: france-south
       - key: Germany Central
-        name: eu-central-1
+        value: eu-central-1
       - key: Germany North
-        name: germany-north
+        value: germany-north
       - key: Germany South
-        name: germany-south
+        value: germany-south
       - key: Greece
-        name: greece
+        value: greece
       - key: Hungary
-        name: hungary
+        value: hungary
       - key: Ireland
-        name: eu-west-1
+        value: eu-west-1
       - key: Italy
-        name: italy
+        value: italy
       - key: Liechtenstein
-        name: liechtenstein
+        value: liechtenstein
       - key: Lithuania
-        name: lithuania
+        value: lithuania
       - key: Luxembourg
-        name: luxembourg
+        value: luxembourg
       - key: Moldova
-        name: moldova
+        value: moldova
       - key: Monaco
-        name: monaco
+        value: monaco
       - key: Netherlands Central
-        name: netherlands-central
+        value: netherlands-central
       - key: Netherlands South
-        name: netherlands-south
+        value: netherlands-south
       - key: Norway
-        name: norway
+        value: norway
       - key: Poland
-        name: poland
+        value: poland
       - key: Portugal
-        name: portugal
+        value: portugal
       - key: Romania
-        name: romania
+        value: romania
       - key: Russia Central
-        name: russia-central
+        value: russia-central
       - key: Russia Northwest
-        name: russia-northwest
+        value: russia-northwest
       - key: Slovakia
-        name: slovakia
+        value: slovakia
       - key: Slovenia
-        name: slovenia
+        value: slovenia
       - key: Spain Central
-        name: spain-central
+        value: spain-central
       - key: Spain East
-        name: spain-east
+        value: spain-east
       - key: Sweden
-        name: sweden
+        value: sweden
       - key: Switzerland
-        name: switzerland
+        value: switzerland
       - key: UK
-        name: eu-west-2
+        value: eu-west-2
       - key: Ukraine
-        name: ukraine
+        value: ukraine
       - key: Uzbekistan
-        name: uzbekistan
+        value: uzbekistan
       - key: Bahrain
-        name: me-south-1
+        value: me-south-1
       - key: Egypt
-        name: egypt
+        value: egypt
       - key: Israel
-        name: israel
+        value: israel
       - key: Jordan
-        name: jordan
+        value: jordan
       - key: Kuwait
-        name: kuwait
+        value: kuwait
       - key: Saudi Arabia
-        name: saudi-arabia
+        value: saudi-arabia
       - key: Turkey
-        name: turkey
+        value: turkey
       - key: United Arab Emirates
-        name: uae
+        value: uae
 
   - name: deployment_locations_apac
     description: deployment locations for Asia, Australia & Japan
@@ -308,7 +308,7 @@ variables:
 
 snippets:
 
-  - name: prisma_access_full_config_vars
+  - value: prisma_access_full_config_vars
     file: prisma_access_full_config_vars.conf
 
 # ---------------------------------------------------------------------
