@@ -66,11 +66,10 @@ snippets:
 
   - name: serviceTypeInfo
     path: https://api.gpcloudservice.com/getPrismaAccessIP/v2
-    operation: post
+    operation: POST
     payload: option.txt
     headers:
-      header-api-key: "{{ api_key }}"
-      Content-Type: application/json
+      header-api-key: '{{ api_key }}'
 
 
 # ---------------------------------------------------------------------
