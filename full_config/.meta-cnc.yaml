@@ -67,12 +67,59 @@ variables:
       value: americas
     type_hint: checkbox
     cbx_list:
-      - key: US East
-        value: us-east-1
+      - key: Canada Central
+        value: canada-central
+      - key: Canada East
+        value: ca-central-1
+      - key: Canada West
+        value: canada-west
+      - key: Costa Rica
+        value: costa-rica
+      - key: Mexico Central
+        value: mexico-central
+      - key: Mexico West
+        value: mexico-west
+      - key: Panama
+        value: panama
       - key: US Central
         value: us-east-2
+      - key: US East
+        value: us-east-1
       - key: US Northeast
         value: us-northeast
+      - key: US Northwest
+        value: us-west-2
+      - key: US South
+        value: us-south
+      - key: US Southeast
+        value: us-southeast
+      - key: US Southwest
+        value: us-west-201
+      - key: US West
+        value: us-west-1
+      - key: Argentina
+        value: argentina
+      - key: Bolivia
+        value: bolivia
+      - key: Brazil Central
+        value: brazil-central
+      - key: Brazil East
+        value: brazil-east
+      - key: Brazil South
+        value: sa-east-1
+      - key: Chile
+        value: chile
+      - key: Colombia
+        value: columbia
+      - key: Ecuador
+        value: ecuador
+      - key: Paraguay
+        value: paraguay
+      - key: Peru
+        value: peru
+      - key: Venezuela
+        value: venezuela
+
   - name: deployment_locations_europe
     description: deployment locations for Africa, Europe & Middle East
     default: eu-west-1
@@ -81,12 +128,111 @@ variables:
       value: europe
     type_hint: checkbox
     cbx_list:
+      - key: Kenya
+        name: kenya
+      - key: Nigeria
+        name: nigeria
+      - key: South Africa Central
+        name: south-africa-central
+      - key: South Africa West
+        name: south-africa-west
+      - key: Andorra
+        name: andorra
+      - key: Austria
+        name: austria
+      - key: Belarus
+        name: belarus
+      - key: Belgium
+        name: belgium
+      - key: Bulgaria
+        name: bulgaria
+      - key: Croatia
+        name: croatia
+      - key: Czech Republic
+        name: czech-republic
+      - key: Denmark
+        name: denmark
+      - key: Finland
+        name: finland
+      - key: France North
+        name: eu-west-3
+      - key: France South
+        name: france-south
       - key: Germany Central
-        value: eu-central-1
+        name: eu-central-1
+      - key: Germany North
+        name: germany-north
+      - key: Germany South
+        name: germany-south
+      - key: Greece
+        name: greece
+      - key: Hungary
+        name: hungary
       - key: Ireland
-        value: eu-west-1
+        name: eu-west-1
+      - key: Italy
+        name: italy
+      - key: Liechtenstein
+        name: liechtenstein
+      - key: Lithuania
+        name: lithuania
+      - key: Luxembourg
+        name: luxembourg
+      - key: Moldova
+        name: moldova
+      - key: Monaco
+        name: monaco
+      - key: Netherlands Central
+        name: netherlands-central
+      - key: Netherlands South
+        name: netherlands-south
+      - key: Norway
+        name: norway
+      - key: Poland
+        name: poland
+      - key: Portugal
+        name: portugal
+      - key: Romania
+        name: romania
+      - key: Russia Central
+        name: russia-central
+      - key: Russia Northwest
+        name: russia-northwest
+      - key: Slovakia
+        name: slovakia
+      - key: Slovenia
+        name: slovenia
+      - key: Spain Central
+        name: spain-central
+      - key: Spain East
+        name: spain-east
+      - key: Sweden
+        name: sweden
+      - key: Switzerland
+        name: switzerland
       - key: UK
-        value: eu-west-1
+        name: eu-west-2
+      - key: Ukraine
+        name: ukraine
+      - key: Uzbekistan
+        name: uzbekistan
+      - key: Bahrain
+        name: me-south-1
+      - key: Egypt
+        name: egypt
+      - key: Israel
+        name: israel
+      - key: Jordan
+        name: jordan
+      - key: Kuwait
+        name: kuwait
+      - key: Saudi Arabia
+        name: saudi-arabia
+      - key: Turkey
+        name: turkey
+      - key: United Arab Emirates
+        name: uae
+
   - name: deployment_locations_apac
     description: deployment locations for Asia, Australia & Japan
     default: australia-east
@@ -95,14 +241,55 @@ variables:
       value: apac
     type_hint: checkbox
     cbx_list:
+      - key: Bangladesh
+        value: bangladesh
+      - key: Cambodia
+        value: cambodia
+      - key: Hong Kong
+        value: hong-kong
+      - key: India North
+        value: india-north
+      - key: India South
+        value: india-south
+      - key: India West
+        value: ap-south-1
+      - key: Indonesia
+        value: indonesia
+      - key: Malaysia
+        value: malaysia
+      - key: Myanmar
+        value: myanmar
+      - key: Pakistan South
+        value: pakistan-south
+      - key: Pakistan West
+        value: pakistan-west
+      - key: Papua New Guinea
+        value: papua-new-guinea
+      - key: Philippines
+        value: philippines
+      - key: Singapore
+        value: ap-southeast-1
+      - key: South Korea
+        value: ap-northeast-2
+      - key: Taiwan
+        value: taiwan
+      - key: Thailand
+        value: thailand
+      - key: Vietnam
+        value: vietnam
       - key: Australia East
         value: australia-east
       - key: Australia South
         value: australia-south
+      - key: Australia Southeast
+        value: ap-southeast-2
+      - key: New Zealand
+        value: new-zealand
       - key: Japan Central
         value: ap-northeast-1
-      - key: South Korea
-        value: ap-northeast-2
+      - key: Japan South
+        value: japan-south
+
   - name: ip_pool_cidr
     description: mobile user IP address pool
     default: 192.168.2.0/23
