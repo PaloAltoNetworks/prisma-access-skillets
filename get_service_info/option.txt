@@ -2,4 +2,4 @@
    "serviceType": "{{ serviceType }}",
    "addrType": "{{ addrType }}",
    "location": "{{ location }}"
-   }
+}

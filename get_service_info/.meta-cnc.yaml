@@ -70,6 +70,7 @@ snippets:
     payload: option.txt
     headers:
       header-api-key: "{{ api_key }}"
+      Content-Type: application/x-www-form-urlencoded
 
 
 # ---------------------------------------------------------------------
