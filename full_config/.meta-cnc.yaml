@@ -66,7 +66,7 @@ variables:
       source: deployment_region
       value: americas
     type_hint: checkbox
-    help_text: select all locations for this region; use the GUI to select all or check for recently added locatioins
+    help_text: Select the regions where you want to deploy Prisma Access; use the GUI to select all or check for recently added locations
     cbx_list:
       - key: Canada Central
         value: canada-central
@@ -128,7 +128,7 @@ variables:
       source: deployment_region
       value: europe
     type_hint: checkbox
-    help_text: select all locations for this region; use the GUI to select all or check for recently added locatioins
+    help_text: Select the regions where you want to deploy Prisma Access; use the GUI to select all or check for recently added locations
     cbx_list:
       - key: Kenya
         value: kenya
@@ -242,7 +242,7 @@ variables:
       source: deployment_region
       value: apac
     type_hint: checkbox
-    help_text: select all locations for this region; use the GUI to select all or check for recently added locatioins
+    help_text: Select the regions where you want to deploy Prisma Access; use the GUI to select all or check for recently added locations
     cbx_list:
       - key: Bangladesh
         value: bangladesh
