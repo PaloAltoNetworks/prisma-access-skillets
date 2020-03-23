@@ -1,0 +1,76 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: get_service_info_prisma_access
+# label used for menu selection
+label: Prisma Access API call to get service information
+description: 3 API calls to get the service, address, and location information using the Prisma Access API
+type: rest
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - Prisma Access
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+variables:
+  - name: api_key
+    description: Prisma Access API Key
+    default: api-key
+    type_hint: text
+    help_text: The API key is found in Panorama under the Prisma Access Service Setup tab
+  - name: serviceType
+    description: Service Type
+    default: all
+    type_hint: dropdown
+    dd_list:
+      - key: all
+        value: all
+      - key: Remote Network
+        value: remote_network
+      - key: Mobile User Gateways
+        value: gp_gateway
+      - key: Mobile User Portals
+        value: gp_portal
+  - name: addrType
+    description: Address Type
+    default: all
+    type_hint: dropdown
+    dd_list:
+      - key: all
+        value: all
+      - key: active
+        value: active
+      - key: reserved
+        value: reserved
+  - name: location
+    description: Location
+    default: all
+    type_hint: dropdown
+    dd_list:
+      - key: all
+        value: all
+      - key: deployed
+        value: deployed
+
+# ---------------------------------------------------------------------
+# end of variables section
+
+# snippets section
+# ---------------------------------------------------------------------
+snippets:
+
+  - name: serviceTypeInfo
+    path: https://api.gpcloudservice.com/getPrismaAccessIP/v2
+    operation: post
+    payload: option.txt
+    headers:
+      header-api-key: {{ api_key }}
+
+
+# ---------------------------------------------------------------------
+# end of snippets section
