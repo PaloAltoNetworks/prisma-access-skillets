@@ -1,5 +1,0 @@
-curl -X POST -d @option.txt -k -H "header-api-key:ohuhgvds4c__Olv24FBOjI3zve0DR7nDq7a1DmpmEu2B6icPcw1U"
-"https://api.lab.gpcloudservice.com/getPrismaAccessIP/v2"
-
-Where the contents of the option.txt file is
-{ "serviceType": "all", "addrType": "all", "location": "all" }
