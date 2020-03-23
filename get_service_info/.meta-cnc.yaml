@@ -68,8 +68,8 @@ snippets:
     path: https://api.gpcloudservice.com/getPrismaAccessIP/v2
     operation: post
     payload: option.txt
-    headers:
-      header-api-key: {{ api_key }}
+    #headers:
+    #  header-api-key: {{ api_key }}
 
 
 # ---------------------------------------------------------------------
