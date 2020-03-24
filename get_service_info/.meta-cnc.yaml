@@ -1,0 +1,88 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: get_service_info_prisma_access
+# label used for menu selection
+label: Prisma Access API call to get service information
+description: 3 API calls to get the service, address, and location information using the Prisma Access API
+type: rest
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - Prisma Access
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+variables:
+  - name: api_key
+    description: Prisma Access API Key
+    default: api-key
+    type_hint: text
+    help_text: The API key is found in Panorama under the Prisma Access Service Setup tab
+  - name: path_subdomain
+    description: URL for the cloud service API
+    default: https://api.gpcloudservice.com/getPrismaAccessIP/v2
+    type_hint: dropdown
+    help_text: select the URL specific to your cloud instance; found in the Usage Example when generating the API key
+    dd_list:
+      - key: https://api.gpcloudservice.com/getPrismaAccessIP/v2
+        value: api
+      - key: https://api.lab.gpcloudservice.com/getPrismaAccessIP/v2
+        value: api.lab
+  - name: serviceType
+    description: Service Type
+    default: all
+    type_hint: dropdown
+    dd_list:
+      - key: all
+        value: all
+      - key: remote_network
+        value: remote_network
+      - key: gp_gateway
+        value: gp_gateway
+      - key: gp_portal
+        value: gp_portal
+      - key: clean_pipe
+        value: clean_pipe
+  - name: addrType
+    description: Address Type
+    default: all
+    type_hint: dropdown
+    dd_list:
+      - key: all
+        value: all
+      - key: active
+        value: active
+      - key: reserved
+        value: reserved
+  - name: location
+    description: Location
+    default: all
+    type_hint: dropdown
+    dd_list:
+      - key: all
+        value: all
+      - key: deployed
+        value: deployed
+
+# ---------------------------------------------------------------------
+# end of variables section
+
+# snippets section
+# ---------------------------------------------------------------------
+snippets:
+
+  - name: serviceTypeInfo
+    path: https://{{ path_subdomain }}.gpcloudservice.com/getPrismaAccessIP/v2
+    operation: post
+    payload: option.txt
+    headers:
+      header-api-key: '{{ api_key }}'
+
+
+# ---------------------------------------------------------------------
+# end of snippets section
