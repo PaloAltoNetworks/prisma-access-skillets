@@ -21,7 +21,7 @@ This still takes user input and outputs to screen a complete xml file
 
 To use:
 * run the skillet after entering input values
-* copy the output text and save locally as prisma_access_full_config.xml
+* copy the output text and save locally as ```prisma_access_full_config.xml```
 * import the file to Panorama but do not load as a candidate configuration
 
 ## Load Config Partial and Generate Certificates
