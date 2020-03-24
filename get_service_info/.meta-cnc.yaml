@@ -30,12 +30,14 @@ variables:
     dd_list:
       - key: all
         value: all
-      - key: Remote Network
+      - key: remote_network
         value: remote_network
-      - key: Mobile User Gateways
-        value: gp_gateway
-      - key: Mobile User Portals
+      - key: remote_network
+        value: remote_networky
+      - key: gp_portal
         value: gp_portal
+      - key: clean_pipe
+        value: clean_pipe
   - name: addrType
     description: Address Type
     default: all
