@@ -23,16 +23,16 @@ variables:
     default: api-key
     type_hint: text
     help_text: The API key is found in Panorama under the Prisma Access Service Setup tab
-  - name: pathURL
+  - name: path_subdomain
     description: URL for the cloud service API
     default: https://api.gpcloudservice.com/getPrismaAccessIP/v2
     type_hint: dropdown
     help_text: select the URL specific to your cloud instance; found in the Usage Example when generating the API key
     dd_list:
       - key: https://api.gpcloudservice.com/getPrismaAccessIP/v2
-        value: https://api.gpcloudservice.com/getPrismaAccessIP/v2
+        value: api
       - key: https://api.lab.gpcloudservice.com/getPrismaAccessIP/v2
-        value: https://api.lab.gpcloudservice.com/getPrismaAccessIP/v2
+        value: api.lab
   - name: serviceType
     description: Service Type
     default: all
@@ -77,7 +77,7 @@ variables:
 snippets:
 
   - name: serviceTypeInfo
-    path: '{{ pathURL }}'
+    path: https://{{ path_subdomain }}.gpcloudservice.com/getPrismaAccessIP/v2
     operation: post
     payload: option.txt
     headers:
