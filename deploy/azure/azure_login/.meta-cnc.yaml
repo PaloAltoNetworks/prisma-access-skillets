@@ -1,0 +1,17 @@
+name: prisma_access_azure_login
+label: Prisma Access POC Azure Login
+description: Logs in to your Azure Subscription
+
+type: python3
+
+labels:
+  order: 1
+  collection:
+    - Prisma Access POC
+
+variables:
+
+
+snippets:
+  - name: script
+    file: azure_login.py
