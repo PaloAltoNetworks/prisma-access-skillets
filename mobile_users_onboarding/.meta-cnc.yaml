@@ -151,8 +151,10 @@ snippets:
           <global-protect-gateway>
             <entry name="GlobalProtect_External_Gateway-N">
               <local-address>
+                <interface>-</interface>
                 <ip/>
               </local-address>
+              <tunnel-interface>-</tunnel-interface>
             </entry>
           </global-protect-gateway>
         </tunnel>
@@ -166,8 +168,10 @@ snippets:
           <entry name="GlobalProtect_Portal">
             <portal-config>
               <local-address>
+                <interface>-</interface>
                 <ip/>
               </local-address>
+              <ssl-tls-service-profile>-</ssl-tls-service-profile>
               <client-auth>
                 <entry name="DEFAULT">
                   <os>Any</os>
