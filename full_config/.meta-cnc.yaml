@@ -3,7 +3,7 @@
 # unique snippet name
 name: prisma_access_mobile_full_config_render_v90
 # label used for menu selection
-label: Step 2 - Prisma Access Generate Mobile Users Full Config File for Import v90
+label: Step 1 - Prisma Access Generate Mobile Users Full Config File for Import v90
 description: |
   Prisma Access Mobile Users setup and onboarding configuration as a loadable config
 
