@@ -42,8 +42,8 @@ variables:
         value: all
       - key: remote_network
         value: remote_network
-      - key: remote_network
-        value: remote_networky
+      - key: gp_gateway
+        value: gp_gateway
       - key: gp_portal
         value: gp_portal
       - key: clean_pipe
