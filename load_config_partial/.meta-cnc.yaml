@@ -1,7 +1,7 @@
 # skillet preamble information used by panhandler
 # ---------------------------------------------------------------------
 # unique snippet name
-value: prisma_access_load_config_partial_api_v90
+name: prisma_access_load_config_partial_api_v90
 # label used for menu selection
 label: Prisma Access Load Config Partial using API for Full Config v90
 description: |
