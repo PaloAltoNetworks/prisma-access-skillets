@@ -4,7 +4,7 @@
 name: get_service_info_prisma_access
 # label used for menu selection
 label: Step 3 - Prisma Access API call to get service information
-description: 3 API calls to get the service, address, and location information using the Prisma Access API
+description: API call to get the service, address, and location information using the Prisma Access API
 type: rest
 
 # grouping of like snippets for dynamic menu creation in panhandler

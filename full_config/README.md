@@ -3,7 +3,10 @@
 The full configuration is designed to be imported to Panorama and then config elements load and merged into
 the existing configuration using the CLI ```load config partial``` commands below.
 
-NOTE: To use the load config partial commands shown below, ensure the xml file name is prisma_access_full_config.xml
+After running the skillet, save the config file as ```prisma_access_full_config.xml``` and import to Panorama.
+
+Use the manual commands below to merge the config elements to the candidate config or use the Step 2 Load Config Partial
+skillet to leverage the Panorama API to merge the configuration.
 
 ## Load Config Partial Commands
 
@@ -19,7 +22,6 @@ load config partial from-xpath /config/devices/entry[@name='localhost.localdomai
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack'] to-xpath /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack'] mode merge from prisma_access_full_config.xml
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group'] to-xpath /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group'] mode merge from prisma_access_full_config.xml
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection to-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection mode merge from prisma_access_full_config.xml
-
 ```
 
 ### Mobile User Setup and Onboarding
@@ -46,6 +48,5 @@ run request certificate generate ca yes certificate-name "Authentication Cookie 
 run request certificate generate signed-by "Authentication Cookie CA" certificate-name "Authentication Cookie Cert" name "Authentication Cookie Cert" algorithm RSA rsa-nbits 2048
 run set system setting target none
 load config partial from-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users to-xpath /config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users mode merge from prisma_access_full_config.xml
-
 ```
 
