@@ -47,7 +47,7 @@ variables:
     description: portal subdomain
     default: my-subdomain
     type_hint: text
-    help_text: subdomain prefix for cloudservice.com
+    help_text: subdomain prefix for gpcloudservice.com
   - name: deployment_region
     description: regional to use for mobile user configuration
     default: americas
