@@ -105,7 +105,7 @@ GUI instructions to commit the changes and push to Prisma Access are found in th
 
 ## Optional non-API Config File Generation
 
-If API access to Panorama is not available, the following steps can be used as an alternative to steps 4 and 5.
+If API access to Panorama is not available, the following steps can be used as an alternative to steps 4, 5, and 6.
 
 
 1. Run the Optional Manual skillet to generate a config file
