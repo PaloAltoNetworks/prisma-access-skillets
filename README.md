@@ -33,7 +33,7 @@ The step 2 skillet will use the Panorama API to perform the load config partial 
 
 
 If access to the API is not available, users can opt to access the CLI and use the 
-[manual steps for load config partial](https://github.com/scotchoaf/prisma-access-skillets/blob/develop_partial/full_config/README.md)
+[manual steps for load config partial](https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/develop/stage_2_configuration/full_config/README.md)
 
 Once the load config partial is complete, commit the configuration to Panorama and push changes to the cloud service.
 
