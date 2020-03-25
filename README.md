@@ -2,8 +2,8 @@
 
 A suite of deployment, configuration, and service information skillets for Prisma Access mobile users including:
 
-    * PanHandler instantiation in Azure
-    * PanHandler licensing, content updates, sw updates, and basic configuration
+    * Panorama instantiation in Azure
+    * Panorama licensing, content updates, sw updates, and basic configuration
     * Prisma Access service setup and mobile user configuration
     * Prisma Acess API queries to view service information
 
@@ -73,12 +73,22 @@ The default filename for import is ```prisma_access_full_config.xml```
 
 > If API access is not available, use the Manual skillet option to generate a configuration file to import to Panorama
 
-## Step 5 - Load Config Partial and Generate Certificates
+## Step 5 - Initial Load Config Partial for Service Setup
 
-After the file is imported, this skillet will run through a series of load config partial commands and a certificate
+After the file is imported, this skillet will configure service setup and add the mobile user template
+
+> At the completion of Step 5 a Panorama commit is required before proceeding to step 6
+    
+GUI instructions to commit the changes are found in the 
+[Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
+
+## Step 6 - Load Config Partial for Mobile Users and Generate Certificates
+
+```COMMIT to Panorama before running step 6```
+
+This skillet will run through a series of load config partial commands and a certificate
 generation to:
 
-    * Configure Service Setup
     * Configure Mobile User Setup and Onboarding
     * Generate certificates used as part of onboarding configuration
     
@@ -86,7 +96,6 @@ generation to:
 
 GUI instructions to commit the changes are found in the 
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
-
 
 ## Optional non-API Config File Generation
 
