@@ -1,6 +1,6 @@
 name: prisma_access_azure_deploy_panorama
 
-label: Prisma Access POC Deploy Panorama
+label: Prisma Access Deploy Panorama
 
 description: Deploy Panorama into Azure
 
@@ -23,12 +23,13 @@ variables:
     help_text: Password must be at least 11 chars and complex
   - name: hostname
     description: Hostname
-    default: panhandler-vm-01
+    default: prisma-access-controller
     type_hint: text
   - name: virtualMachineRG
     description: Resource Group
-    default: panhandler-unique-value-123
+    default:
     type_hint: text
+    required: True
   - name: Location
     description: Azure Location
     default: East US 2
