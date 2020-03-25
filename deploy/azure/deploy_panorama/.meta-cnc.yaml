@@ -32,6 +32,7 @@ variables:
     required: True
   - name: Location
     description: Azure Location
-    default: East US 2
+    default:
+    required: True
     type_hint: text
     help_text: Choose a location near you from https://azure.microsoft.com/en-us/global-infrastructure/locations/
