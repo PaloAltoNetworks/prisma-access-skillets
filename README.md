@@ -15,7 +15,7 @@ This is used to ensure Panorama can be dynamically licensed in Step 3. Also requ
 to generate the One Time Password (OTP) to authorize Panorama connectivity to the cloud instance.
 
 See [How to Activate Cortex Data Lake and Prisma Access for Evals](https://knowledgebase.paloaltonetworks.com/KCSArticleDetail?id=kA10g000000ClNg)
-if additional information needed for license information.
+if additional information needed for license activation.
 
 ### Accept the EULA for Panorama in Azure
 In the Azure Portal, open Azure Cloud Shell and run the following command (**BASH ONLY!**):
@@ -119,7 +119,7 @@ If API access to Panorama is not available, the following steps can be used as a
 The details for using the API and information returned are found in the
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-panorama-admin/prisma-access-overview/retrieve-ip-addresses-for-prisma-access.html)
 
-As an alternative to the curl commands and generating and update the option.txt file, the Step 3 skillet
+As an alternative to the curl commands and generating and update the option.txt file, this skillet
 creates a simple web interface to input the API key and capture user selections for the arguments and choices.
 
 The output of the API is shown on screen.
