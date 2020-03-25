@@ -9,7 +9,7 @@ type: terraform
 labels:
   order: 5
   collection:
-    - Prisma Access POC
+    - Prisma Access
 
 variables:
   - name: adminUsername

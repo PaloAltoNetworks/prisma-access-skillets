@@ -7,7 +7,7 @@ type: docker
 labels:
   order: 10
   collection:
-    - Prisma Access POC
+    - Prisma Access
 
 variables:
   - name: panorama_ip_address

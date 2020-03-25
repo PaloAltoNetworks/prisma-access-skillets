@@ -7,7 +7,7 @@ type: python3
 labels:
   order: 1
   collection:
-    - Prisma Access POC
+    - Prisma Access
 
 variables:
 
