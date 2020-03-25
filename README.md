@@ -11,7 +11,7 @@ A suite of deployment, configuration, and service information skillets for Prism
 
 ### License Activation and Customer Support Portal SuperUser Access
 
-This is used to ensure Panorama can be licensed in Step 3. Also requires is superuser access
+This is used to ensure Panorama can be dynamically licensed in Step 3. Also required is superuser access
 to generate the One Time Password (OTP) to authorize Panorama connectivity to the cloud instance.
 
 ### Accept the EULA for Panorama in Azure
@@ -100,7 +100,7 @@ If API access to Panorama is not available, the following steps can be used as a
 
 
 
-## Retrive Service Information
+## Retrieve Service Information
 
 The details for using the API and information returned are found in the
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-panorama-admin/prisma-access-overview/retrieve-ip-addresses-for-prisma-access.html)
