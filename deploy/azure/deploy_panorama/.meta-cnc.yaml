@@ -1,0 +1,36 @@
+name: prisma_access_azure_deploy_panorama
+
+label: Prisma Access POC Deploy Panorama
+
+description: Deploy Panorama into Azure
+
+type: terraform
+
+labels:
+  order: 5
+  collection:
+    - Prisma Access
+
+variables:
+  - name: adminUsername
+    description: Admin Username
+    default: panhandler
+    type_hint: text
+  - name: adminPassword
+    description: Admin Password
+    default:
+    type_hint: password
+    help_text: Password must be at least 11 chars and complex
+  - name: hostname
+    description: Hostname
+    default: panhandler-vm-01
+    type_hint: text
+  - name: virtualMachineRG
+    description: Resource Group
+    default: panhandler-unique-value-123
+    type_hint: text
+  - name: Location
+    description: Azure Location
+    default: East US 2
+    type_hint: text
+    help_text: Choose a location near you from https://azure.microsoft.com/en-us/global-infrastructure/locations/
