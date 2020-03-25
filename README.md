@@ -98,7 +98,7 @@ generation to:
     * Configure Mobile User Setup and Onboarding
     * Generate certificates used as part of onboarding configuration
     
-> At the completion of Step 5, if done in panHandler, commit to Panorama and push the configuration to Prisma Access
+> At the completion of Step 6 commit to Panorama and push the configuration to Prisma Access
 
 GUI instructions to commit the changes and push to Prisma Access are found in the 
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
