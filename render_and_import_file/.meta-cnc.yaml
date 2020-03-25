@@ -1,33 +1,33 @@
-# skillet preamble information used by panhandler
-# ---------------------------------------------------------------------
-# unique snippet name
-name: prisma_access_mobile_full_config_render_v90
+name: render_and import_prisma_access_config_file_v90
 # label used for menu selection
-label: Step 1B using manual steps - Prisma Access Generate Mobile Users Full Config File for Import v90
+label: Step 1A using API access - Render and Import the Prisma Access Generated Config File using the API
+
 description: |
-  Prisma Access Mobile Users setup and onboarding configuration as a loadable config
+  This skillet renders the config file and then uses the panorama API to import the full prisma access config file
+  that will be used by the load config partial skillet
 
-# type of device configuration
-# common types are panorama, panos, and template
-# https://github.com/PaloAltoNetworks/panhandler/blob/develop/docs/metadata_configuration.rst
-type: template
-# preload static or default-based templates
-extends:
+type: python3
 
-# grouping of like snippets for dynamic menu creation in panhandler
+# Labels allow grouping and type specific options and are generally only used in advanced cases
 labels:
-  collection:
-    - Prisma Access
+    collection:
+      - Prisma Access
 
-# ---------------------------------------------------------------------
-# end of preamble section
-
-# variables section
-# ---------------------------------------------------------------------
-# variables used in the configuration templates
-# type_hint defines the form field used by panhandler
-# type_hints can be text, ip_address, or dropdown
+# variables define the things an operator may customize in this skillet. Things like DNS servers, NTP addresses, etc
+# may be customized for each deployment. Each variable will be rendered as a form field in the panhandler application
 variables:
+  - name: TARGET_IP
+    description: NGFW IP or Hostname
+    default: 192.168.55.10
+    type_hint: text
+  - name: TARGET_USERNAME
+    description: NGFW Username
+    default: admin
+    type_hint: text
+  - name: TARGET_PASSWORD
+    description: NGFW Password
+    default:
+    type_hint: password
   - name: infra_subnet
     description: Infrastructure Subnet
     default: 192.168.254.0/24
@@ -308,11 +308,16 @@ variables:
     default: Paloalto2
     type_hint: password
     help_text: creates a config file phash entry to customize the user2 password
+  - name: conf_filename
+    description: name of xml config file to be generated
+    default: prisma_access_full_config.xml
+    type_hint: text
+    help_text: leave as default to match the load config partial manual helper commands
 
+# Snippets is an ordered list of configuration xml fragments that will be pushed to the PAN-OS NGFW. The xpath
+# determines where in the configuration hierarchy the xml fragment will be set. 'file' indicates the name of the file
+# to load and parse. Jinja2 style variables will be variable interpolated using the values of the 'variables' defined
+# in the 'variables' section.
 snippets:
-
-  - value: prisma_access_full_config_vars
-    file: prisma_access_full_config_vars.conf
-
-# ---------------------------------------------------------------------
-# end of snippets section
+  - name: render_and_import_file
+    file: render_and_import_file.py
