@@ -28,20 +28,10 @@ variables:
     default: prisma_access_full_config.xml
     type_hint: text
     help_text: file name used in the load config partial commands
-  - name: load_conf_options
-    description: choose load config partial items
-    default: ['service', 'mobile']
-    type_hint: checkbox
-    cbx_list:
-      - key: Service Setup
-        value: service
-      - key: Mobile Users
-        value: mobile
 
 snippets:
 
   - name: svc_conn_template
-    when: "'service' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>
@@ -56,7 +46,6 @@ snippets:
       </load>
 
   - name: svc_conn_template_stack
-    when: "'service' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>
@@ -71,7 +60,6 @@ snippets:
       </load>
 
   - name: svc_conn_device_group
-    when: "'service' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>
@@ -86,7 +74,6 @@ snippets:
       </load>
 
   - name: svc_conn_onboarding
-    when: "'service' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>
@@ -101,7 +88,6 @@ snippets:
       </load>
 
   - name: mobile_user_template
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>

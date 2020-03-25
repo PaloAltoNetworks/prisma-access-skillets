@@ -32,7 +32,6 @@ variables:
 snippets:
 
   - name: set_template_target
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <set>
@@ -48,7 +47,6 @@ snippets:
       </set>
 
   - name: ca_cert_gen
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <request>
@@ -67,7 +65,6 @@ snippets:
       </request>
 
   - name: ca_cert_gen
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <request>
@@ -88,7 +85,6 @@ snippets:
       </request>
 
   - name: set_template_target_none
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <set>
@@ -102,7 +98,6 @@ snippets:
       </set>
 
   - name: mobile_user_template_stack
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>
@@ -117,7 +112,6 @@ snippets:
       </load>
 
   - name: mobile_user_device_group
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>
@@ -132,7 +126,6 @@ snippets:
       </load>
 
   - name: mobile_user_onboarding
-    when: "'mobile' in load_conf_options"
     cmd: op
     cmd_str: |-
       <load>
