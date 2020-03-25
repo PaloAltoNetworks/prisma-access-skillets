@@ -1,5 +1,5 @@
 name: prisma_access_initial_panorama_config
-label: Prisma Access POC Panorama Initial Configuration
+label: Step 3 - Prisma Access POC Panorama Initial Configuration
 description: Configures a newly launched Panorama Instance
 
 type: docker
