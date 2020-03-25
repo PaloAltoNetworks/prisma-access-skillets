@@ -3,7 +3,7 @@
 # unique snippet name
 name: prisma_access_load_config_partial_api_v90
 # label used for menu selection
-label: Step 2 - Prisma Access Load Config Partial using API for Full Config v90
+label: API Option - Prisma Access Load Config Partial using API for Full Config v90
 description: |
   Prisma Access load config partial skillet to merge configuration elements for imported file
   and creates a certificate and CA used in the mobile user template
@@ -12,6 +12,7 @@ type: panorama-gpcs
 
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
+  order: 25
   collection:
     - Prisma Access
 

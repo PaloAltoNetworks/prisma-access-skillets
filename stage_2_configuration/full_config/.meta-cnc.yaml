@@ -3,7 +3,7 @@
 # unique snippet name
 name: prisma_access_mobile_full_config_render_v90
 # label used for menu selection
-label: Step 1B using manual steps - Prisma Access Generate Mobile Users Full Config File for Import v90
+label: Manual Option - Prisma Access Generate Mobile Users Full Config File for Import v90
 description: |
   Prisma Access Mobile Users setup and onboarding configuration as a loadable config
 
@@ -16,6 +16,7 @@ extends:
 
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
+  order: 30
   collection:
     - Prisma Access
 
@@ -311,7 +312,7 @@ variables:
 
 snippets:
 
-  - value: prisma_access_full_config_vars
+  - name: prisma_access_full_config_vars
     file: prisma_access_full_config_vars.conf
 
 # ---------------------------------------------------------------------

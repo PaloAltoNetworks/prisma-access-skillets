@@ -1,6 +1,6 @@
 name: render_and import_prisma_access_config_file_v90
 # label used for menu selection
-label: Step 1A using API access - Render and Import the Prisma Access Generated Config File using the API
+label: API Option - Render and Import the Prisma Access Generated Config File using the API
 
 description: |
   This skillet renders the config file and then uses the panorama API to import the full prisma access config file
@@ -10,6 +10,7 @@ type: python3
 
 # Labels allow grouping and type specific options and are generally only used in advanced cases
 labels:
+    order: 20
     collection:
       - Prisma Access
 
