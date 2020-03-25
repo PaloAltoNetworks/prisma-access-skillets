@@ -1,6 +1,6 @@
 name: render_and import_prisma_access_config_file_v90
 # label used for menu selection
-label: API Option - Render and Import the Prisma Access Generated Config File using the API
+label: Step 4 - API Option - Generate and Import the Prisma Access Config File
 
 description: |
   This skillet renders the config file and then uses the panorama API to import the full prisma access config file
@@ -47,7 +47,7 @@ variables:
     description: portal subdomain
     default: my-subdomain
     type_hint: text
-    help_text: subdomain prefix for cloudservice.com
+    help_text: subdomain prefix for gpcloudservice.com
   - name: deployment_region
     description: regional to use for mobile user configuration
     default: americas

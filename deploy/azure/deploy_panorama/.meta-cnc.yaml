@@ -1,6 +1,6 @@
 name: prisma_access_azure_deploy_panorama
 
-label: Prisma Access Deploy Panorama
+label: Step 2 - Prisma Access Deploy Panorama
 
 description: Deploy Panorama into Azure
 

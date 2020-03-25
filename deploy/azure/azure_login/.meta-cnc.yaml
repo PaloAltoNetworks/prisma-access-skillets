@@ -1,5 +1,7 @@
 name: prisma_access_azure_login
-label: Prisma Access Azure Login
+
+label: Step 1 - Prisma Access Azure Login
+
 description: Logs in to your Azure Subscription
 
 type: python3

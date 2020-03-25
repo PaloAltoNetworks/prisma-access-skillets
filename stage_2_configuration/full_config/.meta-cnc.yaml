@@ -3,9 +3,10 @@
 # unique snippet name
 name: prisma_access_mobile_full_config_render_v90
 # label used for menu selection
-label: Manual Option - Prisma Access Generate Mobile Users Full Config File for Import v90
+label: Optional Manual Skillet if no API - Prisma Access Generate Full Config File for Import
 description: |
   Prisma Access Mobile Users setup and onboarding configuration as a loadable config
+  and the manually import and run the load config partial commands
 
 # type of device configuration
 # common types are panorama, panos, and template
@@ -47,7 +48,7 @@ variables:
     description: portal subdomain
     default: my-subdomain
     type_hint: text
-    help_text: subdomain prefix for cloudservice.com
+    help_text: subdomain prefix for gpcloudservice.com
   - name: deployment_region
     description: regional to use for mobile user configuration
     default: americas
