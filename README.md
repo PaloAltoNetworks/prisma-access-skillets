@@ -1,20 +1,19 @@
 # Prisma Access Skillets
 
-A suite of configuration and service information skillets for Prisma Access mobile users including:
+A suite of deployment, configuration, and service information skillets for Prisma Access mobile users including:
 
-* Service setup
-* Mobile user setup
-* Certificate generation
-* Mobile user onboarding
+    * PanHandler instantiation in Azure
+    * PanHandler licensing, content updates, sw updates, and basic configuration
+    * Prisma Access service setup and mobile user configuration
+    * Prisma Acess API queries to view service information
 
+## Prerequisites
 
-## Azure Deployment
+### License Activation and Customer Support Portal SuperUser Access
 
-This repository also contains a set of Terraform templates and associated Ansible Playbooks to deploy
-a fully configured Panorama with Prisma Access Plugin into Azure.
+This is used to ensure Panorama can be dynamically licensed in Step 3. Also required is superuser access
+to generate the One Time Password (OTP) to authorize Panorama connectivity to the cloud instance.
 
-
-## Pre-reqs
 ### Accept the EULA for Panorama in Azure
 In the Azure Portal, open Azure Cloud Shell and run the following command (**BASH ONLY!**):
 ```
@@ -34,44 +33,74 @@ $ curl -s -k -L http://bit.ly/34kXVEn | bash
 
 ```
 
-> This will install the development version of Panhandler. 
+> This will install the development version of Panhandler.
 
+You can reference the 
+[panHandler Quick Start Guide](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
+for more information about using panHandler to import and run skillets.
 
-## Using the Skillets
+## Step 1 - Azure Login
 
-The skillets are staged in 3 steps:
-* generate a full configuration file based on user input variables that is imported to Panorama
-* use 'load config partial' after import to merge skillet elements into the candidate config
-* Prisma API interactions to retrieve service information
+Used to authorize the container to manage Azure resources.
+Creates an identity used by the subsequent skillets to add resources to your Azure account.
 
+## Step 2 - Panorama Deployment in Azure
 
-## Config File Generation
+This skillet uses a set of Terraform templates to deploy a new Panorama instance.
 
-This still takes user input and outputs to screen a complete xml file
+> Ensure the region selected supports the Standard D3 image
 
-To use:
-* run the skillet after entering input values
-* copy the output text and save locally as ```prisma_access_full_config.xml```
-* import the file to Panorama but do not load as a candidate configuration
+## Step 3 - Initial Panorama Configuration
 
-## Load Config Partial and Generate Certificates
+Initial Panorama staging is done using Ansible playbooks. Includes:
 
-This stage merges elements of the full config into the Panorama candidate configuration. It also creates a local
-certificate and CA used by the mobile user configuration.
+    * DNS and NTP configuration
+    * Licensing
+    * Content and Software Updates
+    * Prisma Access Plug-in installation
+    
+> At a final requirement for Step 3, use the Panorama Web UI to add the One Time Password
 
-The step 2 skillet will use the Panorama API to perform the load config partial commands and cert generation.
+## Step 4 - Generate Config File and Import to Panorama
 
+> Prior to this step enter the Prisma Access OTP using the Panorama Web UI
 
-If access to the API is not available, users can opt to access the CLI and use the 
-[manual steps for load config partial](https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/develop/stage_2_configuration/full_config/README.md)
+This skillet will capture configuration web form data and then generate a full xml config file that is then imported
+to Panorama. This file will be referenced in Step 5 using ```load config partial``` to merge configuration elements
+into the candidate configuration.
 
-Once the load config partial is complete, commit the configuration to Panorama and push changes to the cloud service.
+The default filename for import is ```prisma_access_full_config.xml```
+
+> If API access is not available, use the Manual skillet option to generate a configuration file to import to Panorama
+
+## Step 5 - Load Config Partial and Generate Certificates
+
+After the file is imported, this skillet will run through a series of load config partial commands and a certificate
+generation to:
+
+    * Configure Service Setup
+    * Configure Mobile User Setup and Onboarding
+    * Generate certificates used as part of onboarding configuration
+    
+> At the completion of Step 5, if done in panHandler, commit to Panorama and push the configuration to Prisma Access
 
 GUI instructions to commit the changes are found in the 
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
 
 
-## Retrive Service Information
+## Optional non-API Config File Generation
+
+If API access to Panorama is not available, the following steps can be used as an alternative to steps 4 and 5.
+
+
+1. Run the Optional Manual skillet to generate a config file
+2. Copy the xml file output to a file with name ```prisma_access_full_config.xml```
+3. Import the file to Panorama (Panorama > Setup > Operations)
+4. Use the CLI and follow the [manual steps for load config partial]((https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/develop/stage_2_configuration/full_config/README.md))
+
+
+
+## Retrieve Service Information
 
 The details for using the API and information returned are found in the
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-panorama-admin/prisma-access-overview/retrieve-ip-addresses-for-prisma-access.html)
