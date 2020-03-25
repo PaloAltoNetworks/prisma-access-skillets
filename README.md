@@ -5,7 +5,7 @@ A suite of deployment, configuration, and service information skillets for Prism
     * Panorama instantiation in Azure
     * Panorama licensing, content updates, sw updates, and basic configuration
     * Prisma Access service setup and mobile user configuration
-    * Prisma Acess API queries to view service information
+    * Prisma Access API queries to view service information
 
 ## Prerequisites
 
@@ -13,6 +13,9 @@ A suite of deployment, configuration, and service information skillets for Prism
 
 This is used to ensure Panorama can be dynamically licensed in Step 3. Also required is superuser access
 to generate the One Time Password (OTP) to authorize Panorama connectivity to the cloud instance.
+
+See [How to Activate Cortex Data Lake and Prisma Access for Evals](https://knowledgebase.paloaltonetworks.com/KCSArticleDetail?id=kA10g000000ClNg)
+if additional information needed for license information.
 
 ### Accept the EULA for Panorama in Azure
 In the Azure Portal, open Azure Cloud Shell and run the following command (**BASH ONLY!**):
@@ -59,14 +62,20 @@ Initial Panorama staging is done using Ansible playbooks. Includes:
     * Content and Software Updates
     * Prisma Access Plug-in installation
     
-> At a final requirement for Step 3, use the Panorama Web UI to add the One Time Password
+## Step 3.1 - Verify the Cloud Plugin using the One Time Password (OTP)
 
+Before configuring Panorama, you must generate the OTP in the Customer Support Portal and add to Panorama
+
+    * Access the Customer Support Portal (Must be a SuperUser) and generate the OTP
+    * Go to Panorama > Cloud Services > Configuration and Click ```Verify```
+    * Paste in the OTP and Submit
+    
 ## Step 4 - Generate Config File and Import to Panorama
 
 > Prior to this step enter the Prisma Access OTP using the Panorama Web UI
 
 This skillet will capture configuration web form data and then generate a full xml config file that is then imported
-to Panorama. This file will be referenced in Step 5 using ```load config partial``` to merge configuration elements
+to Panorama. This file will be referenced in Steps 5 and 6 using ```load config partial``` to merge configuration elements
 into the candidate configuration.
 
 The default filename for import is ```prisma_access_full_config.xml```
@@ -79,9 +88,6 @@ After the file is imported, this skillet will configure service setup and add th
 
 > At the completion of Step 5 a Panorama commit is required before proceeding to step 6
     
-GUI instructions to commit the changes are found in the 
-[Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
-
 ## Step 6 - Load Config Partial for Mobile Users and Generate Certificates
 
 ```COMMIT to Panorama before running step 6```
@@ -94,7 +100,7 @@ generation to:
     
 > At the completion of Step 5, if done in panHandler, commit to Panorama and push the configuration to Prisma Access
 
-GUI instructions to commit the changes are found in the 
+GUI instructions to commit the changes and push to Prisma Access are found in the 
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
 
 ## Optional non-API Config File Generation
@@ -106,7 +112,6 @@ If API access to Panorama is not available, the following steps can be used as a
 2. Copy the xml file output to a file with name ```prisma_access_full_config.xml```
 3. Import the file to Panorama (Panorama > Setup > Operations)
 4. Use the CLI and follow the [manual steps for load config partial]((https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/develop/stage_2_configuration/full_config/README.md))
-
 
 
 ## Retrieve Service Information
