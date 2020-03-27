@@ -71,8 +71,6 @@ def cli(target_ip, target_port, target_username, target_password, infra_subnet, 
         output = skillet.execute(context)
         file_contents = output.get('template', '')
 
-        print(output)
-
         # create device object and use panoply import_file to send a config file to the device
         device = Panos(api_username=target_username,
                        api_password=target_password,
