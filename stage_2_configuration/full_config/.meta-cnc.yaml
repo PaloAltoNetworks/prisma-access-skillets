@@ -57,7 +57,7 @@ variables:
       - key: North America & South America
         value: americas
       - key: Africa, Europe & Middle East
-        value: emea
+        value: europe
       - key: Asia, Australia & Japan
         value: apac
     help_text: skillet allows for selecting a single starter region. additional regions or worldwide added in Panorama GUI
@@ -123,12 +123,12 @@ variables:
       - key: Venezuela
         value: venezuela
 
-  - name: deployment_locations_emea
+  - name: deployment_locations_europe
     description: deployment locations for Africa, Europe & Middle East
     default: eu-west-1
     toggle_hint:
       source: deployment_region
-      value: emea
+      value: europe
     type_hint: checkbox
     help_text: Select the regions where you want to deploy Prisma Access; use the GUI to select all or check for recently added locations
     cbx_list:
