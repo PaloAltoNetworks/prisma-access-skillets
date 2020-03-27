@@ -24,7 +24,7 @@ from skilletlib.exceptions import SkilletLoaderException
 
 @click.command()
 @click.option("-i", "--TARGET_IP", help="IP address of the device (localhost)", type=str, default="localhost")
-@click.option("-r", "--TARGET_PORT", help="Port to communicate to NGFW (443)", type=int, default=443)
+@click.option("-r", "--TARGET_PORT", help="Port to communicate to device (443)", type=int, default=443)
 @click.option("-u", "--TARGET_USERNAME", help="Firewall Username (admin)", type=str, default="admin")
 @click.option("-p", "--TARGET_PASSWORD", help="Firewall Password (admin)", type=str, default="admin")
 @click.option("-s", "--infra_subnet", help="infrastructure subnet", type=str, default="192.168.254.0/24")

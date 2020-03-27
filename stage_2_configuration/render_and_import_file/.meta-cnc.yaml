@@ -21,6 +21,11 @@ variables:
     description: Panorama IP
     default: 192.168.55.10
     type_hint: text
+  - name: TARGET_PORT
+    description: Panorama API port
+    default: 443
+    type_hint: number
+    help_text: used in cases where non-standard ports are required
   - name: TARGET_USERNAME
     description: Panorama Username
     default: admin
