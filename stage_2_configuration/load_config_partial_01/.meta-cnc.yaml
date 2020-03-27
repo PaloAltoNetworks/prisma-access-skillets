@@ -1,0 +1,105 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: prisma_access_load_config_partial_01_api_v90
+# label used for menu selection
+label: Step 5 - API Option - Prisma Access Load Config Partial Part 1 for Service Setup Configuration
+description: |
+  Prisma Access load config partial skillet to merge configuration elements for imported file
+  for service setup
+
+type: panorama
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  order: 25
+  collection:
+    - Prisma Access
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+variables:
+
+  - name: conf_filename
+    description: name of imported file
+    default: prisma_access_full_config.xml
+    type_hint: text
+    help_text: file name used in the load config partial commands
+
+snippets:
+
+  - name: svc_conn_template
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Service_Conn_Template']</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Service_Conn_Template']</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+  - name: svc_conn_template_stack
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack']</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Service_Conn_Template_Stack']</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+  - name: svc_conn_device_group
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group']</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Service_Conn_Device_Group']</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+  - name: svc_conn_onboarding
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/service-connection</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+  - name: mobile_user_template
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Mobile_User_Template']</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='Mobile_User_Template']</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+# ---------------------------------------------------------------------
+# end of snippets section

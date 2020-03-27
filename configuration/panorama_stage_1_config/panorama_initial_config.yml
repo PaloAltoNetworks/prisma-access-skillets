@@ -1,0 +1,177 @@
+- name: Configure Panorama instance for Prisma Access using Cloud Serives Plugin 1.5.0
+  hosts: all
+  connection: local
+  gather_facts: False
+
+  roles:
+    - role: PaloAltoNetworks.paloaltonetworks
+
+  tasks:
+    - name: Debug Provider Info
+      debug: msg='{{ provider }}'
+
+    - name: Show System Info
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'show system info'
+      register: system_info
+      until: system_info is not failed
+      retries: 30
+      delay: 60
+
+    - name: returned output in the default JSON format
+      debug: msg='{{ system_info.stdout }}'
+
+    - set_fact: system_info_json="{{ system_info.stdout | from_json }}"
+
+    - name: Set the Serial Number
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: "set serial-number {{ serial_number }}"
+      register: result
+      when: system_info_json.response.result.system.serial != serial_number
+
+    - name: Set Serial Number output
+      debug: msg='{{ result.stdout }}'
+      when: system_info_json.response.result.system.serial != serial_number
+
+    - name: set dns, ntp
+      panos_mgtconfig:
+        provider: '{{ provider }}'
+        dns_server_primary: "1.1.1.1"
+        ntp_server_primary: "0.pool.ntp.org"
+        ntp_server_secondary: "1.pool.ntp.org"
+        commit: True
+
+    - name: request license information
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: "request license info"
+      register: license_info
+
+    - name: License info debug
+      debug: msg='{{ license_info.stdout | from_json }}'
+
+    - name: request license
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: "request license fetch"
+      register: result
+      when:  (license_info.stdout | from_json).response.result.licenses is none
+
+    - name: Request License output
+      debug: msg='{{ result.stdout }}'
+      when:  (license_info.stdout | from_json).response.result.licenses is none
+
+    # borrowed from https://github.com/mrichardson03/ansible-pan-samples/blob/master/upgrade_content.yml
+    - name: Check latest content
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'request content upgrade check'
+      register: check
+      changed_when: False
+
+    - name: Download latest content
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: |
+          <request><content><upgrade><download>
+          <latest></latest>
+          </download></upgrade></content></request>
+        cmd_is_xml: True
+      register: download
+
+    - name: Check content download result
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'show jobs id {{ (download.stdout | from_json).response.result.job }}'
+      register: download_job
+      until: download_job is not failed and (download_job.stdout | from_json).response.result.job.status == 'FIN'
+      retries: 10
+      delay: 60
+
+    - name: Install latest content
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: |
+          <request><content><upgrade><install>
+          <version>latest</version>
+          </install></upgrade></content></request>
+        cmd_is_xml: True
+      register: install
+
+    - name: Check content install result
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'show jobs id {{ (install.stdout | from_json).response.result.job }}'
+      register: install_job
+      until: install_job is not failed and (install_job.stdout | from_json).response.result.job.status == 'FIN'
+      retries: 10
+      delay: 60
+
+    - name: Download PAN-OS 9.0.0 base image only
+      panos_software:
+        provider: '{{ provider }}'
+        version: '9.0.0'
+        install: False
+        restart: False
+      when: system_info_json.response.result.system['sw-version'] != '9.0.7'
+
+    - name: Download and Install PAN-OS 9.0.7
+      panos_software:
+        provider: '{{ provider }}'
+        version: '9.0.7'
+        install: True
+        restart: True
+      when: system_info_json.response.result.system['sw-version'] != '9.0.7'
+
+    - name: Wait for Reboot
+      pause:
+        minutes: 3
+      when: system_info_json.response.result.system['sw-version'] != '9.0.7'
+
+    - name: Show System Info
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'show system info'
+      register: reboot_results
+      until: reboot_results is not failed
+      retries: 30
+      delay: 60
+      when: system_info_json.response.result.system['sw-version'] != '9.0.7'
+
+    - name: Check Plugins
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'request plugins check'
+      register: plugin_download
+
+    - name: Download Cloud Services Plugin
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'request plugins download file cloud_services-1.5.0'
+      register: plugin_download
+
+    - name: Check Cloud Services Plugin Download
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'show jobs id {{ (plugin_download.stdout | from_json).response.result.job }}'
+      register: plugin_download_job
+      until: plugin_download_job is not failed and (plugin_download_job.stdout | from_json).response.result.job.status == 'FIN'
+      retries: 10
+      delay: 60
+
+    - name: Install Cloud Services Plugin
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'request plugins install cloud_services-1.5.0'
+      register: plugin_install
+
+    - name: Check Cloud Services Plugin Install
+      panos_op:
+        provider: '{{ provider }}'
+        cmd: 'show jobs id {{ (plugin_install.stdout | from_json).response.result.job }}'
+      register: plugin_install_job
+      until: plugin_install_job is not failed and (plugin_install_job.stdout | from_json).response.result.job.status == 'FIN'
+      retries: 10
+      delay: 60

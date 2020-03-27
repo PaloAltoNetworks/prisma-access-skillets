@@ -1,0 +1,143 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: prisma_access_load_config_partial__02api_v90
+# label used for menu selection
+label: Step 6 - API Option - Prisma Access Load Config Partial Part 2 for Mobile User Configuration
+description: |
+  *** Ensure Step 5 is Committed *** Prisma Access load config partial skillet to merge configuration elements for imported file
+  and creates a certificate and CA used in the mobile user template
+
+type: panorama-gpcs
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  order: 30
+  collection:
+    - Prisma Access
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+variables:
+
+  - name: conf_filename
+    description: name of imported file
+    default: prisma_access_full_config.xml
+    type_hint: text
+    help_text: file name used in the load config partial commands
+
+snippets:
+
+  - name: set_template_target
+    cmd: op
+    cmd_str: |-
+      <set>
+        <system>
+          <setting>
+            <target>
+              <template>
+                <name>Mobile_User_Template</name>
+              </template>
+            </target>
+          </setting>
+        </system>
+      </set>
+
+  - name: ca_cert_gen
+    cmd: op
+    cmd_str: |-
+      <request>
+        <certificate>
+          <generate>
+            <ca>yes</ca>
+            <certificate-name>Authentication Cookie CA</certificate-name>
+            <name>Authentication Cookie CA</name>
+            <algorithm>
+              <RSA>
+                <rsa-nbits>2048</rsa-nbits>
+              </RSA>
+            </algorithm>
+          </generate>
+        </certificate>
+      </request>
+
+  - name: ca_cert_gen
+    cmd: op
+    cmd_str: |-
+      <request>
+        <certificate>
+          <generate>
+            <certificate-name>Authentication Cookie Cert</certificate-name>
+            <name>Authentication Cookie Cert</name>
+            <algorithm>
+              <RSA>
+                <rsa-nbits>2048</rsa-nbits>
+              </RSA>
+            </algorithm>
+            <digest>sha256</digest>
+            <ca>no</ca>
+            <signed-by>Authentication Cookie CA</signed-by>
+          </generate>
+        </certificate>
+      </request>
+
+  - name: set_template_target_none
+    cmd: op
+    cmd_str: |-
+      <set>
+        <system>
+          <setting>
+            <target>
+              <none/>
+            </target>
+          </setting>
+        </system>
+      </set>
+
+  - name: mobile_user_template_stack
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Mobile_User_Template_Stack']</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='Mobile_User_Template_Stack']</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+  - name: mobile_user_device_group
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Mobile_User_Device_Group']</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='Mobile_User_Device_Group']</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+  - name: mobile_user_onboarding
+    cmd: op
+    cmd_str: |-
+      <load>
+          <config>
+              <partial>
+                  <from-xpath>/config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users</from-xpath>
+                  <to-xpath>/config/devices/entry[@name='localhost.localdomain']/plugins/cloud_services/mobile-users</to-xpath>
+                  <mode>merge</mode>
+                  <from>{{ conf_filename }}</from>
+              </partial>
+          </config>
+      </load>
+
+# ---------------------------------------------------------------------
+# end of snippets section

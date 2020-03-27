@@ -1,0 +1,320 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: prisma_access_mobile_full_config_render_v90
+# label used for menu selection
+label: Optional Manual Skillet if no API - Prisma Access Generate Full Config File for Import
+description: |
+  Prisma Access Mobile Users setup and onboarding configuration as a loadable config
+  and the manually import and run the load config partial commands
+
+# type of device configuration
+# common types are panorama, panos, and template
+# https://github.com/PaloAltoNetworks/panhandler/blob/develop/docs/metadata_configuration.rst
+type: template
+# preload static or default-based templates
+extends:
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  order: 80
+  collection:
+    - Prisma Access
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+# variables used in the configuration templates
+# type_hint defines the form field used by panhandler
+# type_hints can be text, ip_address, or dropdown
+variables:
+  - name: infra_subnet
+    description: Infrastructure Subnet
+    default: 192.168.254.0/24
+    type_hint: cidr
+    help_text: |-
+      Specify a RFC-1918 compliant IP address pool (at least a /24 subnet) that does not overlap with other
+      IP addresses in your network. These IP addresses will be used by the cloud service.
+  - name: infra_bgp_as
+    description: Infrastructure BGP AS
+    default: 65534
+    type_hint: number
+    help_text: |-
+      Specify a RFC-6996 compliant Private AS number. Accepted formats are 4-Byte AS Plain [64512-65534],
+      [4200000000-4294967294] or AS Dot [0.64512-0.65534], [64086.59904-65535.65534] notation.
+  - name: portal_hostname
+    description: portal subdomain
+    default: my-subdomain
+    type_hint: text
+    help_text: subdomain prefix for gpcloudservice.com
+  - name: deployment_region
+    description: regional to use for mobile user configuration
+    default: americas
+    type_hint: dropdown
+    dd_list:
+      - key: North America & South America
+        value: americas
+      - key: Africa, Europe & Middle East
+        value: europe
+      - key: Asia, Australia & Japan
+        value: apac
+    help_text: skillet allows for selecting a single starter region. additional regions or worldwide added in Panorama GUI
+  - name: deployment_locations_americas
+    description: deployment locations for North America & South America
+    default: us-east-1
+    toggle_hint:
+      source: deployment_region
+      value: americas
+    type_hint: checkbox
+    help_text: Select the regions where you want to deploy Prisma Access; use the GUI to select all or check for recently added locations
+    cbx_list:
+      - key: Canada Central
+        value: canada-central
+      - key: Canada East
+        value: ca-central-1
+      - key: Canada West
+        value: canada-west
+      - key: Costa Rica
+        value: costa-rica
+      - key: Mexico Central
+        value: mexico-central
+      - key: Mexico West
+        value: mexico-west
+      - key: Panama
+        value: panama
+      - key: US Central
+        value: us-east-2
+      - key: US East
+        value: us-east-1
+      - key: US Northeast
+        value: us-northeast
+      - key: US Northwest
+        value: us-west-2
+      - key: US South
+        value: us-south
+      - key: US Southeast
+        value: us-southeast
+      - key: US Southwest
+        value: us-west-201
+      - key: US West
+        value: us-west-1
+      - key: Argentina
+        value: argentina
+      - key: Bolivia
+        value: bolivia
+      - key: Brazil Central
+        value: brazil-central
+      - key: Brazil East
+        value: brazil-east
+      - key: Brazil South
+        value: sa-east-1
+      - key: Chile
+        value: chile
+      - key: Colombia
+        value: columbia
+      - key: Ecuador
+        value: ecuador
+      - key: Paraguay
+        value: paraguay
+      - key: Peru
+        value: peru
+      - key: Venezuela
+        value: venezuela
+
+  - name: deployment_locations_europe
+    description: deployment locations for Africa, Europe & Middle East
+    default: eu-west-1
+    toggle_hint:
+      source: deployment_region
+      value: europe
+    type_hint: checkbox
+    help_text: Select the regions where you want to deploy Prisma Access; use the GUI to select all or check for recently added locations
+    cbx_list:
+      - key: Kenya
+        value: kenya
+      - key: Nigeria
+        value: nigeria
+      - key: South Africa Central
+        value: south-africa-central
+      - key: South Africa West
+        value: south-africa-west
+      - key: Andorra
+        value: andorra
+      - key: Austria
+        value: austria
+      - key: Belarus
+        value: belarus
+      - key: Belgium
+        value: belgium
+      - key: Bulgaria
+        value: bulgaria
+      - key: Croatia
+        value: croatia
+      - key: Czech Republic
+        value: czech-republic
+      - key: Denmark
+        value: denmark
+      - key: Finland
+        value: finland
+      - key: France North
+        value: eu-west-3
+      - key: France South
+        value: france-south
+      - key: Germany Central
+        value: eu-central-1
+      - key: Germany North
+        value: germany-north
+      - key: Germany South
+        value: germany-south
+      - key: Greece
+        value: greece
+      - key: Hungary
+        value: hungary
+      - key: Ireland
+        value: eu-west-1
+      - key: Italy
+        value: italy
+      - key: Liechtenstein
+        value: liechtenstein
+      - key: Lithuania
+        value: lithuania
+      - key: Luxembourg
+        value: luxembourg
+      - key: Moldova
+        value: moldova
+      - key: Monaco
+        value: monaco
+      - key: Netherlands Central
+        value: netherlands-central
+      - key: Netherlands South
+        value: netherlands-south
+      - key: Norway
+        value: norway
+      - key: Poland
+        value: poland
+      - key: Portugal
+        value: portugal
+      - key: Romania
+        value: romania
+      - key: Russia Central
+        value: russia-central
+      - key: Russia Northwest
+        value: russia-northwest
+      - key: Slovakia
+        value: slovakia
+      - key: Slovenia
+        value: slovenia
+      - key: Spain Central
+        value: spain-central
+      - key: Spain East
+        value: spain-east
+      - key: Sweden
+        value: sweden
+      - key: Switzerland
+        value: switzerland
+      - key: UK
+        value: eu-west-2
+      - key: Ukraine
+        value: ukraine
+      - key: Uzbekistan
+        value: uzbekistan
+      - key: Bahrain
+        value: me-south-1
+      - key: Egypt
+        value: egypt
+      - key: Israel
+        value: israel
+      - key: Jordan
+        value: jordan
+      - key: Kuwait
+        value: kuwait
+      - key: Saudi Arabia
+        value: saudi-arabia
+      - key: Turkey
+        value: turkey
+      - key: United Arab Emirates
+        value: uae
+
+  - name: deployment_locations_apac
+    description: deployment locations for Asia, Australia & Japan
+    default: australia-east
+    toggle_hint:
+      source: deployment_region
+      value: apac
+    type_hint: checkbox
+    help_text: Select the regions where you want to deploy Prisma Access; use the GUI to select all or check for recently added locations
+    cbx_list:
+      - key: Bangladesh
+        value: bangladesh
+      - key: Cambodia
+        value: cambodia
+      - key: Hong Kong
+        value: hong-kong
+      - key: India North
+        value: india-north
+      - key: India South
+        value: india-south
+      - key: India West
+        value: ap-south-1
+      - key: Indonesia
+        value: indonesia
+      - key: Malaysia
+        value: malaysia
+      - key: Myanmar
+        value: myanmar
+      - key: Pakistan South
+        value: pakistan-south
+      - key: Pakistan West
+        value: pakistan-west
+      - key: Papua New Guinea
+        value: papua-new-guinea
+      - key: Philippines
+        value: philippines
+      - key: Singapore
+        value: ap-southeast-1
+      - key: South Korea
+        value: ap-northeast-2
+      - key: Taiwan
+        value: taiwan
+      - key: Thailand
+        value: thailand
+      - key: Vietnam
+        value: vietnam
+      - key: Australia East
+        value: australia-east
+      - key: Australia South
+        value: australia-south
+      - key: Australia Southeast
+        value: ap-southeast-2
+      - key: New Zealand
+        value: new-zealand
+      - key: Japan Central
+        value: ap-northeast-1
+      - key: Japan South
+        value: japan-south
+
+  - name: ip_pool_cidr
+    description: mobile user IP address pool
+    default: 192.168.2.0/23
+    type_hint: cidr
+    help_text: use a CIDR (/23) address block for pool entry. Only a single pool option with this skillet
+  - name: user1_password
+    description: local DB user1 test account password
+    default: Paloalto1
+    type_hint: password
+    help_text: creates a config file phash entry to customize the user1 password
+  - name: user2_password
+    description: local DB user2 test account password
+    default: Paloalto2
+    type_hint: password
+    help_text: creates a config file phash entry to customize the user2 password
+
+snippets:
+
+  - name: prisma_access_full_config_vars
+    file: prisma_access_full_config_vars.conf
+
+# ---------------------------------------------------------------------
+# end of snippets section

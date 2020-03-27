@@ -1,0 +1,40 @@
+name: prisma_access_initial_panorama_config
+
+label: Step 3 - Prisma Access Panorama Initial Configuration
+
+description: Configures a newly launched Panorama Instance
+
+type: docker
+
+labels:
+  order: 10
+  collection:
+    - Prisma Access
+
+variables:
+  - name: panorama_ip_address
+    description: Panorama Public IP Address
+    default: 10.10.10.10
+    type_hint: ip_address
+  - name: adminUsername
+    description: Panorama Username
+    default: admin
+    type_hint: text
+  - name: adminPassword
+    description: Panorama Password
+    default: admin
+    type_hint: password
+  - name: serial_number
+    description: Panorama Serial Number
+    default: 000
+    type_hint: text
+
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+snippets:
+  - name: ansible_test
+    image: nembery/pantools:min
+    async: True
+    cmd: |
+      ansible-playbook -i 'panorama-1,' panorama_initial_config.yml -e 'serial_number="{{ serial_number }}"'
+      -e '{"provider": {"ip_address": "{{ panorama_ip_address }}", "username": "{{ adminUsername }}", "password": "{{ adminPassword }}"}}'
