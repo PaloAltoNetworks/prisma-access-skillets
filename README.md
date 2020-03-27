@@ -109,7 +109,7 @@ If API access to Panorama is not available, the following steps can be used as a
 1. Run the Optional Manual skillet to generate a config file
 2. Copy the xml file output to a file with name ```prisma_access_full_config.xml```
 3. Import the file to Panorama (Panorama > Setup > Operations)
-4. Use the CLI and follow the [manual steps for load config partial]((https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/master/stage_2_configuration/full_config/README.md))
+4. Use the CLI and follow the [manual steps for load config partial](https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/master/stage_2_configuration/full_config/README.md)
 
 
 ## Retrieve Service Information
