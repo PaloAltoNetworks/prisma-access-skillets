@@ -33,7 +33,7 @@ from skilletlib.exceptions import SkilletLoaderException
 @click.option("-reg", "--deployment_region", help="deployment region", type=str, default="americas")
 @click.option("-lam", "--deployment_locations_americas", help="deployment locations americas", type=str,
               default="us-east-1, us-west-1")
-@click.option("-leu", "--deployment_locations_emea", help="deployment locations emea", type=str,
+@click.option("-leu", "--deployment_locations_europe", help="deployment locations europe", type=str,
               default="eu-west-1")
 @click.option("-lap", "--deployment_locations_apac", help="deployment locations apac", type=str,
               default="australia-east")
@@ -43,7 +43,7 @@ from skilletlib.exceptions import SkilletLoaderException
 @click.option("-f", "--conf_filename", help="Configuration File Name", type=str,
               default="prisma_access_full_config.xml")
 def cli(target_ip, target_port, target_username, target_password, infra_subnet, infra_bgp_as,
-        portal_hostname, deployment_region, deployment_locations_americas, deployment_locations_emea,
+        portal_hostname, deployment_region, deployment_locations_americas, deployment_locations_europe,
         deployment_locations_apac, ip_pool_cidr, user1_password, user2_password, conf_filename):
     """
     Import a full configuration. Defaults values in parenthesis.
@@ -56,7 +56,7 @@ def cli(target_ip, target_port, target_username, target_password, infra_subnet, 
     context['portal_hostname'] = portal_hostname
     context['deployment_region'] = deployment_region
     context['deployment_locations_americas'] = deployment_locations_americas.split(',')
-    context['deployment_locations_emea'] = deployment_locations_emea.split(',')
+    context['deployment_locations_europe'] = deployment_locations_europe.split(',')
     context['deployment_locations_apac'] = deployment_locations_apac.split(',')
     context['ip_pool_cidr'] = ip_pool_cidr
     context['user1_password'] = user1_password
@@ -70,6 +70,8 @@ def cli(target_ip, target_port, target_username, target_password, infra_subnet, 
         skillet = sl.load_skillet_from_path('../full_config')
         output = skillet.execute(context)
         file_contents = output.get('template', '')
+
+        print(output)
 
         # create device object and use panoply import_file to send a config file to the device
         device = Panos(api_username=target_username,
