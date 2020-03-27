@@ -32,11 +32,9 @@ The only requirement for Panhandler is Docker.
 
 ```bash
 
-$ curl -s -k -L http://bit.ly/34kXVEn | bash
+$ curl -s -k -L http://bit.ly/2xui5gM | bash
 
 ```
-
-> This will install the development version of Panhandler.
 
 You can reference the 
 [panHandler Quick Start Guide](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
@@ -111,7 +109,7 @@ If API access to Panorama is not available, the following steps can be used as a
 1. Run the Optional Manual skillet to generate a config file
 2. Copy the xml file output to a file with name ```prisma_access_full_config.xml```
 3. Import the file to Panorama (Panorama > Setup > Operations)
-4. Use the CLI and follow the [manual steps for load config partial]((https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/develop/stage_2_configuration/full_config/README.md))
+4. Use the CLI and follow the [manual steps for load config partial]((https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/master/stage_2_configuration/full_config/README.md))
 
 
 ## Retrieve Service Information
