@@ -7,8 +7,17 @@
     - role: PaloAltoNetworks.paloaltonetworks
 
   tasks:
-    - name: Debug Provider Info
-      debug: msg='{{ provider }}'
+    - name: Set the admin password using the SSH key
+      panos_admpwd:
+        ip_address: '{{ provider.ip_address }}'
+        newpassword: '{{ provider.password }}'
+        key_filename: '{{ private_key_path }}'
+        username: "{{ provider.username }}"
+      register: change_password
+      until: change_password is not failed
+      when: deployment_type == 'aws'
+      retries: 30
+      delay: 60
 
     - name: Show System Info
       panos_op:
@@ -115,7 +124,11 @@
         version: '9.0.0'
         install: False
         restart: False
-      when: system_info_json.response.result.system['sw-version'] != '9.0.7'
+      when: |
+        (
+        system_info_json.response.result.system['sw-version'] != '9.0.7'
+        and deployment_type == 'azure'
+        )
 
     - name: Download and Install PAN-OS 9.0.7
       panos_software:
