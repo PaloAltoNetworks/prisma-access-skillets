@@ -25,6 +25,8 @@ variables:
     description: AWS Region
     default: us-east-2
     type_hint: text
+    help_text: |
+      Choose a valid region code from: https://docs.aws.amazon.com/general/latest/gr/rande.html
   - name: resource_group
     description: Resource Group
     default: panhandler-resource-group
