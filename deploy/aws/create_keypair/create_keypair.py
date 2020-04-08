@@ -62,6 +62,7 @@ def create_keypair(private_key_path: str) -> str:
     pub = RSAKey(filename=private_key_path, password=None)
 
     public_key_contents = f'{pub.get_name()} {pub.get_base64()} panhandler'
+
     with open("%s.pub" % private_key_path, "w") as f:
         f.write(public_key_contents)
 
@@ -69,14 +70,16 @@ def create_keypair(private_key_path: str) -> str:
 
 
 def main():
-    key_path = os.environ.get('private_key', '/tmp/deploy_key')
+    key_name = os.environ.get('key_pair_name', 'deploy_key')
 
+    key_path = os.path.abspath(os.path.join(os.path.curdir, key_name))
     pub_key_path = f'{key_path}.pub'
 
     public_key = get_public_key(key_path, pub_key_path)
 
     status = dict()
     status['public_key'] = public_key
+    status['private_key_path'] = key_path
 
     return json.dumps(status)
 

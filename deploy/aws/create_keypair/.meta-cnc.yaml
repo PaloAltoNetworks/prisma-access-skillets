@@ -11,9 +11,9 @@ labels:
     - Kitchen Sink
 
 variables:
-  - name: private_key
-    description: Path to SSH Key
-    default: /home/cnc_user/aws_deploy_key
+  - name: key_pair_name
+    description: SSH Key Pair Name
+    default: aws_deploy_key
     type_hint: hidden
     help_text: |
       Full path to a deployment key. If one exists already it will be used, otherwise a new pair will be created.
@@ -26,3 +26,5 @@ snippets:
     outputs:
       - name: public_key
         capture_pattern: public_key
+      - name: private_key_path
+        capture_pattern: private_key_path
