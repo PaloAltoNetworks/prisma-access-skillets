@@ -69,12 +69,7 @@ def create_keypair(private_key_path: str) -> str:
 
 
 def main():
-    filename = os.environ.get('private_key', '/tmp/deploy_key')
-
-    if os.path.sep in filename:
-        filename = filename.split(os.path.sep)[-1]
-
-    key_path = os.path.join(os.curdir, filename)
+    key_path = os.environ.get('private_key', '/tmp/deploy_key')
 
     pub_key_path = f'{key_path}.pub'
 
