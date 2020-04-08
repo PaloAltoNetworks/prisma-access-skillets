@@ -31,7 +31,7 @@ snippets:
     when: |
       (
       deployment_type == 'aws'
-      and public_key is none
+      and public_key is not defined
       )
   - name: prisma_access_aws_deploy_panorama
     when: deployment_type == 'aws'

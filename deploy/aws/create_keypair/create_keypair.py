@@ -26,21 +26,21 @@ import json
 import os
 
 
-def get_public_key(private_key_path: str, public_key: str) -> str:
+def get_public_key(private_key: str, public_key: str) -> str:
     """
     Check if a public key exists at the supplied path and create it if needed. Returns the contents of the public
     key
 
-    :param private_key_path: full path to the existing key or where the key will be created
+    :param private_key: full path to the existing key or where the key will be created
     :param public_key: full path to the existing public key file
     :return: contents of the public key
     """
-    if os.path.exists(private_key_path) and os.path.exists(public_key):
+    if os.path.exists(private_key) and os.path.exists(public_key):
         with open(public_key, 'r') as pk:
             pk_contents = pk.read()
 
     else:
-        pk_contents = create_keypair(private_key_path)
+        pk_contents = create_keypair(private_key)
 
     if not pk_contents.startswith('ssh-rsa'):
         raise Exception('This does not look like an SSH key')
@@ -59,7 +59,7 @@ def create_keypair(private_key_path: str) -> str:
     private_key = RSAKey.generate(bits=2048)
     private_key.write_private_key_file(private_key_path, password=None)
 
-    pub = RSAKey(filename='/tmp/pk', password=None)
+    pub = RSAKey(filename=private_key_path, password=None)
 
     public_key_contents = f'{pub.get_name()} {pub.get_base64()} panhandler'
     with open("%s.pub" % private_key_path, "w") as f:
@@ -69,10 +69,16 @@ def create_keypair(private_key_path: str) -> str:
 
 
 def main():
-    filename = os.environ.get('private_key_path', '/tmp/deploy_key')
-    pub_filename = f'{filename}.pub'
+    filename = os.environ.get('private_key', '/tmp/deploy_key')
 
-    public_key = get_public_key(filename, pub_filename)
+    if os.path.sep in filename:
+        filename = filename.split(os.path.sep)[-1]
+
+    key_path = os.path.join(os.curdir, filename)
+
+    pub_key_path = f'{key_path}.pub'
+
+    public_key = get_public_key(key_path, pub_key_path)
 
     status = dict()
     status['public_key'] = public_key
