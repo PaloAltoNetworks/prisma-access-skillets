@@ -1,18 +1,20 @@
 name: prisma_access_azure_login
 
-label: Step 1 - Prisma Access Azure Login
+label: Prisma Access Azure Login
 
 description: Logs in to your Azure Subscription
 
 type: python3
 
 labels:
-  order: 1
   collection:
-    - Prisma Access
+    - Kitchen Sink
 
 variables:
-
+  - name: deployment_type
+    description: AWS or Azure Deployment Type
+    default: azure
+    type_hint: hidden
 
 snippets:
   - name: script

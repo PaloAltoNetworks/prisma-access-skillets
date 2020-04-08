@@ -1,15 +1,16 @@
 name: prisma_access_azure_deploy_panorama
 
-label: Step 2 - Prisma Access Deploy Panorama
+label: Prisma Access Deploy Panorama in Azure
 
 description: Deploy Panorama into Azure
 
 type: terraform
 
 labels:
-  order: 5
+  help_text: Managing Terraform projects in Panhandler
+  help_link: https://panhandler.readthedocs.io/en/master/examples/terraform_skillet.html#terraform-state-files
   collection:
-    - Prisma Access
+    - Kitchen Sink
 
 variables:
   - name: adminUsername

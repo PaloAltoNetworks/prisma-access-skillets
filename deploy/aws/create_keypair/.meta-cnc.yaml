@@ -1,0 +1,28 @@
+name: prisma_access_aws_create_keypair
+
+label: Verify AWS Key Pair for Panorama Deployment
+
+description: Creates a temporary deployment key for AWS based instances if needed
+
+type: python3
+
+labels:
+  collection:
+    - Kitchen Sink
+
+variables:
+  - name: private_key_path
+    description: Path to SSH Key
+    default: /home/cnc_user/aws_deploy_key
+    type_hint: text
+    help_text: |
+      Full path to a deployment key. If one exists already it will be used, otherwise a new pair will be created.
+
+snippets:
+  - name: script
+    file: create_keypair.py
+    input_type: env
+    output_type: json
+    outputs:
+      - name: public_key
+        capture_pattern: public_key
