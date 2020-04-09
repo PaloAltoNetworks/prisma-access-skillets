@@ -77,6 +77,9 @@ def main():
 
     public_key = get_public_key(key_path, pub_key_path)
 
+    # ensure proper permissions are set the key here or SSH will refuse to use it
+    os.system(f'chmod 600 "{key_path}"')
+
     status = dict()
     status['public_key'] = public_key
     status['private_key_path'] = key_path
