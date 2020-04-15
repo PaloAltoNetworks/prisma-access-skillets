@@ -37,3 +37,19 @@ variables:
     required: True
     type_hint: text
     help_text: Choose a location near you from https://azure.microsoft.com/en-us/global-infrastructure/locations/
+  - name: virtualMachineSize
+    description: Virtual Machine Size
+    default: Standard_D3
+    type_hint: dropdown
+    dd_list:
+      - key: Standard_D3
+        value: Standard_D3
+      - key: Standard_D3_v2
+        value: Standard_D3_v2
+      - key: Standard_DS3
+        value: Standard_DS3
+      - key: Standard_DS3_v2
+        value: Standard_DS3_v2
+      - key: Standard_D4s_v3
+        value: Standard_D4s_v3
+    help_text: Ensure the machine size you choose is actually available in your selected region!
