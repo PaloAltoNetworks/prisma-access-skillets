@@ -1,0 +1,40 @@
+name: prisma_access_aws_deploy_panorama
+
+label: Prisma Access Deploy Panorama in AWS
+
+description: Launch a Panorama Instance in AWS using Terraform
+
+type: terraform
+
+labels:
+  help_text: Managing Terraform projects in Panhandler
+  help_link: https://panhandler.readthedocs.io/en/master/examples/terraform_skillet.html#terraform-state-files
+  collection:
+    - Kitchen Sink
+
+variables:
+  - name: access_key
+    description: AWS Access Key
+    default: access_key
+    type_hint: text
+  - name: secret_key
+    description: AWS Secret Key
+    default:
+    type_hint: password
+  - name: region
+    description: AWS Region
+    default: us-east-2
+    type_hint: text
+    help_text: |
+      Choose a valid region code from: https://docs.aws.amazon.com/general/latest/gr/rande.html
+  - name: resource_group
+    description: Resource Group
+    default: panhandler-resource-group
+    type_hint: text
+    help_text: This should be some unique value that you can easily locate in the AWS console.
+  - name: public_key
+    description: SSH Public Key
+    default: ''
+    type_hint: hidden
+
+

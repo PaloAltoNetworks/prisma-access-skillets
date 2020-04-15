@@ -1,6 +1,6 @@
 name: prisma_access_initial_panorama_config
 
-label: Step 3 - Prisma Access Panorama Initial Configuration
+label: Step 2 - Prisma Access Panorama Initial Configuration
 
 description: Configures a newly launched Panorama Instance
 
@@ -28,6 +28,14 @@ variables:
     description: Panorama Serial Number
     default: 000
     type_hint: text
+  - name: deployment_type
+    description: AWS or Azure Deployment Type
+    default: azure
+    type_hint: hidden
+  - name: private_key_path
+    description: path to private key
+    default: /home/cnc_user/aws_deploy_key
+    type_hint: hidden
 
 # snippets used for api configuration including xpath and element as file name
 # files will load in the order listed
@@ -36,5 +44,8 @@ snippets:
     image: nembery/pantools:min
     async: True
     cmd: |
-      ansible-playbook -i 'panorama-1,' panorama_initial_config.yml -e 'serial_number="{{ serial_number }}"'
+      ansible-playbook -i 'panorama-1,' panorama_initial_config.yml
+      -e 'serial_number="{{ serial_number }}"'
+      -e 'deployment_type="{{ deployment_type }}"'
+      -e 'private_key_path="{{ private_key_path }}"'
       -e '{"provider": {"ip_address": "{{ panorama_ip_address }}", "username": "{{ adminUsername }}", "password": "{{ adminPassword }}"}}'
