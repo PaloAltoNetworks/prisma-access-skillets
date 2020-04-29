@@ -17,13 +17,16 @@ to generate the One Time Password (OTP) to authorize Panorama connectivity to th
 See [How to Activate Cortex Data Lake and Prisma Access for Evals](https://knowledgebase.paloaltonetworks.com/KCSArticleDetail?id=kA10g000000ClNg)
 if additional information needed for license activation.
 
-### Accept the EULA for Panorama in Azure
+### Accept the EULA for Panorama in Azure or AWS
 In the Azure Portal, open Azure Cloud Shell and run the following command (**BASH ONLY!**):
 ```
 # Accept VM-Series EULA for desired currently-available version of Panorama (see above command for urn)
 $ az vm image terms accept --urn paloaltonetworks:panorama:byol:8.1.2
 
 ```
+
+For AWS, visit this link to accept the EULA: https://aws.amazon.com/marketplace/pp?sku=eclz7j04vu9lf8ont8ta3n17o 
+
 
 ### Ensure you have the latest Panhandler
 
@@ -40,12 +43,14 @@ You can reference the
 [panHandler Quick Start Guide](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
 for more information about using panHandler to import and run skillets.
 
-## Step 1 - Azure Login
+## Step 1 - Choose Public Cloud Environment (Azure or AWS)
 
-Used to authorize the container to manage Azure resources.
-Creates an identity used by the subsequent skillets to add resources to your Azure account.
+First, Choose which public cloud you will use for Panorama Deployment. Currently suppored options are:
+* Azure
+* AWS
 
-## Step 2 - Panorama Deployment in Azure
+
+## Step 2 - Panorama Deployment in Public Cloud
 
 This skillet uses a set of Terraform templates to deploy a new Panorama instance.
 
