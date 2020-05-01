@@ -21,7 +21,7 @@ variables:
     description: Remote Network Subnet
     default:
     type_hint: cidr
- - name: ike_encryption
+  - name: ike_encryption
     description: IKE_Encryption
     default: aes-256-cbc
     type_hint: dropdown
