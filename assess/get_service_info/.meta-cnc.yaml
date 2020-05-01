@@ -11,7 +11,8 @@ type: rest
 labels:
   order: 100
   collection:
-    - Prisma Access
+    - Prisma Access Mobile User
+    - Prisma Access Remote Network
 
 # ---------------------------------------------------------------------
 # end of preamble section

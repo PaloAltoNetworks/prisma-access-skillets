@@ -19,7 +19,7 @@ extends:
 labels:
   order: 80
   collection:
-    - Prisma Access
+    - Prisma Access Mobile User
 
 # ---------------------------------------------------------------------
 # end of preamble section
