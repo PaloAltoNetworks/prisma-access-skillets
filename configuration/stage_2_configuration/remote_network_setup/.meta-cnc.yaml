@@ -1,7 +1,7 @@
 name: prisma_access_remote_network_setup
-label: Prisma Access Remote Network Setup
+label: Step 4 - Prisma Access Remote Network Setup
 description: |
-    Step 4 - Initial Prisma Access configuration for Remote Network device-group and template-stack.
+    Initial Prisma Access configuration for Remote Network device-group and template-stack.
     Required before onboarding Remote Network sites.
 type: panorama-gpcs
 extends:
