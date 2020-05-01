@@ -126,29 +126,29 @@ variables:
       - key: aes-256-gcm
         value: aes-256-gcm
 
-    - name: ike_peer_type
-      description: IKE Gateway Peer IP Address Type
-      default: choices
-      type_hint: dropdown
-      dd_list:
-        - key: FQDN
-          value: fqdn
-        - key: IP address
-          value: ipaddr
-        - key: Dynamic
-          value: dynamic
-    - name: dynamic_peer_type
-      description: IKE Gateway Peer IP Address Type
-      default: choices
-      type_hint: dropdown
-      dd_list:
-        - key: FQDN
-          value: fqdn
-        - key: IP address
-          value: ipaddr
-      toggle_hint:
-        source: ike_peer_type
+  - name: ike_peer_type
+    description: IKE Gateway Peer IP Address Type
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: FQDN
+        value: fqdn
+      - key: IP address
+        value: ipaddr
+      - key: Dynamic
         value: dynamic
+  - name: dynamic_peer_type
+    description: IKE Gateway Peer IP Address Type
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: FQDN
+        value: fqdn
+      - key: IP address
+        value: ipaddr
+    toggle_hint:
+      source: ike_peer_type
+      value: dynamic
 
   - name: ike_gateway_peer_id
     description: IKE Gateway Peer ID
