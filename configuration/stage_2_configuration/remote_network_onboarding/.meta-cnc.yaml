@@ -8,6 +8,7 @@ description: |
 type: panorama
 
 labels:
+  order: 45
   collection:
     - Prisma Access Remote Network
 
