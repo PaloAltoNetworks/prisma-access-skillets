@@ -469,9 +469,9 @@ snippets:
             <nat-traversal>
             {%- if 'nat_traversal' in select_options %}
               <enable>yes</enable>
-            {% else %}
+            {%- else %}
               <enable>no</enable>
-            {% endif %}
+            {%- endif %}
             </nat-traversal>
             <fragmentation>
               <enable>no</enable>
