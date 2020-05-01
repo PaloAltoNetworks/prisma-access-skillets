@@ -137,7 +137,7 @@ variables:
       - key: Dynamic
         value: dynamic
   - name: dynamic_peer_type
-    description: IKE Gateway Peer IP Address Type
+    description: IKE Gateway Peer Identification Type
     default: choices
     type_hint: dropdown
     dd_list:
@@ -148,12 +148,11 @@ variables:
     toggle_hint:
       source: ike_peer_type
       value: dynamic
-
   - name: ike_gateway_peer_id
     description: IKE Gateway Peer ID
     default: 192.0.2.2
     type_hint: fqdn_or_ip
-    help_text: the value entered must match the type selected for the Gateway Peer IP Address Type
+    help_text: the value entered must match the type for the Gateway Peer IP Address Type or Peer ID Type
   - name: ike_gw_psk
     description: IKE Gateway PreShared Key
     default:
@@ -498,10 +497,10 @@ snippets:
           </peer-id>
           {%- elif ike_peer_type == 'fqdn' %}
           <peer-address>
-            <fqdn>ike_gateway_peer_id</fqdn>
+            <fqdn>{{ ike_gateway_peer_id }}</fqdn>
           </peer-address>
           <peer-id>
-            <id>ike_gateway_peer_id</id>
+            <id>{{ ike_gateway_peer_id }}</id>
             <type>fqdn</type>
           </peer-id>
             </entry>
