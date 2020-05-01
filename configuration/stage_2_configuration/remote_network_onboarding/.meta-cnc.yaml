@@ -505,7 +505,7 @@ snippets:
             <type>fqdn</type>
           </peer-id>
             </entry>
-        {% endif %}
+        {%- endif %}
 
   - name: ipsec_tunnel
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/tunnel/ipsec
@@ -524,9 +524,9 @@ snippets:
                  </protocol>
                  <remote>{{ subnet }}</remote>
                </entry>
-              {% endfor %}
+              {%- endfor %}
             </proxy-id>
-          {% endif %}
+          {%- endif %}
             <ipsec-crypto-profile>{{ rn_name }}-IPsec-Crypto</ipsec-crypto-profile>
           </auto-key>
           <tunnel-monitor>
