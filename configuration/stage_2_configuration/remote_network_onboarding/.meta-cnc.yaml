@@ -159,11 +159,13 @@ variables:
     type_hint: password
   - name: select_options
     description: Select Options
-    default: 'no'
+    default: []
     type_hint: checkbox
     cbx_list:
       - key: Enable NAT Traversal
         value: nat_traversal
+      - key: Configure IPSEC Tunnel Proxy ID
+        value: use_proxy_id
 
   - name: rn_license_type
     description: Bandwidth
@@ -514,6 +516,18 @@ snippets:
             <ike-gateway>
               <entry name="{{ rn_name }}-IKE-Gateway"/>
             </ike-gateway>
+          {%- if 'use_proxy_id' in select_options %}
+            <proxy-id>
+              {%- for subnet in rn_subnet %}
+               <entry name="ProxyID-{{ loop.index }}">
+                 <protocol>
+                   <any/>
+                 </protocol>
+                 <remote>{{ subnet }}</remote>
+               </entry>
+              {% endfor %}
+            </proxy-id>
+          {% endif %}
             <ipsec-crypto-profile>{{ rn_name }}-IPsec-Crypto</ipsec-crypto-profile>
           </auto-key>
           <tunnel-monitor>
