@@ -17,156 +17,6 @@ variables:
     description: Remote Network Site Name
     default:
     type_hint: text
-  - name: rn_subnet
-    description: Remote Network Subnets
-    default:
-    type_hint: list
-  - name: ike_dhgroup
-    description: IKE Crypto DH Group
-    default: group20
-    type_hint: dropdown
-    dd_list:
-      - key: group1
-        value: group1
-      - key: group2
-        value: group2
-      - key: group5
-        value: group5
-      - key: group14
-        value: group14
-      - key: group19
-        value: group19
-      - key: group20
-        value: group20
-  - name: ike_encryption
-    description: IKE Crypto Encryption
-    default: aes-256-cbc
-    type_hint: dropdown
-    dd_list:
-      - key: des
-        value: des
-      - key: 3des
-        value: 3des
-      - key: aes-128-cbc
-        value: aes-128-cbc
-      - key: aes-192-cbc
-        value: aes-192-cbc
-      - key: aes-256-cbc
-        value: aes-256-cbc
-  - name: ike_hash
-    description: IKE Crypto Authentication
-    default: sha256
-    type_hint: dropdown
-    dd_list:
-      - key: md5
-        value: md5
-      - key: sha1
-        value: sha1
-      - key: sha256
-        value: sha256
-      - key: sha384
-        value: sha384
-      - key: sha512
-        value: sha512
-  - name: ipsec_dhgroup
-    description: IPSec Crypto DH Group
-    default: group20
-    type_hint: dropdown
-    dd_list:
-      - key: no-pfs
-        value: no-pfs
-      - key: group1
-        value: group1
-      - key: group2
-        value: group2
-      - key: group5
-        value: group5
-      - key: group14
-        value: group14
-      - key: group19
-        value: group19
-      - key: group20
-        value: group20
-  - name: ipsec_esp_encryption
-    description: IPSec Crypto Encryption
-    default: aes-256-cbc
-    type_hint: dropdown
-    dd_list:
-      - key: des
-        value: des
-      - key: 3des
-        value: 3des
-      - key: aes-128-cbc
-        value: aes-128-cbc
-      - key: aes-192-cbc
-        value: aes-192-cbc
-      - key: aes-256-cbc
-        value: aes-256-cbc
-      - key: aes-128-ccm
-        value: aes-128-ccm
-      - key: aes-128-gcm
-        value: aes-128-gcm
-      - key: aes-256-gcm
-        value: aes-256-gcm
-  - name: ipsec_esp_auth
-    description: IPSec Crypto Authentication
-    default: sha256
-    type_hint: dropdown
-    dd_list:
-      - key: none
-        value: none
-      - key: md5
-        value: md5
-      - key: sha1
-        value: sha1
-      - key: sha256
-        value: sha256
-      - key: sha384
-        value: sha384
-      - key: sha512
-        value: sha512
-  - name: ike_peer_type
-    description: IKE Gateway Peer IP Address Type
-    default: choices
-    type_hint: dropdown
-    dd_list:
-      - key: FQDN
-        value: fqdn
-      - key: IP address
-        value: ipaddr
-      - key: Dynamic
-        value: dynamic
-  - name: dynamic_peer_type
-    description: IKE Gateway Peer Identification Type
-    default: choices
-    type_hint: dropdown
-    dd_list:
-      - key: FQDN
-        value: fqdn
-      - key: IP address
-        value: ipaddr
-    toggle_hint:
-      source: ike_peer_type
-      value: dynamic
-  - name: ike_gateway_peer_id
-    description: IKE Gateway Peer ID
-    default: 192.0.2.2
-    type_hint: fqdn_or_ip
-    help_text: the value entered must match the type for the Gateway Peer IP Address Type or Peer ID Type
-  - name: ike_gw_psk
-    description: IKE Gateway PreShared Key
-    default:
-    type_hint: password
-  - name: select_options
-    description: Select Options
-    default: []
-    type_hint: checkbox
-    cbx_list:
-      - key: Enable NAT Traversal
-        value: nat_traversal
-      - key: Configure IPSEC Tunnel Proxy ID
-        value: use_proxy_id
-
   - name: rn_license_type
     description: Bandwidth
     default: choices
@@ -403,6 +253,155 @@ variables:
         value: venezuela
       - key: Vietnam
         value: vietnam
+  - name: rn_subnet
+    description: Remote Network Subnets
+    default:
+    type_hint: list
+  - name: ike_dhgroup
+    description: IKE Crypto DH Group
+    default: group20
+    type_hint: dropdown
+    dd_list:
+      - key: group1
+        value: group1
+      - key: group2
+        value: group2
+      - key: group5
+        value: group5
+      - key: group14
+        value: group14
+      - key: group19
+        value: group19
+      - key: group20
+        value: group20
+  - name: ike_encryption
+    description: IKE Crypto Encryption
+    default: aes-256-cbc
+    type_hint: dropdown
+    dd_list:
+      - key: des
+        value: des
+      - key: 3des
+        value: 3des
+      - key: aes-128-cbc
+        value: aes-128-cbc
+      - key: aes-192-cbc
+        value: aes-192-cbc
+      - key: aes-256-cbc
+        value: aes-256-cbc
+  - name: ike_hash
+    description: IKE Crypto Authentication
+    default: sha256
+    type_hint: dropdown
+    dd_list:
+      - key: md5
+        value: md5
+      - key: sha1
+        value: sha1
+      - key: sha256
+        value: sha256
+      - key: sha384
+        value: sha384
+      - key: sha512
+        value: sha512
+  - name: ipsec_dhgroup
+    description: IPSec Crypto DH Group
+    default: group20
+    type_hint: dropdown
+    dd_list:
+      - key: no-pfs
+        value: no-pfs
+      - key: group1
+        value: group1
+      - key: group2
+        value: group2
+      - key: group5
+        value: group5
+      - key: group14
+        value: group14
+      - key: group19
+        value: group19
+      - key: group20
+        value: group20
+  - name: ipsec_esp_encryption
+    description: IPSec Crypto Encryption
+    default: aes-256-cbc
+    type_hint: dropdown
+    dd_list:
+      - key: des
+        value: des
+      - key: 3des
+        value: 3des
+      - key: aes-128-cbc
+        value: aes-128-cbc
+      - key: aes-192-cbc
+        value: aes-192-cbc
+      - key: aes-256-cbc
+        value: aes-256-cbc
+      - key: aes-128-ccm
+        value: aes-128-ccm
+      - key: aes-128-gcm
+        value: aes-128-gcm
+      - key: aes-256-gcm
+        value: aes-256-gcm
+  - name: ipsec_esp_auth
+    description: IPSec Crypto Authentication
+    default: sha256
+    type_hint: dropdown
+    dd_list:
+      - key: none
+        value: none
+      - key: md5
+        value: md5
+      - key: sha1
+        value: sha1
+      - key: sha256
+        value: sha256
+      - key: sha384
+        value: sha384
+      - key: sha512
+        value: sha512
+  - name: ike_peer_type
+    description: IKE Gateway Peer IP Address Type
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: FQDN
+        value: fqdn
+      - key: IP address
+        value: ipaddr
+      - key: Dynamic
+        value: dynamic
+  - name: dynamic_peer_type
+    description: IKE Gateway Peer Identification Type
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: FQDN
+        value: fqdn
+      - key: IP address
+        value: ipaddr
+    toggle_hint:
+      source: ike_peer_type
+      value: dynamic
+  - name: ike_gateway_peer_id
+    description: IKE Gateway Peer ID
+    default: 192.0.2.2
+    type_hint: fqdn_or_ip
+    help_text: the value entered must match the type for the Gateway Peer IP Address Type or Peer ID Type
+  - name: ike_gw_psk
+    description: IKE Gateway PreShared Key
+    default:
+    type_hint: password
+  - name: select_options
+    description: Select Options
+    default: []
+    type_hint: checkbox
+    cbx_list:
+      - key: Enable NAT Traversal
+        value: nat_traversal
+      - key: Configure IPSEC Tunnel Proxy ID
+        value: use_proxy_id
 
 snippets:
 
@@ -481,7 +480,7 @@ snippets:
           <local-address>
             <interface>vlan</interface>
           </local-address>
-          {%- if ike_peer_type == 'dynamic' %}
+        {%- if ike_peer_type == 'dynamic' %}
           <peer-address>
             <dynamic/>
           </peer-address>
@@ -489,7 +488,7 @@ snippets:
             <id>{{ ike_gateway_peer_id }}</id>
             <type>{{ dynamic_peer_type }}</type>
           </peer-id>
-          {%- elif ike_peer_type == 'ipaddr' %}
+        {%- elif ike_peer_type == 'ipaddr' %}
           <peer-address>
             <ip>{{ ike_gateway_peer_id }}</ip>
           </peer-address>
@@ -497,7 +496,7 @@ snippets:
             <id>{{ ike_gateway_peer_id }}</id>
             <type>ipaddr</type>
           </peer-id>
-          {%- elif ike_peer_type == 'fqdn' %}
+        {%- elif ike_peer_type == 'fqdn' %}
           <peer-address>
             <fqdn>{{ ike_gateway_peer_id }}</fqdn>
           </peer-address>
@@ -506,7 +505,7 @@ snippets:
             <type>fqdn</type>
           </peer-id>
             </entry>
-          {% endif %}
+        {% endif %}
 
   - name: ipsec_tunnel
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/tunnel/ipsec
