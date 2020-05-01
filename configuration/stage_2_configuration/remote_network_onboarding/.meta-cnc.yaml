@@ -2,8 +2,9 @@
 # ---------------------------------------------------------------------
 # unique snippet name
 name: prisma_access_remote_network_onboarding
-label: my_skillet_label
-description: this is what my skillet does
+label: Step 5 - Remote Network Site onboarding
+description: |
+  create IKE gateway and IPSEC tunnel plus the plugin onboarding configuration
 type: panorama
 
 labels:
