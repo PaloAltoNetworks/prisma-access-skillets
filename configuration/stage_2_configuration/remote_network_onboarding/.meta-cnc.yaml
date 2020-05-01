@@ -495,7 +495,7 @@ snippets:
             <type>ipaddr</type>
           </peer-id>
         {%- endif %}
-      </entry>
+        </entry>
 
   - name: ipsec_tunnel
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/tunnel/ipsec
