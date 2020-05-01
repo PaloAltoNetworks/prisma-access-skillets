@@ -548,7 +548,7 @@ snippets:
             <subnets>
             {%- for subnet in rn_subnet %}
               <member>{{ subnet }}</member>
-            {% endfor %}
+            {%- endfor %}
             </subnets>
             <region>{{ rn_region }}</region>
             <license-type>{{ rn_license_type }}</license-type>
