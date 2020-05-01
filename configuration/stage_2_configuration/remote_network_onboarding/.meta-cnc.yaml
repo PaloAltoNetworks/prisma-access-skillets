@@ -552,7 +552,7 @@ snippets:
             </subnets>
             <region>{{ rn_region }}</region>
             <license-type>{{ rn_license_type }}</license-type>
-            <ipsec-tunnel>{{ rn_name }}-IPSEC-Tunnel</ipsec-tunnel>
+            <ipsec-tunnel>{{ rn_name }}-IPsec-Tunnel</ipsec-tunnel>
             <secondary-wan-enabled>no</secondary-wan-enabled>
             <ecmp-load-balancing>disabled</ecmp-load-balancing>
           </entry>
