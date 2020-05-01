@@ -366,8 +366,6 @@ variables:
     default: choices
     type_hint: dropdown
     dd_list:
-      - key: FQDN
-        value: fqdn
       - key: IP address
         value: ipaddr
       - key: Dynamic
@@ -496,16 +494,8 @@ snippets:
             <id>{{ ike_gateway_peer_id }}</id>
             <type>ipaddr</type>
           </peer-id>
-        {%- elif ike_peer_type == 'fqdn' %}
-          <peer-address>
-            <fqdn>{{ ike_gateway_peer_id }}</fqdn>
-          </peer-address>
-          <peer-id>
-            <id>{{ ike_gateway_peer_id }}</id>
-            <type>fqdn</type>
-          </peer-id>
-            </entry>
         {%- endif %}
+      </entry>
 
   - name: ipsec_tunnel
     xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/tunnel/ipsec
