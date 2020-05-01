@@ -536,7 +536,7 @@ snippets:
         </entry>
 
   - name: remote_network_onboarding
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services[@version="1.5.0"]/remote-networks
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/remote-networks
     element: |-
         <onboarding>
           <entry name="{{ rn_name }}">

@@ -863,7 +863,7 @@ snippets:
         </pre-rulebase>
 
   - name: remote_network_plugin_setup
-    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services[@version="1.5.0"]
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services
     element: |-
         <remote-networks>
           <overlapped-subnets>no</overlapped-subnets>
