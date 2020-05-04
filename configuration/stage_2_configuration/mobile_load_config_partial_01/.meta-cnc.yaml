@@ -37,6 +37,7 @@ variables:
 snippets:
 
   - name: svc_conn_template
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>
@@ -51,6 +52,7 @@ snippets:
       </load>
 
   - name: svc_conn_template_stack
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>
@@ -65,6 +67,7 @@ snippets:
       </load>
 
   - name: svc_conn_device_group
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>
@@ -79,6 +82,7 @@ snippets:
       </load>
 
   - name: svc_conn_onboarding
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>
