@@ -29,12 +29,12 @@ snippets:
                 <vsys>
                   <entry name="vsys1">
                     <zone>
-                      <entry name="RN-Trust">
+                      <entry name="RN-trust">
                         <network>
                           <tap/>
                         </network>
                       </entry>
-                      <entry name="RN-Untrust">
+                      <entry name="RN-untrust">
                         <network>
                           <tap/>
                         </network>
@@ -773,10 +773,10 @@ snippets:
                   <negate>no</negate>
                 </target>
                 <to>
-                  <member>RN-Untrust</member>
+                  <member>RN-untrust</member>
                 </to>
                 <from>
-                  <member>RN-Trust</member>
+                  <member>RN-trust</member>
                 </from>
                 <source>
                   <member>any</member>
@@ -829,10 +829,10 @@ snippets:
                   <negate>no</negate>
                 </target>
                 <to>
-                  <member>RN-Trust</member>
+                  <member>RN-trust</member>
                 </to>
                 <from>
-                  <member>RN-Trust</member>
+                  <member>RN-trust</member>
                 </from>
                 <source>
                   <member>any</member>

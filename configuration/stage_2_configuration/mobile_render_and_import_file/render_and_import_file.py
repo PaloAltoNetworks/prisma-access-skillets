@@ -69,7 +69,7 @@ def cli(target_ip, target_port, target_username, target_password, include_svc_se
     try:
         # render the template config file and create file_contents to use with import_file
         sl = SkilletLoader()
-        skillet = sl.load_skillet_from_path('../full_config')
+        skillet = sl.load_skillet_from_path('../mobile_full_config')
         output = skillet.execute(context)
         file_contents = output.get('template', '')
 
