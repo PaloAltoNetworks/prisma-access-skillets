@@ -3,18 +3,18 @@
 # unique snippet name
 name: prisma_access_load_config_partial_01_api_v90
 # label used for menu selection
-label: Step 5 - API Option - Prisma Access Load Config Partial Part 1 for Service Setup Configuration
+label: Configure - Step 2 - Prisma Access Load Config Partial Part 1 for Mobile User Configuration
 description: |
-  Prisma Access load config partial skillet to merge configuration elements for imported file
-  for service setup
+  Prisma Access load config partial skillet for Mobile User imported configuration file.
+  Mobile User template config to commit for cert gen and optional Service Setup configuration
 
 type: panorama
 
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
-  order: 25
+  order: 35
   collection:
-    - Prisma Access
+    - Prisma Access Mobile User
 
 # ---------------------------------------------------------------------
 # end of preamble section
@@ -28,10 +28,16 @@ variables:
     default: prisma_access_full_config.xml
     type_hint: text
     help_text: file name used in the load config partial commands
+  - name: include_svc_setup
+    description: Include initial Service Setup configuration
+    default: 'no'
+    type_hint: disabled
+    help_text: this values is set in the Generate Config skillet when creating the full XML config file
 
 snippets:
 
   - name: svc_conn_template
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>
@@ -46,6 +52,7 @@ snippets:
       </load>
 
   - name: svc_conn_template_stack
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>
@@ -60,6 +67,7 @@ snippets:
       </load>
 
   - name: svc_conn_device_group
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>
@@ -74,6 +82,7 @@ snippets:
       </load>
 
   - name: svc_conn_onboarding
+    when: include_svc_setup == 'yes'
     cmd: op
     cmd_str: |-
       <load>

@@ -1,0 +1,549 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: prisma_access_remote_network_onboarding
+label: Configure - Step 2 - Remote Network Site onboarding
+description: |
+  create IKE gateway and IPSEC tunnel plus the plugin onboarding configuration
+type: panorama
+
+labels:
+  order: 55
+  collection:
+    - Prisma Access Remote Network
+
+variables:
+  - name: rn_name
+    description: Remote Network Site Name
+    default:
+    type_hint: text
+  - name: rn_license_type
+    description: Bandwidth
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: 2 Mbps
+        value: FWAAS-2Mbps
+      - key: 5 Mbps
+        value: FWAAS-5Mbps
+      - key: 10 Mbps
+        value: FWAAS-10Mbps
+      - key: 20 Mbps
+        value: FWAAS-20Mbps
+      - key: 25 Mbps
+        value: FWAAS-25Mbps
+      - key: 50 Mbps
+        value: FWAAS-50Mbps
+      - key: 100 Mbps
+        value: FWAAS-100Mbps
+      - key: 150 Mbps
+        value: FWAAS-150Mbps
+      - key: 300 Mbps
+        value: FWAAS-300Mbps
+      - key: 500 Mbps (Preview)
+        value: FWAAS-500Mbps
+      - key: 1000 Mbps (Preview)
+        value: FWAAS-1000Mbps
+  - name: rn_region
+    description: Location
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: Andorra
+        value: andorra
+      - key: Japan Central
+        value: ap-northeast-1
+      - key: South Korea
+        value: ap-northeast-2
+      - key: India West
+        value: ap-south-1
+      - key: Singapore
+        value: ap-southeast-1
+      - key: Australia Southeast
+        value: ap-southeast-2
+      - key: Argentina
+        value: argentina
+      - key: Australia East
+        value: australia-east
+      - key: Australia South
+        value: australia-south
+      - key: Austria
+        value: austria
+      - key: Bangladesh
+        value: bangladesh
+      - key: Belarus
+        value: belarus
+      - key: Belgium
+        value: belgium
+      - key: Bolivia
+        value: bolivia
+      - key: Brazil Central
+        value: brazil-central
+      - key: Brazil East
+        value: brazil-east
+      - key: Bulgaria
+        value: bulgaria
+      - key: Canada East
+        value: ca-central-1
+      - key: Cambodia
+        value: cambodia
+      - key: Canada Central
+        value: canada-central
+      - key: Canada West
+        value: canada-west
+      - key: Chile
+        value: chile
+      - key: Colombia
+        value: columbia
+      - key: Costa Rica
+        value: costa-rica
+      - key: Croatia
+        value: croatia
+      - key: Czech Republic
+        value: czech-republic
+      - key: Denmark
+        value: denmark
+      - key: Ecuador
+        value: ecuador
+      - key: Egypt
+        value: egypt
+      - key: Germany Central
+        value: eu-central-1
+      - key: Ireland
+        value: eu-west-1
+      - key: UK
+        value: eu-west-2
+      - key: France North
+        value: eu-west-3
+      - key: Finland
+        value: finland
+      - key: France South
+        value: france-south
+      - key: Germany North
+        value: germany-north
+      - key: Germany South
+        value: germany-south
+      - key: Greece
+        value: greece
+      - key: Hong Kong
+        value: hong-kong
+      - key: Hungary
+        value: hungary
+      - key: India North
+        value: india-north
+      - key: India South
+        value: india-south
+      - key: Indonesia
+        value: indonesia
+      - key: Israel
+        value: israel
+      - key: Italy
+        value: italy
+      - key: Japan South
+        value: japan-south
+      - key: Jordan
+        value: jordan
+      - key: Kenya
+        value: kenya
+      - key: Kuwait
+        value: kuwait
+      - key: Liechtenstein
+        value: liechtenstein
+      - key: Lithuania
+        value: lithuania
+      - key: Luxembourg
+        value: luxembourg
+      - key: Malaysia
+        value: malaysia
+      - key: Bahrain
+        value: me-south-1
+      - key: Mexico Central
+        value: mexico-central
+      - key: Mexico West
+        value: mexico-west
+      - key: Moldova
+        value: moldova
+      - key: Monaco
+        value: monaco
+      - key: Myanmar
+        value: myanmar
+      - key: Netherlands Central
+        value: netherlands-central
+      - key: Netherlands South
+        value: netherlands-south
+      - key: New Zealand
+        value: new-zealand
+      - key: Nigeria
+        value: nigeria
+      - key: Norway
+        value: norway
+      - key: Pakistan South
+        value: pakistan-south
+      - key: Pakistan West
+        value: pakistan-west
+      - key: Panama
+        value: panama
+      - key: Papua New Guinea
+        value: papua-new-guinea
+      - key: Paraguay
+        value: paraguay
+      - key: Peru
+        value: peru
+      - key: Philippines
+        value: philippines
+      - key: Poland
+        value: poland
+      - key: Portugal
+        value: portugal
+      - key: Romania
+        value: romania
+      - key: Russia Central
+        value: russia-central
+      - key: Russia Northwest
+        value: russia-northwest
+      - key: Brazil South
+        value: sa-east-1
+      - key: Saudi Arabia
+        value: saudi-arabia
+      - key: Slovakia
+        value: slovakia
+      - key: Slovenia
+        value: slovenia
+      - key: South Africa Central
+        value: south-africa-central
+      - key: South Africa West
+        value: south-africa-west
+      - key: Spain Central
+        value: spain-central
+      - key: Spain East
+        value: spain-east
+      - key: Sweden
+        value: sweden
+      - key: Switzerland
+        value: switzerland
+      - key: Taiwan
+        value: taiwan
+      - key: Thailand
+        value: thailand
+      - key: Turkey
+        value: turkey
+      - key: United Arab Emirates
+        value: uae
+      - key: Ukraine
+        value: ukraine
+      - key: US East
+        value: us-east-1
+      - key: US Central
+        value: us-east-2
+      - key: US Northeast
+        value: us-northeast
+      - key: US South
+        value: us-south
+      - key: US Southeast
+        value: us-southeast
+      - key: US West
+        value: us-west-1
+      - key: US Northwest
+        value: us-west-2
+      - key: US Southwest
+        value: us-west-201
+      - key: Uzbekistan
+        value: uzbekistan
+      - key: Venezuela
+        value: venezuela
+      - key: Vietnam
+        value: vietnam
+  - name: rn_subnet
+    description: Remote Network Subnets
+    default:
+    type_hint: list
+  - name: ike_dhgroup
+    description: IKE Crypto DH Group
+    default: group20
+    type_hint: dropdown
+    dd_list:
+      - key: group1
+        value: group1
+      - key: group2
+        value: group2
+      - key: group5
+        value: group5
+      - key: group14
+        value: group14
+      - key: group19
+        value: group19
+      - key: group20
+        value: group20
+  - name: ike_encryption
+    description: IKE Crypto Encryption
+    default: aes-256-cbc
+    type_hint: dropdown
+    dd_list:
+      - key: des
+        value: des
+      - key: 3des
+        value: 3des
+      - key: aes-128-cbc
+        value: aes-128-cbc
+      - key: aes-192-cbc
+        value: aes-192-cbc
+      - key: aes-256-cbc
+        value: aes-256-cbc
+  - name: ike_hash
+    description: IKE Crypto Authentication
+    default: sha256
+    type_hint: dropdown
+    dd_list:
+      - key: md5
+        value: md5
+      - key: sha1
+        value: sha1
+      - key: sha256
+        value: sha256
+      - key: sha384
+        value: sha384
+      - key: sha512
+        value: sha512
+  - name: ipsec_dhgroup
+    description: IPSec Crypto DH Group
+    default: group20
+    type_hint: dropdown
+    dd_list:
+      - key: no-pfs
+        value: no-pfs
+      - key: group1
+        value: group1
+      - key: group2
+        value: group2
+      - key: group5
+        value: group5
+      - key: group14
+        value: group14
+      - key: group19
+        value: group19
+      - key: group20
+        value: group20
+  - name: ipsec_esp_encryption
+    description: IPSec Crypto Encryption
+    default: aes-256-cbc
+    type_hint: dropdown
+    dd_list:
+      - key: des
+        value: des
+      - key: 3des
+        value: 3des
+      - key: aes-128-cbc
+        value: aes-128-cbc
+      - key: aes-192-cbc
+        value: aes-192-cbc
+      - key: aes-256-cbc
+        value: aes-256-cbc
+      - key: aes-128-ccm
+        value: aes-128-ccm
+      - key: aes-128-gcm
+        value: aes-128-gcm
+      - key: aes-256-gcm
+        value: aes-256-gcm
+  - name: ipsec_esp_auth
+    description: IPSec Crypto Authentication
+    default: sha256
+    type_hint: dropdown
+    dd_list:
+      - key: none
+        value: none
+      - key: md5
+        value: md5
+      - key: sha1
+        value: sha1
+      - key: sha256
+        value: sha256
+      - key: sha384
+        value: sha384
+      - key: sha512
+        value: sha512
+  - name: ike_peer_type
+    description: IKE Gateway Peer IP Address Type
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: IP address
+        value: ipaddr
+      - key: Dynamic
+        value: dynamic
+  - name: dynamic_peer_type
+    description: IKE Gateway Peer Identification Type
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: FQDN
+        value: fqdn
+      - key: IP address
+        value: ipaddr
+    toggle_hint:
+      source: ike_peer_type
+      value: dynamic
+  - name: ike_gateway_peer_id
+    description: IKE Gateway Peer ID
+    default: 192.0.2.2
+    type_hint: fqdn_or_ip
+    help_text: the value entered must match the type for the Gateway Peer IP Address Type or Peer ID Type
+  - name: ike_gw_psk
+    description: IKE Gateway PreShared Key
+    default:
+    type_hint: password
+  - name: select_options
+    description: Select Options
+    default: []
+    type_hint: checkbox
+    cbx_list:
+      - key: Enable NAT Traversal
+        value: nat_traversal
+      - key: Configure IPSEC Tunnel Proxy ID
+        value: use_proxy_id
+
+snippets:
+
+  - name: ike_crypto_profile
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/ike/crypto-profiles/ike-crypto-profiles
+    element: |-
+        <entry name="{{ rn_name }}-IKE-Crypto">
+          <hash>
+            <member>{{ ike_hash }}</member>
+          </hash>
+          <dh-group>
+            <member>{{ ike_dhgroup }}</member>
+          </dh-group>
+          <encryption>
+            <member>{{ ike_encryption }}</member>
+          </encryption>
+          <lifetime>
+            <hours>8</hours>
+          </lifetime>
+        </entry>
+
+  - name: ipsec_crypto_profile
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/ike/crypto-profiles/ipsec-crypto-profiles
+    element: |-
+        <entry name="{{ rn_name }}-IPsec-Crypto">
+          <esp>
+            <authentication>
+              <member>{{ ipsec_esp_auth }}</member>
+            </authentication>
+            <encryption>
+              <member>{{ ipsec_esp_encryption }}</member>
+            </encryption>
+          </esp>
+          <lifetime>
+            <hours>1</hours>
+          </lifetime>
+          <dh-group>{{ ipsec_dhgroup }}</dh-group>
+        </entry>
+
+  - name: ike_gateway
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/ike/gateway
+    element: |-
+        <entry name="{{ rn_name }}-IKE-Gateway">
+          <authentication>
+            <pre-shared-key>
+              <key>{{ ike_gw_psk }}</key>
+            </pre-shared-key>
+          </authentication>
+          <protocol>
+            <ikev1>
+              <dpd>
+                <enable>yes</enable>
+              </dpd>
+              <ike-crypto-profile>{{ rn_name }}-IKE-Crypto</ike-crypto-profile>
+            </ikev1>
+            <ikev2>
+              <dpd>
+                <enable>yes</enable>
+              </dpd>
+              <ike-crypto-profile>{{ rn_name }}-IKE-Crypto</ike-crypto-profile>
+            </ikev2>
+            <version>ikev2-preferred</version>
+          </protocol>
+          <protocol-common>
+            <nat-traversal>
+            {%- if 'nat_traversal' in select_options %}
+              <enable>yes</enable>
+            {%- else %}
+              <enable>no</enable>
+            {%- endif %}
+            </nat-traversal>
+            <fragmentation>
+              <enable>no</enable>
+            </fragmentation>
+          </protocol-common>
+          <local-address>
+            <interface>vlan</interface>
+          </local-address>
+        {%- if ike_peer_type == 'dynamic' %}
+          <peer-address>
+            <dynamic/>
+          </peer-address>
+          <peer-id>
+            <id>{{ ike_gateway_peer_id }}</id>
+            <type>{{ dynamic_peer_type }}</type>
+          </peer-id>
+        {%- elif ike_peer_type == 'ipaddr' %}
+          <peer-address>
+            <ip>{{ ike_gateway_peer_id }}</ip>
+          </peer-address>
+          <peer-id>
+            <id>{{ ike_gateway_peer_id }}</id>
+            <type>ipaddr</type>
+          </peer-id>
+        {%- endif %}
+        </entry>
+
+  - name: ipsec_tunnel
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template/entry[@name="Remote_Network_Template"]/config/devices/entry[@name="localhost.localdomain"]/network/tunnel/ipsec
+    element: |-
+        <entry name="{{ rn_name }}-IPsec-Tunnel">
+          <auto-key>
+            <ike-gateway>
+              <entry name="{{ rn_name }}-IKE-Gateway"/>
+            </ike-gateway>
+          {%- if 'use_proxy_id' in select_options %}
+            <proxy-id>
+              {%- for subnet in rn_subnet %}
+               <entry name="ProxyID-{{ loop.index }}">
+                 <protocol>
+                   <any/>
+                 </protocol>
+                 <remote>{{ subnet }}</remote>
+               </entry>
+              {%- endfor %}
+            </proxy-id>
+          {%- endif %}
+            <ipsec-crypto-profile>{{ rn_name }}-IPsec-Crypto</ipsec-crypto-profile>
+          </auto-key>
+          <tunnel-monitor>
+            <enable>no</enable>
+          </tunnel-monitor>
+          <tunnel-interface>tunnel</tunnel-interface>
+        </entry>
+
+  - name: remote_network_onboarding
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services/remote-networks
+    element: |-
+        <onboarding>
+          <entry name="{{ rn_name }}">
+            <protocol>
+              <bgp>
+                <enable>no</enable>
+              </bgp>
+            </protocol>
+            <subnets>
+            {%- for subnet in rn_subnet %}
+              <member>{{ subnet }}</member>
+            {%- endfor %}
+            </subnets>
+            <region>{{ rn_region }}</region>
+            <license-type>{{ rn_license_type }}</license-type>
+            <ipsec-tunnel>{{ rn_name }}-IPsec-Tunnel</ipsec-tunnel>
+            <secondary-wan-enabled>no</secondary-wan-enabled>
+            <ecmp-load-balancing>disabled</ecmp-load-balancing>
+          </entry>
+        </onboarding>

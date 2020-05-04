@@ -1,0 +1,41 @@
+name: prisma_access_poc_workflow
+
+label: Deploy - Step 1 - Prisma Access Panorama Deployment
+
+description: Deploys Panorama into Azure or AWS
+
+type: workflow
+
+labels:
+  order: 1
+  collection:
+    - Prisma Access Setup Panorama
+
+variables:
+  - name: deployment_type
+    description: Public Cloud Preference
+    default: azure
+    type_hint: dropdown
+    dd_list:
+      - key: Azure
+        value: azure
+      - key: AWS
+        value: aws
+  - name: public_key
+    type_hint: hidden
+    description: public key - used to skip key generation step if this output is already captured
+    default: ''
+
+snippets:
+  - name: prisma_access_aws_create_keypair
+    when: |
+      (
+      deployment_type == 'aws'
+      and public_key is not defined
+      )
+  - name: prisma_access_aws_deploy_panorama
+    when: deployment_type == 'aws'
+  - name: prisma_access_azure_login
+    when: deployment_type == 'azure'
+  - name: prisma_access_azure_deploy_panorama
+    when: deployment_type == 'azure'

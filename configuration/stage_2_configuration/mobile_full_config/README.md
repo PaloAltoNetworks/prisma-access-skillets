@@ -10,8 +10,7 @@ skillet to leverage the Panorama API to merge the configuration.
 
 ## Load Config Partial Commands
 
-### Service Setup
-
+### Service Setup [Optional]
 Includes:
 
 * template, template-stack, device-group elements

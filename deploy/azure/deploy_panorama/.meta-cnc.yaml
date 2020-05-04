@@ -1,15 +1,16 @@
 name: prisma_access_azure_deploy_panorama
 
-label: Step 2 - Prisma Access Deploy Panorama
+label: Prisma Access Deploy Panorama in Azure
 
 description: Deploy Panorama into Azure
 
 type: terraform
 
 labels:
-  order: 5
+  help_text: Managing Terraform projects in Panhandler
+  help_link: https://panhandler.readthedocs.io/en/master/examples/terraform_skillet.html#terraform-state-files
   collection:
-    - Prisma Access
+    - Kitchen Sink
 
 variables:
   - name: adminUsername
@@ -36,3 +37,19 @@ variables:
     required: True
     type_hint: text
     help_text: Choose a location near you from https://azure.microsoft.com/en-us/global-infrastructure/locations/
+  - name: virtualMachineSize
+    description: Virtual Machine Size
+    default: Standard_D3
+    type_hint: dropdown
+    dd_list:
+      - key: Standard_D3
+        value: Standard_D3
+      - key: Standard_D3_v2
+        value: Standard_D3_v2
+      - key: Standard_DS3
+        value: Standard_DS3
+      - key: Standard_DS3_v2
+        value: Standard_DS3_v2
+      - key: Standard_D4s_v3
+        value: Standard_D4s_v3
+    help_text: Ensure the machine size you choose is actually available in your selected region!
