@@ -3,7 +3,7 @@
 # unique snippet name
 name: prisma_access_load_config_partial_01_api_v90
 # label used for menu selection
-label: Step 4 - API Option - Prisma Access Load Config Partial Part 1 for Service Setup Configuration
+label: Configure - Step 2 - Prisma Access Load Config Partial Part 1 for Service Setup Configuration
 description: |
   Prisma Access load config partial skillet to merge configuration elements for imported file
   for service setup

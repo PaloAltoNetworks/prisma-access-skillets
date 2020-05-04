@@ -1,6 +1,6 @@
 name: render_and import_prisma_access_config_file_v90
 # label used for menu selection
-label: Step 3 - API Option - Generate and Import the Prisma Access Config File
+label: Configure - Step 1 - Generate and Import the Prisma Access Config File
 
 description: |
   This skillet renders the config file and then uses the panorama API to import the full prisma access config file

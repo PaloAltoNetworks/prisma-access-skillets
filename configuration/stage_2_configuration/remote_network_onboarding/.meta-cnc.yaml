@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------
 # unique snippet name
 name: prisma_access_remote_network_onboarding
-label: Step 5 - Remote Network Site onboarding
+label: Configure - Step 2 - Remote Network Site onboarding
 description: |
   create IKE gateway and IPSEC tunnel plus the plugin onboarding configuration
 type: panorama

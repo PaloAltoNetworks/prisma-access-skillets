@@ -1,6 +1,6 @@
 name: prisma_access_initial_panorama_config
 
-label: Deploy - Step 2 - Prisma Access Panorama Initial Configuration
+label: Deploy - Step 2 - Prisma Access Panorama Initial Setup
 
 description: Configures a newly launched Panorama Instance
 

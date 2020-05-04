@@ -1,5 +1,5 @@
 name: prisma_access_remote_network_setup
-label: Step 4 - Prisma Access Remote Network Setup
+label: Configure - Step 1 - Prisma Access Remote Network Setup
 description: |
     Initial Prisma Access configuration for Remote Network device-group and template-stack.
     Required before onboarding Remote Network sites.
