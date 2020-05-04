@@ -11,7 +11,7 @@ type: docker
 labels:
   order: 10
   help_link_title: Prisma Access Panorama Initial Setup
-  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-2---initial-panorama-setup
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-2---initial-panorama-setup
   collection:
     - Prisma Access Deploy Panorama
 

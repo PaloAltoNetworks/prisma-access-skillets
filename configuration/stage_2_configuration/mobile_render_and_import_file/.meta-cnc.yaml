@@ -12,7 +12,7 @@ type: python3
 labels:
     order: 30
     help_link_title: Generate Mobile User Config File and Import to Panorama
-    help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-1---generate-config-file-and-import-to-panorama
+    help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---generate-config-file-and-import-to-panorama
     collection:
       - Prisma Access Configure Mobile User
 

@@ -9,7 +9,7 @@ extends:
 labels:
   order: 50
   help_link_title: Remote Network Initial Configuration
-  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-1---initial-configuration
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---initial-configuration
   collection:
     - Prisma Access Configure Remote Network
 

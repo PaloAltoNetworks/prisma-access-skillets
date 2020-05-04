@@ -19,7 +19,7 @@ extends:
 labels:
   order: 20
   help_link_title: Prisma Access Configure Service Setup
-  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-1---initial-prisma-access-configuration
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---initial-prisma-access-configuration
   collection:
     - Prisma Access Configure Service Setup
 

@@ -19,7 +19,7 @@ extends:
 labels:
   order: 80
   help_link_title: Generate Mobile User Config File
-  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#optional-non-api-config-file-generation
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#optional-non-api-config-file-generation
   collection:
     - Prisma Access Configure Mobile User
 

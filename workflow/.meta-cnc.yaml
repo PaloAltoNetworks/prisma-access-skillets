@@ -9,7 +9,7 @@ type: workflow
 labels:
   order: 1
   help_link_title: Deploy Panorama
-  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-1---deploy-panorama
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---deploy-panorama
   collection:
     - Prisma Access Deploy Panorama
 
