@@ -11,8 +11,10 @@ type: python3
 # Labels allow grouping and type specific options and are generally only used in advanced cases
 labels:
     order: 30
+    help_link_title: Generate Mobile User Config File and Import to Panorama
+    help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-1---generate-config-file-and-import-to-panorama
     collection:
-      - Prisma Access Mobile User
+      - Prisma Access Configure Mobile User
 
 # variables define the things an operator may customize in this skillet. Things like DNS servers, NTP addresses, etc
 # may be customized for each deployment. Each variable will be rendered as a form field in the panhandler application

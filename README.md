@@ -10,10 +10,10 @@ Service Setup, Mobile Users, and Remote Networks including:
     
 The skillets are grouped into functional Collections:
 
-    * Prisma Access Setup Panorama: initial cloud deployment and setup (licensing, updates, plugin)
-    * Prisma Access Service Setup: initial Prisma Access infrastructure configuration
-    * Prisma Access Mobile Users: mobile user configuration elements
-    * Prisma Access Remote Network: remote network configuration elements
+    * Prisma Access Deploy Panorama: initial cloud deployment and setup (licensing, updates, plugin)
+    * Prisma Access Configure Service Setup: initial Prisma Access infrastructure configuration
+    * Prisma Access Configure Mobile Users: mobile user configuration elements
+    * Prisma Access Configure Remote Network: remote network configuration elements
     * Prisma Access Assess Tools: utilities for post-configuration information
     
 

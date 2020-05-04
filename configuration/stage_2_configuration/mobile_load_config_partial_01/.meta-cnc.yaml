@@ -13,8 +13,10 @@ type: panorama
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
   order: 35
+  help_link_title: Load Config Partial Part 1 - Mobile Template
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-2---initial-load-config-partial-for-service-setup
   collection:
-    - Prisma Access Mobile User
+    - Prisma Access Configure Mobile User
 
 # ---------------------------------------------------------------------
 # end of preamble section

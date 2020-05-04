@@ -13,8 +13,10 @@ type: panorama-gpcs
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
   order: 40
+  help_link_title: Load Config Partial Part 1 - Cert Gen and Mobile User Configuration
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-3---generate-certificates-and-complete-mobile-user-configuration
   collection:
-    - Prisma Access Mobile User
+    - Prisma Access Configure Mobile User
 
 # ---------------------------------------------------------------------
 # end of preamble section

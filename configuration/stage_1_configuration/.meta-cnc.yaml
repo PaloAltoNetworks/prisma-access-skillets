@@ -10,8 +10,10 @@ type: docker
 
 labels:
   order: 10
+  help_link_title: Prisma Access Panorama Initial Setup
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-2---initial-panorama-setup
   collection:
-    - Prisma Access Setup Panorama
+    - Prisma Access Deploy Panorama
 
 variables:
   - name: panorama_ip_address

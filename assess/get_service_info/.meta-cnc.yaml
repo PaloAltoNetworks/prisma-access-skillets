@@ -10,6 +10,8 @@ type: rest
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
   order: 100
+  help_link_title: Prisma Access API call to get service information
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#retrieve-service-information
   collection:
     - Prisma Access Assess Tools
 

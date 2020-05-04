@@ -9,8 +9,10 @@ type: panorama
 
 labels:
   order: 55
+  help_link_title: Remote Network Site Onboarding
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/develop#step-2---site-onboarding
   collection:
-    - Prisma Access Remote Network
+    - Prisma Access Configure Remote Network
 
 variables:
   - name: rn_name
