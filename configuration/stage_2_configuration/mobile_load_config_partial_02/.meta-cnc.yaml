@@ -12,7 +12,7 @@ type: panorama-gpcs
 
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
-  order: 30
+  order: 40
   collection:
     - Prisma Access Mobile User
 

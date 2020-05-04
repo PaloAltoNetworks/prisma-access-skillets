@@ -3,18 +3,19 @@
 A suite of deployment, configuration, and service information skillets for Prisma Access 
 Service Setup, Mobile Users, and Remote Networks including:
 
-    * Panorama instantiation in Azure
+    * Panorama instantiation in Azure or AWS
     * Panorama licensing, content updates, sw updates, and basic configuration
     * Prisma Access service setup, mobile user, and remote network configuration/onboarding
     * Prisma Access API queries to view service information
     
 The skillets are grouped into functional Collections:
 
-    * Prisma Access Setup Panorama: initial deployment and setup
-    * Prisma Access Service Setup: initial Prisma Access setup configuration
+    * Prisma Access Setup Panorama: initial deployment and setup in Azure or AWS
+    * Prisma Access Service Setup: initial Panorama setup (licensing, updates, plugin)
     * Prisma Access Mobile Users: mobile user configuration elements
     * Prisma Access Remote Network: remote network configuration elements
     * Prisma Access Assess Tools: utilities for post-configuration information
+    
 
 ## Prerequisites
 
@@ -65,6 +66,8 @@ Second, the skillet uses a set of Terraform templates to deploy a new Panorama i
 
 > Ensure the region selected supports the required image type
 
+[Azure Products by Region](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=virtual-machines)
+gives information about Azure VM compute resources per region.
 
 #### Step 2 - Initial Panorama Setup
 
@@ -74,6 +77,10 @@ Initial Panorama staging is done using Ansible playbooks. Includes:
     * Licensing
     * Content and Software Updates
     * Prisma Access Plug-in installation
+    
+> Panorama is upgraded to version 9.0.7
+
+> Cloudservice plugin 1.5.0 is installed
     
 #### Step 2.1 - Verify the Cloud Plugin using the One Time Password (OTP)
 
@@ -88,6 +95,8 @@ Before configuring Panorama, you must generate the OTP in the Customer Support P
 
 #### Step 1 - Initial Prisma Access Configuration
 
+> Prior to this step enter the Prisma Access OTP using the Panorama Web UI
+
 Add the service infrastructure subnet and BGP AS.
 
 
@@ -95,7 +104,6 @@ Add the service infrastructure subnet and BGP AS.
 
 #### Step 1 - Generate Config File and Import to Panorama
 
-> Prior to this step enter the Prisma Access OTP using the Panorama Web UI
 
 This skillet will capture configuration web form data and then generate a full xml config file that is then imported
 to Panorama. This file will be referenced in Steps 5 and 6 using ```load config partial``` to merge configuration elements
@@ -109,7 +117,7 @@ The default filename for import is ```prisma_access_full_config.xml```
 
 After the file is imported, this skillet will configure service setup and add the mobile user template
 
-> At the completion of Step 2 a Panorama commit is required before proceeding to step 6
+> At the completion of Step 2 a Panorama commit is required before proceeding to step 3
     
 #### Step 3 - Generate Certificates and Complete Mobile User Configuration
 

@@ -17,7 +17,7 @@ extends:
 
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
-  order: 30
+  order: 20
   collection:
     - Prisma Access Service Setup
 

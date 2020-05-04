@@ -10,7 +10,7 @@ type: python3
 
 # Labels allow grouping and type specific options and are generally only used in advanced cases
 labels:
-    order: 20
+    order: 30
     collection:
       - Prisma Access Mobile User
 

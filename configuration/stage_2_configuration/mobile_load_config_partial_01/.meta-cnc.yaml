@@ -3,16 +3,16 @@
 # unique snippet name
 name: prisma_access_load_config_partial_01_api_v90
 # label used for menu selection
-label: Configure - Step 2 - Prisma Access Load Config Partial Part 1 for Service Setup Configuration
+label: Configure - Step 2 - Prisma Access Load Config Partial Part 1 for Mobile User Configuration
 description: |
-  Prisma Access load config partial skillet to merge configuration elements for imported file
-  for mobile template creation and commit
+  Prisma Access load config partial skillet for Mobile User imported configuration file.
+  Mobile User template config to commit for cert gen and optional Service Setup configuration
 
 type: panorama
 
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
-  order: 25
+  order: 35
   collection:
     - Prisma Access Mobile User
 

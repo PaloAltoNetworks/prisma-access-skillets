@@ -7,7 +7,7 @@ type: panorama-gpcs
 extends:
 
 labels:
-  order: 40
+  order: 50
   collection:
     - Prisma Access Remote Network
 
