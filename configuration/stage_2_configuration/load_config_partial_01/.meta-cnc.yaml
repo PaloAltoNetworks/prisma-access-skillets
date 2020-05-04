@@ -28,6 +28,11 @@ variables:
     default: prisma_access_full_config.xml
     type_hint: text
     help_text: file name used in the load config partial commands
+  - name: include_svc_setup
+    description: Include initial Service Setup configuration
+    default: 'no'
+    type_hint: disabled
+    help_text: this values is set in the Generate Config skillet when creating the full XML config file
 
 snippets:
 

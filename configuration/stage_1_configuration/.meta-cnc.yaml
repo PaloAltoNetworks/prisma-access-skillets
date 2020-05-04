@@ -9,8 +9,7 @@ type: docker
 labels:
   order: 10
   collection:
-    - Prisma Access Mobile User
-    - Prisma Access Remote Network
+    - Prisma Access Deploy and Setup Panorama
 
 variables:
   - name: panorama_ip_address

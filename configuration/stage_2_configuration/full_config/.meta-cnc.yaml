@@ -30,10 +30,23 @@ labels:
 # type_hint defines the form field used by panhandler
 # type_hints can be text, ip_address, or dropdown
 variables:
+  - name: include_svc_setup
+    description: Include First Time Service Setup Configuration?
+    default: 'no'
+    type_hint: dropdown
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+    help_text: choose Service Setup for first time configuration of the service infrastructure subnet and BGP AS
   - name: infra_subnet
     description: Infrastructure Subnet
     default: 192.168.254.0/24
     type_hint: cidr
+    toggle_hint:
+      source: include_svc_setup
+      value: 'yes'
     help_text: |-
       Specify a RFC-1918 compliant IP address pool (at least a /24 subnet) that does not overlap with other
       IP addresses in your network. These IP addresses will be used by the cloud service.
@@ -41,6 +54,9 @@ variables:
     description: Infrastructure BGP AS
     default: 65534
     type_hint: number
+    toggle_hint:
+      source: include_svc_setup
+      value: 'yes'
     help_text: |-
       Specify a RFC-6996 compliant Private AS number. Accepted formats are 4-Byte AS Plain [64512-65534],
       [4200000000-4294967294] or AS Dot [0.64512-0.65534], [64086.59904-65535.65534] notation.
@@ -314,7 +330,7 @@ variables:
 snippets:
 
   - name: prisma_access_full_config_vars
-    file: prisma_access_full_config_vars.conf
+    file: prisma_access_full_config_vars.xml
 
 # ---------------------------------------------------------------------
 # end of snippets section

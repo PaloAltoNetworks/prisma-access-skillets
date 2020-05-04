@@ -70,10 +70,10 @@
         </setting>
       </deviceconfig>
       <template>
+        {%- if include_svc_setup == 'yes' %}
         <entry name="Service_Conn_Template">
           <settings>
             <default-vsys>vsys1</default-vsys>
-          </settings>
           <description>Service Connection Template (Use the Cloud Services plugin to edit)</description>
           <config>
             <devices>
@@ -712,6 +712,7 @@
             </shared>
           </config>
         </entry>
+        {%- endif %}
         <entry name="Mobile_User_Template">
           <settings>
             <default-vsys>vsys1</default-vsys>
@@ -1100,6 +1101,7 @@
       </device-group>
       <plugins>
         <cloud_services version="1.5.0">
+          {%- if include_svc_setup == 'yes' %}
           <service-connection>
             <service-subnet>{{ infra_subnet }}</service-subnet>
             <infra-bgp-as>{{ infra_bgp_as }}</infra-bgp-as>
@@ -1107,6 +1109,7 @@
             <template-stack>Service_Conn_Template_Stack</template-stack>
             <device-group>Service_Conn_Device_Group</device-group>
           </service-connection>
+          {%- endif %}
           <routing-preference>
             <default/>
           </routing-preference>

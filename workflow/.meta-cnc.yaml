@@ -9,8 +9,7 @@ type: workflow
 labels:
   order: 1
   collection:
-    - Prisma Access Mobile User
-    - Prisma Access Remote Network
+    - Prisma Access Deploy and Setup Panorama
 
 variables:
   - name: deployment_type

@@ -27,6 +27,7 @@ from skilletlib.exceptions import SkilletLoaderException
 @click.option("-r", "--TARGET_PORT", help="Port to communicate to device (443)", type=int, default=443)
 @click.option("-u", "--TARGET_USERNAME", help="Firewall Username (admin)", type=str, default="admin")
 @click.option("-p", "--TARGET_PASSWORD", help="Firewall Password (admin)", type=str, default="admin")
+@click.option("-svc", "--include_svc_setup", help="include service setup configuration", type=str, default="no")
 @click.option("-s", "--infra_subnet", help="infrastructure subnet", type=str, default="192.168.254.0/24")
 @click.option("-b", "--infra_bgp_as", help="infrastructure BGP AS", type=str, default="65534")
 @click.option("-ph", "--portal_hostname", help="portal hostnamne", type=str, default="my-subdomain")
@@ -42,7 +43,7 @@ from skilletlib.exceptions import SkilletLoaderException
 @click.option("-u2", "--user2_password", help="User2 password", type=str, default="Paloalto2")
 @click.option("-f", "--conf_filename", help="Configuration File Name", type=str,
               default="prisma_access_full_config.xml")
-def cli(target_ip, target_port, target_username, target_password, infra_subnet, infra_bgp_as,
+def cli(target_ip, target_port, target_username, target_password, include_svc_setup, infra_subnet, infra_bgp_as,
         portal_hostname, deployment_region, deployment_locations_americas, deployment_locations_europe,
         deployment_locations_apac, ip_pool_cidr, user1_password, user2_password, conf_filename):
     """
@@ -51,6 +52,7 @@ def cli(target_ip, target_port, target_username, target_password, infra_subnet, 
 
     # creating the jinja context from the skillet vars
     context = dict()
+    context['include_svc_setup'] = include_svc_setup
     context['infra_subnet'] = infra_subnet
     context['infra_bgp_as'] = infra_bgp_as
     context['portal_hostname'] = portal_hostname

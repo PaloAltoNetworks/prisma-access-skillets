@@ -19,8 +19,7 @@ extends:
 labels:
   order: 30
   collection:
-    - Prisma Access Mobile User
-    - Prisma Access Remote Network
+    - Prisma Access Service Setup
 
 # ---------------------------------------------------------------------
 # end of preamble section
