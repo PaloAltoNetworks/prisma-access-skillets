@@ -6,7 +6,7 @@ name: prisma_access_load_config_partial_01_api_v90
 label: Configure - Step 2 - Prisma Access Load Config Partial Part 1 for Service Setup Configuration
 description: |
   Prisma Access load config partial skillet to merge configuration elements for imported file
-  for service setup
+  for mobile template creation and commit
 
 type: panorama
 

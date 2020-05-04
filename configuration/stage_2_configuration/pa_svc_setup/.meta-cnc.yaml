@@ -5,7 +5,7 @@ name: prisma_access_service_setup
 # label used for menu selection
 label: Configure - Step 0 - Prisma Access Service Setup
 description: |-
-    Prisma Access initial Panorama configuration for service setup including
+    Prisma Access initial Service Setup configuration including
     instrastructure subnet, infrastructure BGP AS, template, template-stack, and device-group
 
 # type of device configuration

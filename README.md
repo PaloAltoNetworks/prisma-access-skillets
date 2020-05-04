@@ -1,11 +1,20 @@
 # Prisma Access Skillets
 
-A suite of deployment, configuration, and service information skillets for Prisma Access mobile users including:
+A suite of deployment, configuration, and service information skillets for Prisma Access 
+Service Setup, Mobile Users, and Remote Networks including:
 
     * Panorama instantiation in Azure
     * Panorama licensing, content updates, sw updates, and basic configuration
-    * Prisma Access service setup and mobile user configuration
+    * Prisma Access service setup, mobile user, and remote network configuration/onboarding
     * Prisma Access API queries to view service information
+    
+The skillets are grouped into functional Collections:
+
+    * Prisma Access Setup Panorama: initial deployment and setup
+    * Prisma Access Service Setup: initial Prisma Access setup configuration
+    * Prisma Access Mobile Users: mobile user configuration elements
+    * Prisma Access Remote Network: remote network configuration elements
+    * Prisma Access Assess Tools: utilities for post-configuration information
 
 ## Prerequisites
 
@@ -43,20 +52,21 @@ You can reference the
 [panHandler Quick Start Guide](https://live.paloaltonetworks.com/t5/Skillet-Tools/Install-and-Get-Started-With-Panhandler/ta-p/307916)
 for more information about using panHandler to import and run skillets.
 
-## Step 1 - Choose Public Cloud Environment (Azure or AWS)
+
+## Deployment
+
+#### Step 1 - Deploy Panorama
 
 First, Choose which public cloud you will use for Panorama Deployment. Currently suppored options are:
 * Azure
 * AWS
 
+Second, the skillet uses a set of Terraform templates to deploy a new Panorama instance.
 
-## Step 2 - Panorama Deployment in Public Cloud
+> Ensure the region selected supports the required image type
 
-This skillet uses a set of Terraform templates to deploy a new Panorama instance.
 
-> Ensure the region selected supports the Standard D3 image
-
-## Step 3 - Initial Panorama Configuration
+#### Step 2 - Initial Panorama Setup
 
 Initial Panorama staging is done using Ansible playbooks. Includes:
 
@@ -65,15 +75,25 @@ Initial Panorama staging is done using Ansible playbooks. Includes:
     * Content and Software Updates
     * Prisma Access Plug-in installation
     
-## Step 3.1 - Verify the Cloud Plugin using the One Time Password (OTP)
+#### Step 2.1 - Verify the Cloud Plugin using the One Time Password (OTP)
 
 Before configuring Panorama, you must generate the OTP in the Customer Support Portal and add to Panorama
 
     * Access the Customer Support Portal (Must be a SuperUser) and generate the OTP
     * Go to Panorama > Cloud Services > Configuration and Click ```Verify```
     * Paste in the OTP and Submit
-    
-## Step 4 - Generate Config File and Import to Panorama
+
+
+## Serivce Setup Configuration
+
+#### Step 1 - Initial Prisma Access Configuration
+
+Add the service infrastructure subnet and BGP AS.
+
+
+## Mobile User Configuration
+
+#### Step 1 - Generate Config File and Import to Panorama
 
 > Prior to this step enter the Prisma Access OTP using the Panorama Web UI
 
@@ -85,15 +105,15 @@ The default filename for import is ```prisma_access_full_config.xml```
 
 > If API access is not available, use the Manual skillet option to generate a configuration file to import to Panorama
 
-## Step 5 - Initial Load Config Partial for Service Setup
+#### Step 2 - Initial Load Config Partial for Service Setup
 
 After the file is imported, this skillet will configure service setup and add the mobile user template
 
-> At the completion of Step 5 a Panorama commit is required before proceeding to step 6
+> At the completion of Step 2 a Panorama commit is required before proceeding to step 6
     
-## Step 6 - Load Config Partial for Mobile Users and Generate Certificates
+#### Step 3 - Generate Certificates and Complete Mobile User Configuration
 
-```COMMIT to Panorama before running step 6```
+> COMMIT to Panorama before running step 3
 
 This skillet will run through a series of load config partial commands and a certificate
 generation to:
@@ -101,14 +121,14 @@ generation to:
     * Configure Mobile User Setup and Onboarding
     * Generate certificates used as part of onboarding configuration
     
-> At the completion of Step 6 commit to Panorama and push the configuration to Prisma Access
+> At the completion of Step 3 commit to Panorama and push the configuration to Prisma Access
 
 GUI instructions to commit the changes and push to Prisma Access are found in the 
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
 
 ## Optional non-API Config File Generation
 
-If API access to Panorama is not available, the following steps can be used as an alternative to steps 4, 5, and 6.
+If API access to Panorama is not available, the following steps can be used as an alternative to steps 1, 2, and 3.
 
 
 1. Run the Optional Manual skillet to generate a config file
@@ -116,8 +136,24 @@ If API access to Panorama is not available, the following steps can be used as a
 3. Import the file to Panorama (Panorama > Setup > Operations)
 4. Use the CLI and follow the [manual steps for load config partial](https://github.com/PaloAltoNetworks/prisma-access-skillets/blob/master/stage_2_configuration/full_config/README.md)
 
+## Remote Network Configuration
 
-## Retrieve Service Information
+Initial Remote Network configuration and per-site onboarding.
+
+#### Step 1 - Initial Configuration
+
+Setup the device-group, template, template-stack, and zone configuration.
+
+#### Step 2 - Site Onboarding
+
+Configure the IKE/IPSEC crypto profiles, IKE gateway, IPSEC tunnel, and plugin onboarding.
+
+Details for each elements can be found by reviewing the [ Remote Network onboarding skillet](https://url.com)
+content.
+
+## Assess
+
+#### Retrieve Service Information
 
 The details for using the API and information returned are found in the
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-panorama-admin/prisma-access-overview/retrieve-ip-addresses-for-prisma-access.html)
