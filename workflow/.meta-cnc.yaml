@@ -9,7 +9,7 @@ type: workflow
 labels:
   order: 1
   collection:
-    - Prisma Access Deploy and Setup Panorama
+    - Prisma Access Setup Panorama
 
 variables:
   - name: deployment_type
