@@ -1,5 +1,5 @@
 name: prisma_access_remote_network_setup
-label: Configure - Step 1 - Prisma Access Remote Network Setup
+label: Configure - Step 1 - Prisma Access Remote Network
 description: |
     Initial Prisma Access configuration for Remote Network device-group and template-stack.
     Required before onboarding Remote Network sites.
@@ -8,8 +8,10 @@ extends:
 
 labels:
   order: 50
+  help_link_title: Remote Network Initial Configuration
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---initial-configuration
   collection:
-    - Prisma Access Remote Network
+    - Prisma Access Configure Remote Network
 
 variables:
 

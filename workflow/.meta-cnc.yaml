@@ -8,8 +8,10 @@ type: workflow
 
 labels:
   order: 1
+  help_link_title: Deploy Panorama
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---deploy-panorama
   collection:
-    - Prisma Access Setup Panorama
+    - Prisma Access Deploy Panorama
 
 variables:
   - name: deployment_type

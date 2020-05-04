@@ -1,4 +1,4 @@
-# Prisma Access Remote Network setup
+# Prisma Access Remote Network Configuration
 
 Prior to site onboarding, basic configuration to:
 

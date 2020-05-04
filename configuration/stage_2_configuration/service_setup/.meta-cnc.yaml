@@ -18,8 +18,10 @@ extends:
 # grouping of like snippets for dynamic menu creation in panhandler
 labels:
   order: 20
+  help_link_title: Prisma Access Configure Service Setup
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---initial-prisma-access-configuration
   collection:
-    - Prisma Access Service Setup
+    - Prisma Access Configure Service Setup
 
 # ---------------------------------------------------------------------
 # end of preamble section
