@@ -1,6 +1,6 @@
 name: prisma_access_poc_workflow
 
-label: Step 1 - Prisma Access Panorama Deployment
+label: Deploy - Step 1 - Prisma Access Panorama Deployment
 
 description: Deploys Panorama into Azure or AWS
 

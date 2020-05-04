@@ -3,7 +3,7 @@
 # unique snippet name
 name: get_service_info_prisma_access
 # label used for menu selection
-label: Prisma Access API call to get service information
+label: Assess - Prisma Access API call to get service information
 description: API call to get the service, address, and location information using the Prisma Access API
 type: rest
 
