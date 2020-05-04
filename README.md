@@ -126,7 +126,7 @@ generation to:
 GUI instructions to commit the changes and push to Prisma Access are found in the 
 [Admin Guide](https://docs.paloaltonetworks.com/prisma/prisma-access/prisma-access-cloud-managed-admin/administer-prisma-access/commit-push-and-revert-prisma-access-configuration-changes.html)
 
-## Optional non-API Config File Generation
+#### Optional non-API Config File Generation
 
 If API access to Panorama is not available, the following steps can be used as an alternative to steps 1, 2, and 3.
 
