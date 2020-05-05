@@ -1,6 +1,6 @@
 name: prisma_access_poc_workflow
 
-label: Step 1 - Prisma Access Panorama Deployment
+label: Deploy - Step 1 - Prisma Access Panorama Deployment
 
 description: Deploys Panorama into Azure or AWS
 
@@ -8,8 +8,10 @@ type: workflow
 
 labels:
   order: 1
+  help_link_title: Deploy Panorama
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---deploy-panorama
   collection:
-    - Prisma Access
+    - Prisma Access Deploy Panorama
 
 variables:
   - name: deployment_type

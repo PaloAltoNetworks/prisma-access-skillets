@@ -1,15 +1,19 @@
 name: prisma_access_initial_panorama_config
 
-label: Step 2 - Prisma Access Panorama Initial Configuration
+label: Deploy - Step 2 - Prisma Access Panorama Initial Setup
 
-description: Configures a newly launched Panorama Instance
+description: |
+  License Panorama and update to current POC recommended version.
+  Install content updates and the Cloudservice Plugin.
 
 type: docker
 
 labels:
   order: 10
+  help_link_title: Prisma Access Panorama Initial Setup
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-2---initial-panorama-setup
   collection:
-    - Prisma Access
+    - Prisma Access Deploy Panorama
 
 variables:
   - name: panorama_ip_address

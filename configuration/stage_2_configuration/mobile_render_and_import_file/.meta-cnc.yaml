@@ -1,18 +1,20 @@
 name: render_and import_prisma_access_config_file_v90
 # label used for menu selection
-label: Step 3 - API Option - Generate and Import the Prisma Access Config File
+label: Configure - Step 1 - Generate and Import the Prisma Access Config File
 
 description: |
-  This skillet renders the config file and then uses the panorama API to import the full prisma access config file
-  that will be used by the load config partial skillet
+  Generate the Mobile User XML config file and import to Panorama.
+  Later steps use load config partial to merge elements into the candidate configuration.
 
 type: python3
 
 # Labels allow grouping and type specific options and are generally only used in advanced cases
 labels:
-    order: 20
+    order: 30
+    help_link_title: Generate Mobile User Config File and Import to Panorama
+    help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---generate-config-file-and-import-to-panorama
     collection:
-      - Prisma Access
+      - Prisma Access Configure Mobile User
 
 # variables define the things an operator may customize in this skillet. Things like DNS servers, NTP addresses, etc
 # may be customized for each deployment. Each variable will be rendered as a form field in the panhandler application
@@ -34,10 +36,23 @@ variables:
     description: Panorama Password
     default:
     type_hint: password
+  - name: include_svc_setup
+    description: Include First Time Service Setup Configuration?
+    default: 'no'
+    type_hint: dropdown
+    dd_list:
+      - key: 'yes'
+        value: 'yes'
+      - key: 'no'
+        value: 'no'
+    help_text: choose Service Setup for first time configuration of the service infrastructure subnet and BGP AS
   - name: infra_subnet
     description: Infrastructure Subnet
     default: 192.168.254.0/24
     type_hint: cidr
+    toggle_hint:
+      source: include_svc_setup
+      value: 'yes'
     help_text: |-
       Specify a RFC-1918 compliant IP address pool (at least a /24 subnet) that does not overlap with other
       IP addresses in your network. These IP addresses will be used by the cloud service.
@@ -45,6 +60,9 @@ variables:
     description: Infrastructure BGP AS
     default: 65534
     type_hint: number
+    toggle_hint:
+      source: include_svc_setup
+      value: 'yes'
     help_text: |-
       Specify a RFC-6996 compliant Private AS number. Accepted formats are 4-Byte AS Plain [64512-65534],
       [4200000000-4294967294] or AS Dot [0.64512-0.65534], [64086.59904-65535.65534] notation.
