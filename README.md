@@ -59,6 +59,7 @@ Initial Panorama staging is done using Ansible playbooks. Includes:
     * Licensing
     * Content and Software Updates
     * Prisma Access Plug-in installation
+    * Changed Cloud Services Plugin to 1.6.0
     
 ## Step 3.1 - Verify the Cloud Plugin using the One Time Password (OTP)
 
