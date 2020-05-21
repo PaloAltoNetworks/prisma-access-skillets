@@ -77,6 +77,7 @@ Initial Panorama staging is done using Ansible playbooks. Includes:
     * Licensing
     * Content and Software Updates
     * Prisma Access Plug-in installation
+    * Changed Cloud Services Plugin to 1.6.0
     
 > Panorama is upgraded to version 9.0.7
 
