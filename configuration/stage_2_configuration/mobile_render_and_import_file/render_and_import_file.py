@@ -51,6 +51,7 @@ def cli(target_ip, target_port, target_username, target_password, include_svc_se
     """
 
     # creating the jinja context from the skillet vars
+    print('Reading in skillet variables')
     context = dict()
     context['include_svc_setup'] = include_svc_setup
     context['infra_subnet'] = infra_subnet
@@ -68,12 +69,14 @@ def cli(target_ip, target_port, target_username, target_password, include_svc_se
 
     try:
         # render the template config file and create file_contents to use with import_file
+        print('Creating the configuration file')
         sl = SkilletLoader()
         skillet = sl.load_skillet_from_path('../mobile_full_config')
         output = skillet.execute(context)
         file_contents = output.get('template', '')
 
         # create device object and use panoply import_file to send a config file to the device
+        print('Import the config file to Panorama')
         device = Panos(api_username=target_username,
                        api_password=target_password,
                        hostname=target_ip,
@@ -95,6 +98,7 @@ def cli(target_ip, target_port, target_username, target_password, include_svc_se
     # failsafe
     exit(1)
 
+    print('File import complete')
 
 if __name__ == '__main__':
     cli()
