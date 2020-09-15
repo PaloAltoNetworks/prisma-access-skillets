@@ -1,0 +1,22 @@
+name: prisma_access_azure_select_subscription
+
+label: Prisma Access Azure Select Subscription
+
+description: Choose your Default Azure Subscription
+
+type: python3
+
+labels:
+  collection:
+    - Kitchen Sink
+
+variables:
+  - name: azure_account
+    type_hint: dropdown
+    default: ''
+    source: azure_accounts
+
+snippets:
+  - name: script
+    file: azure_select_subscription.py
+    input_type: env

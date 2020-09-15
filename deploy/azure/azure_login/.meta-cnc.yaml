@@ -9,6 +9,7 @@ type: python3
 labels:
   collection:
     - Kitchen Sink
+  output_template: azure_login_output.j2
 
 variables:
   - name: deployment_type
@@ -19,3 +20,9 @@ variables:
 snippets:
   - name: script
     file: azure_login.py
+    output_type: text
+    outputs:
+    -   name: azure_accounts_str
+        capture_pattern: '[^###]+(?=###[^###]*$)'
+    -   name: azure_accounts
+        capture_expression: azure_accounts_str | from_json
