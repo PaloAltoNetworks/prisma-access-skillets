@@ -12,9 +12,11 @@ labels:
 
 variables:
   - name: azure_account
+    description: Azure Account to Use
     type_hint: dropdown
     default: ''
     source: azure_accounts
+    help_text: These accounts were found when you logged in to Azure. Choose which account to use for deployment.
 
 snippets:
   - name: script
