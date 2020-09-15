@@ -1,7 +1,9 @@
+<h3>Success</h3>
 Successfully Logged in to Azure and found the following accounts:
-
+<br/>
 <ul>
 {% for account in azure_accounts %}
-<li>{{ account }}</li>
+<li>{{ account.key }}</li>
 {% endfor %}
 </ul>
+<hr/>

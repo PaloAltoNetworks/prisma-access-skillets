@@ -43,7 +43,7 @@ snippets:
     when: |
       (
       deployment_type == 'azure'
-      and azure_account | length > 1
+      and azure_accounts | length > 1
       )
   - name: prisma_access_azure_deploy_panorama
     when: deployment_type == 'azure'
