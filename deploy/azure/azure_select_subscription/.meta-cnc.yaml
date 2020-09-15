@@ -20,5 +20,5 @@ variables:
 
 snippets:
   - name: script
-    file: azure_select_subscription.py
+    file: ../azure_select_subscription.py
     input_type: env

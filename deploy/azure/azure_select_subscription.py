@@ -11,3 +11,5 @@ output = io.StringIO()
 sys.sterr = sys.stdout
 
 get_default_cli().invoke(['account', "set", "-s", azure_account], out_file=sys.stdout)
+
+print(f'Successfully set default account to: {azure_account}')

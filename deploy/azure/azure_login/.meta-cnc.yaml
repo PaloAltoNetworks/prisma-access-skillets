@@ -19,7 +19,7 @@ variables:
 
 snippets:
   - name: script
-    file: azure_login.py
+    file: ../azure_login.py
     output_type: text
     outputs:
     -   name: azure_accounts_str
