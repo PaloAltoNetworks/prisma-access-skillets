@@ -8,7 +8,12 @@ output = io.StringIO()
 
 sys.sterr = sys.stdout
 
-get_default_cli().invoke(['login', "--use-device-code"], out_file=sys.stdout)
+is_logged_in_output = io.StringIO()
+get_default_cli().invoke(['account', "show"], out_file=is_logged_in_output)
+
+if 'environmentName' not in is_logged_in_output.getvalue():
+    get_default_cli().invoke(['login', "--use-device-code"], out_file=sys.stdout)
+
 get_default_cli().invoke(['account', "list"], out_file=output)
 
 accounts_str = output.getvalue()
