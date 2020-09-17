@@ -33,4 +33,3 @@ try:
 except ValueError:
     print('Could not get list of accounts in Azure')
     sys.exit(1)
-
