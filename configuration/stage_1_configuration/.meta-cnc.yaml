@@ -52,4 +52,4 @@ snippets:
       -e 'serial_number="{{ serial_number }}"'
       -e 'deployment_type="{{ deployment_type }}"'
       -e 'private_key_path="{{ private_key_path }}"'
-      -e '{"provider": {"ip_address": "{{ panorama_ip_address }}", "username": "{{ adminUsername }}", "password": "{{ adminPassword }}"}}'
+      -e '{"provider": {"ip_address": "{{ panorama_ip_address }}", "username": "{{ adminUsername }}", "password": "{{ adminPassword }}" } }'

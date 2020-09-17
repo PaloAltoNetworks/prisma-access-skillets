@@ -39,5 +39,11 @@ snippets:
     when: deployment_type == 'aws'
   - name: prisma_access_azure_login
     when: deployment_type == 'azure'
+  - name: prisma_access_azure_select_subscription
+    when: |
+      (
+      deployment_type == 'azure'
+      and azure_accounts | length > 1
+      )
   - name: prisma_access_azure_deploy_panorama
     when: deployment_type == 'azure'
