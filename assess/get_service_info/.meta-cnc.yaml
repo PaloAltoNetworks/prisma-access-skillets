@@ -49,6 +49,8 @@ variables:
         value: gp_gateway
       - key: gp_portal
         value: gp_portal
+      - key: swg_proxy
+        value: swg_proxy
       - key: clean_pipe
         value: clean_pipe
   - name: addrType
