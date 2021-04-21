@@ -1,96 +1,49 @@
-<?xml version="1.0"?>
-<config version="9.0.0" urldb="paloaltonetworks">
-  <mgt-config>
-    <devices/>
-    <users>
-      <entry name="admin">
-        <phash>$1$ajeslvqb$L4LgjCy5s61Eio7meGHa0.</phash>
-        <permissions>
-          <role-based>
-            <superuser>yes</superuser>
-          </role-based>
-        </permissions>
-      </entry>
-    </users>
-  </mgt-config>
-  <shared/>
-  <devices>
-    <entry name="localhost.localdomain">
-      <deviceconfig>
-        <system>
-          <ip-address>192.168.128.21</ip-address>
-          <netmask>255.255.255.0</netmask>
-          <update-server>updates.paloaltonetworks.com</update-server>
-          <update-schedule>
-            <threats>
-              <recurring>
-                <weekly>
-                  <day-of-week>wednesday</day-of-week>
-                  <at>01:02</at>
-                  <action>download-only</action>
-                </weekly>
-              </recurring>
-            </threats>
-          </update-schedule>
-          <timezone>US/Pacific</timezone>
-          <service>
-            <disable-telnet>yes</disable-telnet>
-            <disable-http>yes</disable-http>
-          </service>
-          <hostname>Panorama</hostname>
-          <dns-setting>
-            <servers>
-              <primary>1.1.1.1</primary>
-              <secondary>1.0.0.1</secondary>
-            </servers>
-          </dns-setting>
-          <default-gateway>192.168.128.1</default-gateway>
-          <ntp-servers>
-            <primary-ntp-server>
-              <ntp-server-address>0.pool.ntp.org</ntp-server-address>
-              <authentication-type>
-                <none/>
-              </authentication-type>
-            </primary-ntp-server>
-            <secondary-ntp-server>
-              <ntp-server-address>1.pool.ntp.org</ntp-server-address>
-              <authentication-type>
-                <none/>
-              </authentication-type>
-            </secondary-ntp-server>
-          </ntp-servers>
-        </system>
-        <setting>
-          <management>
-            <storage-partition>
-              <internal/>
-            </storage-partition>
-            <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
-          </management>
-        </setting>
-      </deviceconfig>
-      <template>
-        <entry name="Service_Conn_Template">
+name: prisma_access_remote_network_setup
+label: Configure - Step 1 - Prisma Access Remote Network
+description: |
+    Initial Prisma Access configuration for Remote Network device-group and template-stack.
+    Required before onboarding Remote Network sites.
+type: panorama-gpcs
+extends:
+
+labels:
+  order: 50
+  help_link_title: Remote Network Initial Configuration
+  help_link: https://github.com/PaloAltoNetworks/prisma-access-skillets/tree/master#step-1---initial-configuration
+  collection:
+    - Prisma Access Configure Remote Network
+
+variables:
+
+snippets:
+
+  - name: remote_network_template
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template
+    element: |-
+       <entry name="Remote_Network_Template">
           <settings>
             <default-vsys>vsys1</default-vsys>
           </settings>
-          <description>Service Connection Template (Use the Cloud Services plugin to edit)</description>
+          <description> Template (Use the Cloud Services plugin to edit)</description>
           <config>
             <devices>
               <entry name="localhost.localdomain">
                 <vsys>
-                  <entry name="vsys1"/>
+                  <entry name="vsys1">
+                    <zone>
+                      <entry name="RN-trust">
+                        <network>
+                          <tap/>
+                        </network>
+                      </entry>
+                      <entry name="RN-untrust">
+                        <network>
+                          <tap/>
+                        </network>
+                      </entry>
+                    </zone>
+                  </entry>
                 </vsys>
-                <deviceconfig>
-                  <setting>
-                    <logging>
-                      <logging-service-forwarding>
-                        <logging-service-regions>americas</logging-service-regions>
-                        <enable>yes</enable>
-                      </logging-service-forwarding>
-                    </logging>
-                  </setting>
-                </deviceconfig>
                 <network>
                   <ike>
                     <crypto-profiles>
@@ -708,167 +661,6 @@
                     </entry>
                   </match-list>
                 </system>
-              </log-settings>
-            </shared>
-          </config>
-        </entry>
-        <entry name="Mobile_User_Template">
-          <settings>
-            <default-vsys>vsys1</default-vsys>
-          </settings>
-          <description> Template (Use the Cloud Services plugin to edit)</description>
-          <config>
-            <devices>
-              <entry name="localhost.localdomain">
-                <vsys>
-                  <entry name="vsys1">
-                    <zone>
-                      <entry name="MU-trust">
-                        <network>
-                          <tap/>
-                        </network>
-                      </entry>
-                      <entry name="MU-untrust">
-                        <network>
-                          <tap/>
-                        </network>
-                      </entry>
-                    </zone>
-                    <authentication-profile>
-                      <entry name="Local-DB">
-                        <multi-factor-auth>
-                          <mfa-enable>no</mfa-enable>
-                        </multi-factor-auth>
-                        <method>
-                          <local-database/>
-                        </method>
-                        <allow-list>
-                          <member>all</member>
-                        </allow-list>
-                      </entry>
-                    </authentication-profile>
-                    <global-protect>
-                      <global-protect-portal>
-                        <entry name="GlobalProtect_Portal">
-                          <portal-config>
-                            <local-address>
-                              <interface>-</interface>
-                              <ip/>
-                            </local-address>
-                            <ssl-tls-service-profile>-</ssl-tls-service-profile>
-                            <client-auth>
-                              <entry name="DEFAULT">
-                                <os>Any</os>
-                                <authentication-profile>Local-DB</authentication-profile>
-                                <authentication-message>Enter login credentials</authentication-message>
-                              </entry>
-                            </client-auth>
-                            <custom-login-page>factory-default</custom-login-page>
-                            <custom-home-page>factory-default</custom-home-page>
-                          </portal-config>
-                          <client-config>
-                            <configs>
-                              <entry name="DEFAULT">
-                                <gateways>
-                                  <external>
-                                    <list>
-                                      <entry name="GP cloud service">
-                                        <fqdn>gpcloudservice.com</fqdn>
-                                        <priority-rule>
-                                          <entry name="Any">
-                                            <priority>1</priority>
-                                          </entry>
-                                        </priority-rule>
-                                        <manual>yes</manual>
-                                      </entry>
-                                    </list>
-                                    <cutoff-time>5</cutoff-time>
-                                  </external>
-                                </gateways>
-                                <authentication-override>
-                                  <accept-cookie>
-                                    <cookie-lifetime>
-                                      <lifetime-in-hours>24</lifetime-in-hours>
-                                    </cookie-lifetime>
-                                  </accept-cookie>
-                                  <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
-                                  <generate-cookie>yes</generate-cookie>
-                                </authentication-override>
-                                <source-user>
-                                  <member>any</member>
-                                </source-user>
-                                <os>
-                                  <member>any</member>
-                                </os>
-                              </entry>
-                            </configs>
-                          </client-config>
-                          <clientless-vpn>
-                            <hostname>macallan.lab.gpcloudservice.com</hostname>
-                            <dns-proxy>CloudDefault</dns-proxy>
-                          </clientless-vpn>
-                        </entry>
-                      </global-protect-portal>
-                      <global-protect-gateway>
-                        <entry name="GlobalProtect_External_Gateway">
-                          <client-auth>
-                            <entry name="DEFAULT">
-                              <authentication-profile>Local-DB</authentication-profile>
-                              <os>Any</os>
-                            </entry>
-                          </client-auth>
-                          <remote-user-tunnel-configs>
-                            <entry name="DEFAULT">
-                              <authentication-override>
-                                <accept-cookie>
-                                  <cookie-lifetime>
-                                    <lifetime-in-hours>24</lifetime-in-hours>
-                                  </cookie-lifetime>
-                                </accept-cookie>
-                                <cookie-encrypt-decrypt-cert>Authentication Cookie Cert</cookie-encrypt-decrypt-cert>
-                                <generate-cookie>yes</generate-cookie>
-                              </authentication-override>
-                              <source-user>
-                                <member>any</member>
-                              </source-user>
-                              <os>
-                                <member>any</member>
-                              </os>
-                            </entry>
-                          </remote-user-tunnel-configs>
-                          <ssl-tls-service-profile>-</ssl-tls-service-profile>
-                          <tunnel-mode>yes</tunnel-mode>
-                          <remote-user-tunnel>-</remote-user-tunnel>
-                        </entry>
-                      </global-protect-gateway>
-                    </global-protect>
-                  </entry>
-                </vsys>
-                <network>
-                  <tunnel>
-                    <global-protect-gateway>
-                      <entry name="GlobalProtect_External_Gateway-N">
-                        <local-address>
-                          <interface>-</interface>
-                          <ip/>
-                        </local-address>
-                        <tunnel-interface>-</tunnel-interface>
-                      </entry>
-                    </global-protect-gateway>
-                  </tunnel>
-                </network>
-              </entry>
-            </devices>
-            <shared>
-              <log-settings>
-                <system>
-                  <match-list>
-                    <entry name="system-gpcs-default">
-                      <filter>All Logs</filter>
-                      <send-to-panorama>yes</send-to-panorama>
-                    </entry>
-                  </match-list>
-                </system>
                 <userid>
                   <match-list>
                     <entry name="userid-gpcs-default">
@@ -877,66 +669,33 @@
                     </entry>
                   </match-list>
                 </userid>
-                <hipmatch>
-                  <match-list>
-                    <entry name="hipmatch-gpcs-default">
-                      <filter>All Logs</filter>
-                      <send-to-panorama>yes</send-to-panorama>
-                    </entry>
-                  </match-list>
-                </hipmatch>
               </log-settings>
-              <local-user-database>
-                <user>
-                  <entry name="User1">
-                    <phash>{{ user1_password | md5_hash }}</phash>
-                  </entry>
-                  <entry name="User2">
-                    <phash>{{ user2_password | md5_hash }}</phash>
-                  </entry>
-                </user>
-              </local-user-database>
             </shared>
           </config>
         </entry>
-      </template>
-      <template-stack>
-        <entry name="Service_Conn_Template_Stack">
+
+  - name: remote_network_template_stack
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/template-stack
+    element: |-
+        <entry name="Remote_Network_Template_Stack">
           <templates>
-            <member>Service_Conn_Template</member>
-          </templates>
-          <description>Service Connection Template Stack (Use the Cloud Services plugin to edit)</description>
-          <settings>
-            <default-vsys>vsys1</default-vsys>
-          </settings>
-        </entry>
-        <entry name="Mobile_User_Template_Stack">
-          <templates>
-            <member>Mobile_User_Template</member>
+            <member>Remote_Network_Template</member>
           </templates>
           <description> Template Stack (Use the Cloud Services plugin to edit)</description>
           <settings>
             <default-vsys>vsys1</default-vsys>
           </settings>
         </entry>
-      </template-stack>
-      <device-group>
-        <entry name="Service_Conn_Device_Group">
-          <description>Service Connection Device Group (Use the Cloud Services plugin to edit)</description>
-          <devices/>
-          <reference-templates>
-            <member>Service_Conn_Template</member>
-          </reference-templates>
-        </entry>
-        <entry name="Mobile_User_Device_Group">
+
+  - name: remote_network_device_group
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group
+    element: |-
+        <entry name="Remote_Network_Device_Group">
           <description> Device Group (Use the Cloud Services plugin to edit)</description>
           <devices/>
-          <reference-templates>
-            <member>Mobile_User_Template</member>
-          </reference-templates>
           <log-settings>
             <profiles>
-              <entry name="Mobile_Users_Log_Profile">
+              <entry name="Remote-Network-Log-Profile">
                 <match-list>
                   <entry name="traffic-enhanced-app-logging">
                     <log-type>traffic</log-type>
@@ -978,215 +737,141 @@
               </entry>
             </profiles>
           </log-settings>
-          <pre-rulebase>
-            <security>
-              <rules>
-                <entry name="MU-trust-to-MU-untrust" uuid="909dc713-c278-4f3e-8470-858cb7e890da">
-                  <profile-setting>
-                    <profiles>
-                      <url-filtering>
-                        <member>default</member>
-                      </url-filtering>
-                      <file-blocking>
-                        <member>basic file blocking</member>
-                      </file-blocking>
-                      <virus>
-                        <member>default</member>
-                      </virus>
-                      <spyware>
-                        <member>default</member>
-                      </spyware>
-                      <vulnerability>
-                        <member>default</member>
-                      </vulnerability>
-                      <wildfire-analysis>
-                        <member>default</member>
-                      </wildfire-analysis>
-                    </profiles>
-                  </profile-setting>
-                  <target>
-                    <negate>no</negate>
-                  </target>
-                  <to>
-                    <member>MU-untrust</member>
-                  </to>
-                  <from>
-                    <member>MU-trust</member>
-                  </from>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>application-default</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                  <log-setting>Mobile_Users_Log_Profile</log-setting>
-                </entry>
-                <entry name="MU-trust-to-trust" uuid="0a275f5b-4da9-41b2-a321-7b36efd230ef">
-                  <profile-setting>
-                    <profiles>
-                      <url-filtering>
-                        <member>default</member>
-                      </url-filtering>
-                      <file-blocking>
-                        <member>basic file blocking</member>
-                      </file-blocking>
-                      <virus>
-                        <member>default</member>
-                      </virus>
-                      <spyware>
-                        <member>default</member>
-                      </spyware>
-                      <vulnerability>
-                        <member>default</member>
-                      </vulnerability>
-                      <wildfire-analysis>
-                        <member>default</member>
-                      </wildfire-analysis>
-                    </profiles>
-                  </profile-setting>
-                  <target>
-                    <negate>no</negate>
-                  </target>
-                  <to>
-                    <member>MU-trust</member>
-                  </to>
-                  <from>
-                    <member>MU-trust</member>
-                  </from>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>application-default</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                  <log-setting>Mobile_Users_Log_Profile</log-setting>
-                </entry>
-              </rules>
-            </security>
-          </pre-rulebase>
+          <reference-templates>
+            <member>Remote_Network_Template</member>
+          </reference-templates>
         </entry>
-      </device-group>
-      <plugins>
-        <cloud_services version="1.5.0">
-          <service-connection>
-            <service-subnet>{{ infra_subnet }}</service-subnet>
-            <infra-bgp-as>{{ infra_bgp_as }}</infra-bgp-as>
-            <internal-dns-list/>
-            <template-stack>Service_Conn_Template_Stack</template-stack>
-            <device-group>Service_Conn_Device_Group</device-group>
-          </service-connection>
-          <routing-preference>
-            <default/>
-          </routing-preference>
-          <pbf>
-            <rules/>
-          </pbf>
-          <mobile-users>
-            <template-stack>Mobile_User_Template_Stack</template-stack>
-            <device-group>Mobile_User_Device_Group</device-group>
-            <trusted-zones>
-              <member>MU-trust</member>
-            </trusted-zones>
-            <onboarding>
-             <entry name="{{ portal_hostname }}.gpcloudservice.com">
-              <portal-hostname>
-                <default-domain>
-                  <hostname>{{ portal_hostname }}</hostname>
-                </default-domain>
-              </portal-hostname>
-              <ip-pools>
-               {% if deployment_region == 'europe' %}
-               {%- set deployment_region = 'emea' %}
-               {% endif %}
-                <entry name="{{ deployment_region }}">
-                  <ip-pool>
-                    <member>{{ ip_pool_cidr }}</member>
-                  </ip-pool>
-                </entry>
-              </ip-pools>
-              <dns-servers>
-                <entry name="{{ deployment_region }}"/>
-              </dns-servers>
-              <authentication-profile>Local-DB</authentication-profile>
-              <authentication-override-certificate>Authentication Cookie Cert</authentication-override-certificate>
-              <global-protect-portal>GlobalProtect_Portal</global-protect-portal>
-              <global-protect-gateway>GlobalProtect_External_Gateway</global-protect-gateway>
-              <deployment>
-                <region>
-               {% if deployment_region == 'emea' %}
-               {%- set deployment_region = 'europe' %}
-               {% endif %}
-                  <entry name="{{ deployment_region }}">
-                    <locations>
-                      {%- if deployment_region == 'americas' %}
-                        {%- set deployment_locations = deployment_locations_americas %}
-                      {% elif deployment_region == 'europe' %}
-                        {%- set deployment_locations = deployment_locations_europe %}
-                      {% elif deployment_region == 'apac' %}
-                        {%- set deployment_locations = deployment_locations_apac %}
-                      {% endif %}
-                      {%- for deployment_location in deployment_locations %}
-                        <member>{{ deployment_location }}</member>
-                      {% endfor %}
-                    </locations>
-                  </entry>
-                </region>
-              </deployment>
-              <manual-gateway>
-                <region>
-                  <entry name="{{ deployment_region }}">
-                    <locations>
-                      {%- if deployment_region == 'americas' %}
-                        {%- set deployment_locations = deployment_locations_americas %}
-                      {% elif deployment_region == 'europe' %}
-                        {%- set deployment_locations = deployment_locations_europe %}
-                      {% elif deployment_region == 'apac' %}
-                        {%- set deployment_locations = deployment_locations_apac %}
-                      {% endif %}
-                      {%- for deployment_location in deployment_locations %}
-                        <member>{{ deployment_location }}</member>
-                      {% endfor %}
-                    </locations>
-                  </entry>
-                </region>
-              </manual-gateway>
-            </entry>
-            </onboarding>
-          </mobile-users>
-        </cloud_services>
-      </plugins>
-    </entry>
-  </devices>
-</config>
+
+  - name: remote_network_pre_rulebase
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/device-group/entry[@name="Remote_Network_Device_Group"]
+    element: |-
+        <pre-rulebase>
+          <security>
+            <rules>
+              <entry name="Trust-to-Untrust" uuid="a4fa0418-92f6-4213-b98e-cf62caa3937d">
+                <profile-setting>
+                  <profiles>
+                    <url-filtering>
+                      <member>default</member>
+                    </url-filtering>
+                    <file-blocking>
+                      <member>basic file blocking</member>
+                    </file-blocking>
+                    <virus>
+                      <member>default</member>
+                    </virus>
+                    <spyware>
+                      <member>default</member>
+                    </spyware>
+                    <vulnerability>
+                      <member>default</member>
+                    </vulnerability>
+                    <wildfire-analysis>
+                      <member>default</member>
+                    </wildfire-analysis>
+                  </profiles>
+                </profile-setting>
+                <target>
+                  <negate>no</negate>
+                </target>
+                <to>
+                  <member>RN-untrust</member>
+                </to>
+                <from>
+                  <member>RN-trust</member>
+                </from>
+                <source>
+                  <member>any</member>
+                </source>
+                <destination>
+                  <member>any</member>
+                </destination>
+                <source-user>
+                  <member>any</member>
+                </source-user>
+                <category>
+                  <member>any</member>
+                </category>
+                <application>
+                  <member>any</member>
+                </application>
+                <service>
+                  <member>application-default</member>
+                </service>
+                <hip-profiles>
+                  <member>any</member>
+                </hip-profiles>
+                <action>allow</action>
+                <log-setting>Remote-Network-Log-Profile</log-setting>
+              </entry>
+              <entry name="Trust-to-Trust" uuid="78025c03-76a3-402c-ab36-a0537ece276d">
+                <profile-setting>
+                  <profiles>
+                    <url-filtering>
+                      <member>default</member>
+                    </url-filtering>
+                    <file-blocking>
+                      <member>basic file blocking</member>
+                    </file-blocking>
+                    <virus>
+                      <member>default</member>
+                    </virus>
+                    <spyware>
+                      <member>default</member>
+                    </spyware>
+                    <vulnerability>
+                      <member>default</member>
+                    </vulnerability>
+                    <wildfire-analysis>
+                      <member>default</member>
+                    </wildfire-analysis>
+                  </profiles>
+                </profile-setting>
+                <target>
+                  <negate>no</negate>
+                </target>
+                <to>
+                  <member>RN-trust</member>
+                </to>
+                <from>
+                  <member>RN-trust</member>
+                </from>
+                <source>
+                  <member>any</member>
+                </source>
+                <destination>
+                  <member>any</member>
+                </destination>
+                <source-user>
+                  <member>any</member>
+                </source-user>
+                <category>
+                  <member>any</member>
+                </category>
+                <application>
+                  <member>any</member>
+                </application>
+                <service>
+                  <member>application-default</member>
+                </service>
+                <hip-profiles>
+                  <member>any</member>
+                </hip-profiles>
+                <action>allow</action>
+                <log-setting>Remote-Network-Log-Profile</log-setting>
+              </entry>
+            </rules>
+          </security>
+        </pre-rulebase>
+
+  - name: remote_network_plugin_setup
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/plugins/cloud_services
+    element: |-
+        <remote-networks>
+          <overlapped-subnets>no</overlapped-subnets>
+          <template-stack>Remote_Network_Template_Stack</template-stack>
+          <device-group>Remote_Network_Device_Group</device-group>
+          <trusted-zones>
+            <member>RN-trust</member>
+          </trusted-zones>
+        </remote-networks>
