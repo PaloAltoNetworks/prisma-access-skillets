@@ -45,7 +45,7 @@ variables:
 # files will load in the order listed
 snippets:
   - name: ansible_test
-    image: nembery/pantools:min
+    image: registry.gitlab.com/panw-gse/as/panos_skillet_tools:latest 
     async: True
     cmd: |
       ansible-playbook -i 'panorama-1,' panorama_initial_config.yml
