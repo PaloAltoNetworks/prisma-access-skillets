@@ -6,6 +6,17 @@
   collections:
     - paloaltonetworks.panos
 
+  # use env lookups here to handler complex passwords. In most cases, you may supply this
+  # via a cli argument use `-e password=SUPERSECRET` but this will not work with special chars
+  vars:
+    provider:
+      username: "{{ lookup('env', 'adminUsername') | default('admin', True) }}"
+      password: "{{ lookup('env', 'adminPassword') | default('admin', True) }}"
+      ip_address: "{{ lookup('env', 'panorama_ip_address') | default('10.10.10.10', True) }}"
+    serial_number: "{{ lookup('env', 'serial_number') | default('000', True) }}"
+    deployment_type: "{{ lookup('env', 'deployment_type') | default('azure', True) }}"
+    private_key_path: "{{ lookup('env', 'private_key_path') | default('/home/cnc_user/aws_deploy_key', True) }}"
+
   tasks:
     - name: Set the admin password using the SSH key
       panos_admpwd:
