@@ -7,7 +7,7 @@ GitPython==3.1.0
 idna==2.9
 Jinja2==2.11.3
 jsonpath-ng==1.5.1
-lxml==4.6.3
+lxml==4.6.5
 MarkupSafe==1.1.1
 oyaml==0.9
 pan-python==0.16.0
